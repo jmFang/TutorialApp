@@ -32,9 +32,9 @@ dependencies {
     compile 'com.orhanobut:logger:1.4'
     compile 'org.greenrobot:eventbus:3.0.0'
     //TODO 集成：1.2、配置IM SDK（bmob-im）版本和Data SDK（bmob-sdk）版本：特定版本的bmob-im依赖特定版本的bmob-sdk
-   // compile 'cn.bmob.android:bmob-im:2.0.9@aar'
-    //compile 'cn.bmob.android:bmob-sdk:3.5.7'
-    //compile 'cn.bmob.android:bmob-push:1.0.1'
+    compile 'cn.bmob.android:bmob-im:2.0.9@aar'
+    compile 'cn.bmob.android:bmob-sdk:3.5.7'
+    compile 'cn.bmob.android:bmob-push:1.0.1'
     compile 'com.github.promeg:tinypinyin:1.0.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
