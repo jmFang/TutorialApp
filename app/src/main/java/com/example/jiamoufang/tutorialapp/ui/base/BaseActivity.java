@@ -60,7 +60,7 @@ public class BaseActivity extends AppCompatActivity {
     public void onEvent(Boolean empty){
 
     }
-
+    /*什么都不做为啥要加这个方法*/
     protected void initView() {}
 
     protected void runOnMain(Runnable runnable) {
@@ -68,6 +68,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected final static String NULL = "";
+
     private Toast toast;
     public void toast(final Object obj) {
         try {
