@@ -7,131 +7,101 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jiamoufang.tutorialapp.R;
+import com.example.jiamoufang.tutorialapp.event.RefreshEvent;
+import com.example.jiamoufang.tutorialapp.model.bean.User;
+import com.example.jiamoufang.tutorialapp.ui.base.BaseActivity;
+import com.example.jiamoufang.tutorialapp.ui.fragment.ConversationFragment;
+import com.example.jiamoufang.tutorialapp.ui.fragment.HomePageFragment;
+import com.example.jiamoufang.tutorialapp.ui.fragment.MySettingsFragment;
+import com.example.jiamoufang.tutorialapp.ui.fragment.ShareFragment;
 
+import org.greenrobot.eventbus.EventBus;
+import org.w3c.dom.Text;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.bean.BmobIMConversation;
 import cn.bmob.newim.bean.BmobIMMessage;
 import cn.bmob.newim.bean.BmobIMTextMessage;
 import cn.bmob.newim.bean.BmobIMUserInfo;
 import cn.bmob.newim.core.BmobIMClient;
+import cn.bmob.newim.core.ConnectionStatus;
 import cn.bmob.newim.listener.ConnectListener;
 import cn.bmob.newim.listener.ConversationListener;
 import cn.bmob.newim.listener.MessageSendListener;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends BaseActivity{
+    /*四个Tab按钮*/
+    @Bind(R.id.btn_conversation)
+    TextView btn_conversation;
+    @Bind(R.id.btn_settings)
+    TextView btn_settings;
+    @Bind(R.id.btn_home)
+    TextView btn_home;
+    @Bind(R.id.btn_share)
+    TextView btn_share;
 
-    public static TextView tv_message;
-    EditText et_connect_id;
-    EditText et_receiver_id;
-    EditText et_message;
-    Button btn_connect;
-    Button btn_send;
-    boolean isConnect = false;
-    boolean isOpenConversation = false;
-    BmobIMConversation mBmobIMConversation;
+    /*消息tips*/
+    @Bind(R.id.iv_conversation_tips)
+    ImageView iv_conversation_tips;
+    /*主页tips*/
+    @Bind(R.id.iv_home_tips)
+    ImageView iv_home_tips;
+    /*底部四个tab所在的容器*/
+    @Bind(R.id.main_bottom)
+    LinearLayout mMainBottom;
+    /*分割线*/
+    @Bind(R.id.line)
+    LinearLayout mLine;
+    /*fragment容器*/
+    @Bind(R.id.fragment_container)
+    RelativeLayout mFragmentContainer;
+
+    private TextView[] mTabs;
+    private ConversationFragment conversationFragment;
+    private HomePageFragment homePageFragment;
+    private MySettingsFragment mySettingsFragment;
+    private ShareFragment shareFragment;
+
+    private int index;
+    private int currentTabIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tv_message = (TextView) findViewById(R.id.tv_message);
-        et_connect_id = (EditText) findViewById(R.id.et_connect_id);
-        et_receiver_id = (EditText) findViewById(R.id.et_receiver_id);
-        et_message = (EditText) findViewById(R.id.et_message);
-        btn_connect = (Button) findViewById(R.id.btn_connect);
-        btn_connect.setOnClickListener(this);
-        btn_send = (Button) findViewById(R.id.btn_send);
-        btn_send.setOnClickListener(this);
-    }
+        ButterKnife.bind(this);
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.btn_connect){
-            if (TextUtils.isEmpty(et_connect_id.getText().toString())){
-                Toast.makeText(this, "请填写连接id", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            btn_connect.setClickable(false);
-            BmobIM.connect(et_connect_id.getText().toString(), new ConnectListener() {
+        final User user = BmobUser.getCurrentUser(User.class);
+        /*TODO 连接：2.1 登录成功、注册成功后或处于登录状态重新打开应用后执行连接IM服务器的操作
+        * 判断用户是否登录，并且当连接状态是未连接，则进行连接
+        * */
+        if (!TextUtils.isEmpty(user.getObjectId())
+                && BmobIM.getInstance().getCurrentStatus().getCode() != ConnectionStatus.CONNECTED.getCode()) {
+            BmobIM.connect(user.getObjectId(), new ConnectListener() {
                 @Override
                 public void done(String s, BmobException e) {
-                    if (e == null){
-                        isConnect = true;
-                        Toast.makeText(MainActivity.this, "服务器连接成功", Toast.LENGTH_SHORT).show();
-                        Log.i("TAG","服务器连接成功");
-                    }else {
-                        Log.i("TAG",e.getMessage()+"  "+e.getErrorCode());
-
+                    if (e == null) {
+                        //服务器连接成功后发送一个更新事件，同步更新聊天会话和主页的小红点
+                        EventBus.getDefault().post(new RefreshEvent());
+                        //TODO 会话 3.1 更新用户资料，用户再会话聊天界面以及个人信息页面显示
+                        // 应该传入MoreInfo的objectId
+                        BmobIM.getInstance().updateUserInfo(new BmobIMUserInfo(user.getObjectId(), user.getUsername(),user.getMoreInfo().getObjectId()));
                     }
                 }
             });
-        }else if (v.getId() == R.id.btn_send){
-            if (!isConnect){
-                Toast.makeText(this, "未连接状态不能打开会话", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (!isOpenConversation){
-                BmobIMUserInfo info =new BmobIMUserInfo();
-                info.setAvatar("填写接收者的头像");
-                info.setUserId(et_receiver_id.getText().toString());
-                info.setName("填写接收者的名字");
-                BmobIM.getInstance().startPrivateConversation(info, new ConversationListener() {
-                    @Override
-                    public void done(BmobIMConversation c, BmobException e) {
-                        if(e==null){
-
-                            Toast.makeText(MainActivity.this, "!isOpenConversation", Toast.LENGTH_SHORT).show();
-
-                            isOpenConversation = true;
-                            //在此跳转到聊天页面或者直接转化
-                            mBmobIMConversation = BmobIMConversation.obtain(BmobIMClient.getInstance(),c);
-                            tv_message.append("发送者："+et_message.getText().toString()+"\n");
-                            BmobIMTextMessage msg =new BmobIMTextMessage();
-                            msg.setContent(et_message.getText().toString());
-
-                            mBmobIMConversation.sendMessage(msg, new MessageSendListener() {
-                                @Override
-                                public void done(BmobIMMessage msg, BmobException e) {
-                                    if (e == null) {
-                                        et_message.setText("!isOpenConversation");
-                                    }else{
-                                        Toast.makeText(MainActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                        }else{
-                            Toast.makeText(MainActivity.this, "开启会话出错", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }else {
-                BmobIMTextMessage msg =new BmobIMTextMessage();
-                msg.setContent(et_message.getText().toString());
-                tv_message.append("发送者："+et_message.getText().toString()+"\n");
-                mBmobIMConversation.sendMessage(msg, new MessageSendListener() {
-                    @Override
-                    public void done(BmobIMMessage msg, BmobException e) {
-                        if (e == null) {
-                            et_message.setText("isOpenConversation");
-                        }else{
-                            Toast.makeText(MainActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
         }
+
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        BmobIM.getInstance().disConnect();
-        BmobUser.logOut();
-    }
 }

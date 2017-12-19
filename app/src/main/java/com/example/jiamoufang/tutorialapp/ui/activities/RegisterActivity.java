@@ -136,15 +136,14 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onAnimationStart(Animator animation) {
                 super.onAnimationStart(animation);
-                mmCVAdd.setVisibility(View.INVISIBLE);
-                super.onAnimationEnd(animation);
-                mFab.setImageResource(R.drawable.plus);
-                RegisterActivity.super.onBackPressed();/*通过模拟按下返回键回到了登录界面*/
             }
 
             @Override
             public void onAnimationEnd(Animator animation) {
+                mmCVAdd.setVisibility(View.INVISIBLE);
                 super.onAnimationEnd(animation);
+                mFab.setImageResource(R.drawable.plus);
+                RegisterActivity.super.onBackPressed();/*通过模拟按下返回键回到了登录界面*/
             }
         });
         mAnimatior.start();

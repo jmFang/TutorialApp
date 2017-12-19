@@ -19,4 +19,12 @@
     <string name="go">登录</string>
     <string name="repeat_password">重复密码</string>
     <string name="next">注册</string>
+
+    <string name="main_tab_recent">消息</string>
+    <string name="main_tab_contact">首页</string>
+    <string name="main_tab_share">学圈</string>
+    <string name="main_tab_set">我的</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
