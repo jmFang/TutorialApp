@@ -21,6 +21,7 @@ import cn.bmob.newim.core.BmobIMClient;
 import cn.bmob.newim.listener.ConnectListener;
 import cn.bmob.newim.listener.ConversationListener;
 import cn.bmob.newim.listener.MessageSendListener;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -125,5 +126,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        BmobIM.getInstance().disConnect();
+        BmobUser.logOut();
     }
 }
