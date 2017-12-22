@@ -92,19 +92,16 @@ public class DemoMessageHandler extends BmobIMMessageHandler {
             //如果需要显示通知栏，SDK提供以下两种显示方式：
             Intent pendingIntent = new Intent(context, MainActivity.class);
             pendingIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            //TODO 消息接收：多个用户的多条消息合并成一条通知：有XX个联系人发来了XX条消息
+            //多个用户的多条消息合并成一条通知：有XX个联系人发来了XX条消息
             //BmobNotificationManager.getInstance(context).showNotification(event, pendingIntent);
-
-            //TODO 消息接收：自定义通知消息：始终只有一条通知，新消息覆盖旧消息
+            //消息接收：自定义通知消息：始终只有一条通知，新消息覆盖旧消息
             BmobIMUserInfo info = event.getFromUserInfo();
-
             //这里可以是应用图标，也可以将聊天头像转成bitmap
             Bitmap largeIcon = BitmapFactory.decodeResource(context.getResources(), R.mipmap.icon_message_press);
             BmobNotificationManager.getInstance(context).showNotification(largeIcon,
                     info.getName(), msg.getContent(), "您有一条新消息", pendingIntent);
         } else {
-            //TODO 直接发送消息事件
+            //直接发送消息事件
             EventBus.getDefault().post(event);
         }
     }
