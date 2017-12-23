@@ -90,7 +90,6 @@ public class LogActivity extends AppCompatActivity {
                             Explode explode = new Explode();
                             explode.setDuration(500);
                             Toast.makeText(LogActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-
                             /*动画*/
                             getWindow().setExitTransition(explode);
                             getWindow().setEnterTransition(explode);

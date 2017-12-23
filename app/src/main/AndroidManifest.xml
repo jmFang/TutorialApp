@@ -83,7 +83,9 @@
 
         <activity android:name=".ui.activities.SearchUserActivity" />
         <activity android:name=".ui.activities.ChatActivity" />
-        <activity android:name=".ui.activities.UserInfoActivity"></activity>
+        <activity android:name=".ui.activities.UserInfoActivity" />
+        <activity android:name=".ui.activities.PublishPostActivity" />
+        <activity android:name=".ui.activities.PostDetailsActivity"></activity>
     </application>
 
 </manifest>
