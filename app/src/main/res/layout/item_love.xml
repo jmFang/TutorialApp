@@ -9,6 +9,6 @@
         android:layout_marginTop="2dp"
         android:layout_height="30dp"
         android:id="@+id/iv_love_avatar"
-        android:src="@mipmap/icon_message_press"/>
+        android:src="@mipmap/default_ss"/>
 
 </LinearLayout>

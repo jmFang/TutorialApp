@@ -108,7 +108,6 @@ public class MainActivity extends BaseActivity{
                         EventBus.getDefault().post(new RefreshEvent());
                         toast("连接服务器成功");
                         //更新用户资料，用户再会话聊天界面以及个人信息页面显示
-                        // 应该传入MoreInfo的objectId
                         BmobIM.getInstance().updateUserInfo(new BmobIMUserInfo(user.getObjectId(), user.getUsername(),null));
                     } else {
                         toast(e.getMessage());
@@ -123,7 +122,6 @@ public class MainActivity extends BaseActivity{
                 @Override
                 public void onChange(ConnectionStatus connectionStatus) {
                     toast(connectionStatus.getMsg());
-                    Toast.makeText(MainActivity.this, "好啊", Toast.LENGTH_SHORT).show();
                     Logger.i(BmobIM.getInstance().getCurrentStatus().getMsg());
                 }
             });
