@@ -1,7 +1,8 @@
 # TutorialApp
 final project of android course
 
-# Attention
+# Attention ！！！
+##  min API = 21 ！ ！！
 ```
 pay attention to the version of gradle! not change the version ! 
 

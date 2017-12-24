@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Config;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 
 /**基类
  */
-public class BaseActivity extends FragmentActivity {
+public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
@@ -60,7 +60,7 @@ public class BaseActivity extends FragmentActivity {
     public void onEvent(Boolean empty){
 
     }
-
+    /*什么都不做为啥要加这个方法*/
     protected void initView() {}
 
     protected void runOnMain(Runnable runnable) {
@@ -68,6 +68,7 @@ public class BaseActivity extends FragmentActivity {
     }
 
     protected final static String NULL = "";
+
     private Toast toast;
     public void toast(final Object obj) {
         try {
