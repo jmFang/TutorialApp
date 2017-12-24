@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat;
 import java.io.Serializable;
 
 import cn.bmob.newim.bean.BmobIMConversation;
+import cn.bmob.newim.bean.BmobIMConversationType;
 
 /**
  * Created by jiamoufang on 2017/12/21.
@@ -20,7 +21,7 @@ public abstract class Conversation implements Serializable,Comparable{
     /*
     * 会话类型
     * */
-    protected BmobIMConversation cType;
+    protected BmobIMConversationType cType;
 
     /*
     * 会话名称
@@ -42,10 +43,10 @@ public abstract class Conversation implements Serializable,Comparable{
     * 获取未读会话的个数
     * */
     abstract public int getUnReadCount();
-    /*
-    * 将所有消息标记为已读
-    * */
-    abstract public void readAllMessage();
+    /**
+     * 将所有消息标记为已读
+     */
+    abstract public void readAllMessages();
 
     /*TODO click事件
     * @param context
@@ -75,7 +76,7 @@ public abstract class Conversation implements Serializable,Comparable{
     * 获取会话类型
     * */
 
-    public BmobIMConversation getcType() {
+    public BmobIMConversationType getcType() {
         return cType;
     }
     /*

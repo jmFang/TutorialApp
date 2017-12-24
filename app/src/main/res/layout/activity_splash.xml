@@ -6,10 +6,12 @@
     tools:context="com.example.jiamoufang.tutorialapp.SplashActivity">
 
     <ImageView
-        android:layout_centerInParent="true"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:src="@mipmap/ic_launcher_round"/>
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="#FFFFFF"
+        android:src="@drawable/splash1"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
 

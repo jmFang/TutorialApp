@@ -17,7 +17,10 @@ import com.example.jiamoufang.tutorialapp.ui.base.ParentWithNaviActivity;
 
 public abstract class ParentWithNaviFragment extends BaseFragment {
 
-    //作为获取控件实例的上下文对象
+    /*
+    * 作为获取控件实例的上下文对象
+    * 将在fragment或者activity中被实例化
+    * */
     protected View rootView = null;
 
     //监听导航栏左右两边的点击事件

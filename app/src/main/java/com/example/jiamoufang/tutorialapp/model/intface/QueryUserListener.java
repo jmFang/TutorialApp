@@ -15,7 +15,6 @@ import cn.bmob.v3.exception.BmobException;
 * */
 public abstract class QueryUserListener extends BmobListener1<User> {
     public abstract void done(User user, BmobException e);
-
     @Override
     protected void postDone(User user, BmobException e) {
         done(user, e);

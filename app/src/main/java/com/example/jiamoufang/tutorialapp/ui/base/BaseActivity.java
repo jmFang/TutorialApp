@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Config;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;

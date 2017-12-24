@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/bg2"
     tools:context="com.example.jiamoufang.tutorialapp.ui.activities.MainActivity">
 
     <android.support.v7.widget.CardView
@@ -39,7 +39,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="50dp"
                     android:text="@string/login"
-                    android:textColor="#FFCC00"
+                    android:textColor="#2fa881"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     />
@@ -113,7 +113,7 @@
                     android:background="@drawable/bt_shape"
                     android:stateListAnimator="@drawable/state_list_animator_z"
                     android:text="@string/go"
-                    android:textColor="#d3d3d3"
+                    android:textColor="#2fa881"
                     >
                 </Button>
             </RelativeLayout>
