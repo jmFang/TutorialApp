@@ -1,14 +1,10 @@
 package com.example.jiamoufang.tutorialapp.ui.activities;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -28,23 +24,16 @@ import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.w3c.dom.Text;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.bmob.newim.BmobIM;
-import cn.bmob.newim.bean.BmobIMConversation;
-import cn.bmob.newim.bean.BmobIMMessage;
-import cn.bmob.newim.bean.BmobIMTextMessage;
 import cn.bmob.newim.bean.BmobIMUserInfo;
-import cn.bmob.newim.core.BmobIMClient;
 import cn.bmob.newim.core.ConnectionStatus;
 import cn.bmob.newim.event.MessageEvent;
 import cn.bmob.newim.event.OfflineMessageEvent;
 import cn.bmob.newim.listener.ConnectListener;
 import cn.bmob.newim.listener.ConnectStatusChangeListener;
-import cn.bmob.newim.listener.ConversationListener;
-import cn.bmob.newim.listener.MessageSendListener;
 import cn.bmob.newim.notification.BmobNotificationManager;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
@@ -128,6 +117,8 @@ public class MainActivity extends BaseActivity{
         } //end if
 
         //需要解决内存泄露问题？
+
+        initView();
     }
 
     @Override

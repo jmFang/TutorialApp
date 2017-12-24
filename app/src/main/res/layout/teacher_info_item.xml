@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/good_teacher_pic"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+    <TextView
+        android:id="@+id/good_teacher_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="小初数学"/>
+
+    <TextView
+        android:id="@+id/good_teacher_salary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$190起"
+        android:textColor="@color/accent_yellow" />
+
+</LinearLayout>

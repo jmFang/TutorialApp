@@ -5,7 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="base_color_text_black">#3e3e39</color>
-    <color name="base_color_text_gray">#9fa0a0</color>
+    <color name="base_color_text_gray">#f9f9f9</color>
     <color name="base_color_text_white">#ffffff</color>
     <color name="color_theme">#29BCC3</color>
 
@@ -52,7 +52,7 @@
 
     <color name="yellow">#FF9800</color>
     <color name="dark_yellow">#FF9800</color>
-    <color name="accent_yellow">#FF9800</color>
+    <color name="accent_yellow">#ff9800</color>
 
     <color name="deep_purple">#673AB7</color>
     <color name="dark_deep_purple">#673AB7</color>
