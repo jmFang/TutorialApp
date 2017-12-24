@@ -68,7 +68,7 @@ public class ConversationHolder extends BaseViewHolder {
         /*
         * 会话图标设置
         * */
-        ViewUtil.setAvatar(conversation.getConversationIcon(), R.mipmap.icon_contact_press, iv_recent_avatar);
+        ViewUtil.setAvatar(conversation.getConversationIcon(), R.mipmap.default_ss, iv_recent_avatar);
         /*
         * 会话标题
         * */

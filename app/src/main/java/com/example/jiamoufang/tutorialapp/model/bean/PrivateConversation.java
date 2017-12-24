@@ -51,12 +51,12 @@ public class PrivateConversation extends Conversation{
         if (cType == BmobIMConversationType.PRIVATE){
             String avatar =  conversation.getConversationIcon();
             if (TextUtils.isEmpty(avatar)){//头像为空，使用默认头像
-                return R.mipmap.icon_message_press;
+                return R.mipmap.default_ss;
             }else{
                 return avatar;
             }
         }else{
-            return R.mipmap.icon_message_press;
+            return R.mipmap.default_smg;
         }
     }
 
