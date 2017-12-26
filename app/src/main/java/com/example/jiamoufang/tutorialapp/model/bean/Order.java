@@ -1,6 +1,5 @@
 package com.example.jiamoufang.tutorialapp.model.bean;
 
-
 import cn.bmob.v3.BmobObject;
 
 /**
@@ -13,6 +12,7 @@ import cn.bmob.v3.BmobObject;
  */
 
 public class Order extends BmobObject {
+
     /*
      *订单号
     * */
@@ -58,7 +58,8 @@ public class Order extends BmobObject {
      */
     private Boolean mode;
 
-    public Order() {}
+    public Order() {
+    }
 
     public String getOrderId() {
         return orderId;
@@ -83,18 +84,23 @@ public class Order extends BmobObject {
     public void setSubject(String subject) {
         this.subject = subject;
     }
+
     public String getSalary() {
         return salary;
     }
+
     public void setGrade(Integer grade) {
         this.grade = grade;
     }
+
     public Integer getGrade() {
         return grade;
     }
+
     public void setSalary(String salary) {
         this.salary = salary;
     }
+
     public String getTime() {
         return time;
     }
@@ -106,6 +112,7 @@ public class Order extends BmobObject {
     public Boolean getSex() {
         return sex;
     }
+
     public void setSex(Boolean sex) {
         this.sex = sex;
     }
@@ -121,6 +128,7 @@ public class Order extends BmobObject {
     public String getDes() {
         return des;
     }
+
     public void setDes(String des) {
         this.des = des;
     }
