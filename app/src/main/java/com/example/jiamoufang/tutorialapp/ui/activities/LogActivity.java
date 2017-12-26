@@ -1,14 +1,13 @@
 package com.example.jiamoufang.tutorialapp.ui.activities;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.transition.Explode;
 import android.view.View;
@@ -20,22 +19,13 @@ import android.widget.Toast;
 
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.model.UserModel;
-import com.example.jiamoufang.tutorialapp.model.bean.User;
 import com.orhanobut.logger.Logger;
-
-import java.io.BufferedReader;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.LogInListener;
-
-import static android.R.attr.breadCrumbShortTitle;
-import static android.R.attr.logo;
-import static android.R.attr.onClick;
-import static android.R.attr.start;
 
 public class LogActivity extends AppCompatActivity {
     /*使用butterknife.Bind 注解框架

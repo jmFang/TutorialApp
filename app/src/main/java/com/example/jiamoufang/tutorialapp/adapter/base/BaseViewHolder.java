@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.ParcelUuid;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 import com.example.jiamoufang.tutorialapp.adapter.listener.OnRecyclerViewListener;
 import com.example.jiamoufang.tutorialapp.ui.base.BaseActivity;
 
-import a.This;
 import butterknife.ButterKnife;
 
 /**
