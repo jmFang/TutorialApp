@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#29BCC3</color>
     <color name="colorPrimaryDark">#29BCC3</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#CDDC39</color>
 
     <color name="base_color_text_black">#3e3e39</color>
     <color name="base_color_text_gray">#f9f9f9</color>
@@ -64,7 +64,7 @@
 
     <color name="green">#4CAF50</color>
     <color name="dark_green">#4CAF50</color>
-    <color name="accent_green">#4CAF50</color>
+    <color name="accent_green">#4caf50</color>
 
     <color name="actionbar_title_color">@android:color/white</color>
     <color name="text_red">#ffff4081</color>

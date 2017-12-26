@@ -28,10 +28,10 @@
                     android:layout_height="149dp"/>
 
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/color_bottom_text_normal" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/color_bottom_text_normal" />
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/subject_recyclerView"
@@ -39,10 +39,10 @@
                         android:layout_height="match_parent"
                         android:background="#f9f9f9" />
 
-                    <View
-                        android:background="@color/color_bottom_text_normal"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/color_bottom_text_normal" />
 
 
                 <LinearLayout
@@ -203,9 +203,9 @@
                 </LinearLayout>
 
                 <View
-                    android:background="@color/color_bottom_text_normal"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp" />
+                    android:layout_height="2dp"
+                    android:background="@color/color_bottom_text_normal" />
 
 
                 <LinearLayout
@@ -233,8 +233,68 @@
                     android:id="@+id/good_teacher"
                     android:background="#f9f9f9"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"/>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/color_bottom_text_normal" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@android:drawable/ic_menu_edit" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="为您推荐"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recommend_teacher"
+                    android:background="#f9f9f9"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="248dp"/>
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="@dimen/wh_10dp"
+                    android:background="@color/color_bottom_text_normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="三人行, 为您而生"
+                    android:textColor="@color/accent_green" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:text="由triples go提供技术支持"
+                    android:textSize="12sp" />
+                
             </LinearLayout>
 
         </LinearLayout>

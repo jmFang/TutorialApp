@@ -87,6 +87,7 @@ public abstract class ParentWithNaviActivity extends BaseActivity {
     protected abstract String title();
 
     /*TODO 导航栏左边：可以是String或者图片资源ID，非必须
+    * 由子类具体化
     * @return
     * */
     public Object left() {
@@ -124,6 +125,7 @@ public abstract class ParentWithNaviActivity extends BaseActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.tv_left:
+                    //如果没有设置监听器，那么listener为null，默认为返回
                     if (listener == null) {
                         finish();
                     } else {
@@ -163,7 +165,9 @@ public abstract class ParentWithNaviActivity extends BaseActivity {
     *
     * */
     protected void refreshTop() {
-        /*设置导航栏左边控件*/
+        /*设置导航栏左边控件
+        * 如果子类中没有改变此方法，那么默认为返回
+        * */
         setLeftView(left() == null? R.drawable.base_action_bar_back_bg_selector: left());
         /*设置导航栏右边控件*/
         setValue(R.id.tv_right, right());
@@ -188,14 +192,15 @@ public abstract class ParentWithNaviActivity extends BaseActivity {
     }
 
     private void setLeftView(Object object) {
+        //object 为非null的String或者为int的情况
         if (object != null && !object.equals("")) {
             tv_left.setVisibility(View.VISIBLE);
-            if (object instanceof Integer) {
-                tv_left.setBackgroundResource(Integer.parseInt(object.toString()));
+            if (object instanceof Integer) { //为 int
+                tv_left.setImageResource(Integer.parseInt(object.toString()));
             } else {
                 tv_left.setImageResource(R.drawable.base_action_bar_back_bg_selector);
             }
-        } else {
+        } else {  //非String
             tv_left.setVisibility(View.INVISIBLE);
         }
     }

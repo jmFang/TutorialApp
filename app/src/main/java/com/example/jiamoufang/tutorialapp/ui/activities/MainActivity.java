@@ -5,11 +5,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.event.RefreshEvent;
@@ -78,11 +79,13 @@ public class MainActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //设置无标题
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);  //设置全屏
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
         final User user = BmobUser.getCurrentUser(User.class);
-        /*TODO 连接：2.1 登录成功、注册成功后或处于登录状态重新打开应用后执行连接IM服务器的操作
+        /*登录成功、注册成功后或处于登录状态重新打开应用后执行连接IM服务器的操作
         * 判断用户是否登录，并且当连接状态是未连接，则进行连接
         * */
         if (!TextUtils.isEmpty(user.getObjectId()) && BmobIM.getInstance().getCurrentStatus().getCode() != ConnectionStatus.CONNECTED.getCode()) {
@@ -93,24 +96,21 @@ public class MainActivity extends BaseActivity{
                         //服务器连接成功后发送一个更新事件，同步更新聊天会话和主页的小红点
                         EventBus.getDefault().post(new RefreshEvent());
                         toast("连接服务器成功");
-                        //TODO 会话 3.1 更新用户资料，用户再会话聊天界面以及个人信息页面显示
-                        // 应该传入MoreInfo的objectId
-                        BmobIM.getInstance().updateUserInfo(new BmobIMUserInfo(user.getObjectId(), user.getUsername(),
-                                user.getMoreInfo() == null? null:user.getMoreInfo().getObjectId()));
+                        //更新用户资料，用户再会话聊天界面以及个人信息页面显示
+                        BmobIM.getInstance().updateUserInfo(new BmobIMUserInfo(user.getObjectId(), user.getUsername(),null));
                     } else {
                         toast(e.getMessage());
                     }
                 }
             });
 
-            /*TODO 连接：2.2 登录连接状态
+            /*登录连接状态
             * 可通过BmobIM.getInstance().getCurrentStatus()获取当前长连接状态
             * */
             BmobIM.getInstance().setOnConnectStatusChangeListener(new ConnectStatusChangeListener() {
                 @Override
                 public void onChange(ConnectionStatus connectionStatus) {
                     toast(connectionStatus.getMsg());
-                    Toast.makeText(MainActivity.this, "好啊", Toast.LENGTH_SHORT).show();
                     Logger.i(BmobIM.getInstance().getCurrentStatus().getMsg());
                 }
             });

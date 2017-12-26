@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.example.jiamoufang.tutorialapp.model.UserModel;
 import com.example.jiamoufang.tutorialapp.model.bean.User;
@@ -19,6 +21,8 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //设置无标题
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);  //设置全屏
         setContentView(R.layout.activity_splash);
         Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
@@ -35,6 +39,6 @@ public class SplashActivity extends AppCompatActivity {
                     finish();
                 }
             }
-        }, 1000);
+        }, 2000);
     }
 }
