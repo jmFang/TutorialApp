@@ -19,12 +19,16 @@ public class OrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+
+        //将图片做成Bitmap,并将其制作切割,再设置成订单图片
+        //(此处代码为UI测试所需用到的逻辑,在逻辑开发时可以注解之)
         Bitmap icon = BitmapFactory.decodeResource(getResources(),
                 R.drawable.tutor_pic);
         ImageView img = (ImageView) findViewById(R.id.order_pic);
         img.setImageDrawable(getRoundedShape(icon));
     }
 
+    //该方法将图片切割为圆形
     public Drawable getRoundedShape(Bitmap scaleBitmapImage) {
         // TODO Auto-generated method stub
         int targetWidth = 250;
