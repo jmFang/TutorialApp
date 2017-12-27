@@ -38,25 +38,19 @@ public class User extends BmobUser {
     /*常用地址
     * */
     private String address;
-
     public User(){}
-
     public void setAddress(String address) {
         this.address = address;
     }
-
     public void setCity(String city) {
         this.city = city;
     }
-
     public void setEducatedLevel(Integer educatedLevel) {
         this.educatedLevel = educatedLevel;
     }
-
     public void setRealName(String realName) {
         this.realName = realName;
     }
-
     public void setAvatar(BmobFile avatar) {
         this.avatar = avatar;
     }

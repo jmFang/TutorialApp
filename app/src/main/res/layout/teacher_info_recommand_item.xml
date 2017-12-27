@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/recommend_teacher_pic"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/recommend_teacher_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="小初数学何老师"
+        app:layout_constraintStart_toEndOf="@+id/recommend_teacher_pic"
+        app:layout_constraintTop_toTopOf="@+id/recommend_teacher_pic" />
+
+    <TextView
+        android:id="@+id/recommend_teaching_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="教龄14"
+        android:textColor="@color/accent_yellow"
+        app:layout_constraintStart_toStartOf="@+id/recommend_teacher_info"
+        app:layout_constraintTop_toBottomOf="@+id/recommend_teacher_info" />
+
+    <TextView
+        android:id="@+id/recommend_teacher_salary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="$190起"
+        android:textColor="@color/accent_yellow"
+        app:layout_constraintBottom_toBottomOf="@+id/recommend_teaching_age"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recommend_teacher_info" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/color_bottom_text_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/recommend_teacher_salary"
+        app:layout_constraintStart_toStartOf="@id/recommend_teacher_pic"
+        app:layout_constraintTop_toBottomOf="@id/recommend_teacher_pic" />
+
+</android.support.constraint.ConstraintLayout>

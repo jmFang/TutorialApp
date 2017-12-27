@@ -1,24 +1,20 @@
 package com.example.jiamoufang.tutorialapp.ui.activities;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.event.RefreshEvent;
 import com.example.jiamoufang.tutorialapp.model.UserModel;
-import com.example.jiamoufang.tutorialapp.model.bean.Information;
 import com.example.jiamoufang.tutorialapp.model.bean.User;
 import com.example.jiamoufang.tutorialapp.ui.base.BaseActivity;
 import com.example.jiamoufang.tutorialapp.ui.fragment.ConversationFragment;
@@ -29,28 +25,19 @@ import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.w3c.dom.Text;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.bmob.newim.BmobIM;
-import cn.bmob.newim.bean.BmobIMConversation;
-import cn.bmob.newim.bean.BmobIMMessage;
-import cn.bmob.newim.bean.BmobIMTextMessage;
 import cn.bmob.newim.bean.BmobIMUserInfo;
-import cn.bmob.newim.core.BmobIMClient;
 import cn.bmob.newim.core.ConnectionStatus;
 import cn.bmob.newim.event.MessageEvent;
 import cn.bmob.newim.event.OfflineMessageEvent;
 import cn.bmob.newim.listener.ConnectListener;
 import cn.bmob.newim.listener.ConnectStatusChangeListener;
-import cn.bmob.newim.listener.ConversationListener;
-import cn.bmob.newim.listener.MessageSendListener;
 import cn.bmob.newim.notification.BmobNotificationManager;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
-import cn.bmob.v3.listener.UpdateListener;
 
 public class MainActivity extends BaseActivity{
     /*四个Tab按钮*/
@@ -92,6 +79,8 @@ public class MainActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //设置无标题
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);  //设置全屏
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
@@ -128,6 +117,8 @@ public class MainActivity extends BaseActivity{
         } //end if
 
         //需要解决内存泄露问题？
+
+        initView();
     }
 
     @Override

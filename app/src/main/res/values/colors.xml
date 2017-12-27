@@ -5,7 +5,7 @@
     <color name="colorAccent">#CDDC39</color>
 
     <color name="base_color_text_black">#3e3e39</color>
-    <color name="base_color_text_gray">#9fa0a0</color>
+    <color name="base_color_text_gray">#f9f9f9</color>
     <color name="base_color_text_white">#ffffff</color>
     <color name="color_theme">#29BCC3</color>
 
@@ -48,11 +48,11 @@
 
     <color name="blue_grey">#607D8B</color>
     <color name="dark_blue_grey">#607D8B</color>
-    <color name="accent_blue_grey">#607D8B</color>
+    <color name="accent_blue_grey">#6ad4d9</color>
 
     <color name="yellow">#FF9800</color>
     <color name="dark_yellow">#FF9800</color>
-    <color name="accent_yellow">#FF9800</color>
+    <color name="accent_yellow">#ff9800</color>
 
     <color name="deep_purple">#673AB7</color>
     <color name="dark_deep_purple">#673AB7</color>
@@ -64,7 +64,7 @@
 
     <color name="green">#4CAF50</color>
     <color name="dark_green">#4CAF50</color>
-    <color name="accent_green">#4CAF50</color>
+    <color name="accent_green">#4caf50</color>
 
     <color name="actionbar_title_color">@android:color/white</color>
     <color name="text_red">#ffff4081</color>
