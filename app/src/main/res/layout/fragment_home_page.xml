@@ -290,7 +290,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:text="由triples go提供技术支持"
                     android:textSize="12sp" />
