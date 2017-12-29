@@ -74,13 +74,13 @@ public class MainActivity extends BaseActivity{
 
     private int index;
     private int currentTabIndex;
-    private Fragment mCuurentFragment = null;
+    private Fragment mCurrentFragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE); //设置无标题
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);  //设置全屏
+        //requestWindowFeature(Window.FEATURE_NO_TITLE); //设置无标题
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);  //设置全屏
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
@@ -150,40 +150,44 @@ public class MainActivity extends BaseActivity{
         hideFragment(transaction);
         switch (view.getId()) {
             case R.id.btn_home:
+                index = 0;
                 if (homePageFragment == null) {
                     homePageFragment = new HomePageFragment();
-                    index = 0;
                     transaction.add(R.id.fragment_container,homePageFragment);
                 } else {
                     transaction.show(homePageFragment);
+                    mCurrentFragment = homePageFragment;
                 }
                 break;
             case R.id.btn_conversation:
+                index = 1;
                 if (conversationFragment == null) {
                     conversationFragment = new ConversationFragment();
-                    index = 1;
                     transaction.add(R.id.fragment_container, conversationFragment);
                 } else {
                     transaction.show(conversationFragment);
+                    mCurrentFragment = conversationFragment;
                 }
                 break;
             case R.id.btn_share:
+                index = 2;
                 if (shareFragment == null) {
                     shareFragment = new ShareFragment();
-                    index = 2;
                     transaction.add(R.id.fragment_container, shareFragment);
                 } else {
                     transaction.show(shareFragment);
+                    mCurrentFragment = shareFragment;
                 }
 
                 break;
             case R.id.btn_settings:
+                index = 3;
                 if (mySettingsFragment == null) {
                     mySettingsFragment = new MySettingsFragment();
-                    index = 3;
                     transaction.add(R.id.fragment_container, mySettingsFragment);
                 } else {
                     transaction.show(mySettingsFragment);
+                    mCurrentFragment = mySettingsFragment;
                 }
                 break;
             default:

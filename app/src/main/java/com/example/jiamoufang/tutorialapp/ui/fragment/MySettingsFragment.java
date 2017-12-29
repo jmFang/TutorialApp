@@ -12,8 +12,9 @@ import android.widget.ImageView;
 
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.ui.activities.OrderActivity;
+import com.example.jiamoufang.tutorialapp.ui.base.ParentWithNaviFragment;
 
-public class MySettingsFragment extends Fragment {
+public class MySettingsFragment  extends ParentWithNaviFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -28,4 +29,16 @@ public class MySettingsFragment extends Fragment {
 
         return view;
     }
+
+    /*
+    * 继承ParentWithNaviFragment，具体化NaviBar 标题
+    * by fangjiamou
+    * */
+    @Override
+    protected String title() {
+        return "我的";
+    }
+
+
+
 }

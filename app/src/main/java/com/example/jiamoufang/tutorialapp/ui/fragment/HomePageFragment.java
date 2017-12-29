@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jiamoufang.tutorialapp.R;
+import com.oragee.banners.BannerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,15 +29,17 @@ public class HomePageFragment extends Fragment {
     String[] subjectMsg = {"数学", "语文", "英语", "物理", "化学", "生物", "政治", "历史", "地理"};
 
     //显示轮番图的图片ID数组(可换)
-    private int[] tutorResID = {R.drawable.tutor_pic
-            , R.drawable.tutor_pic2
-            , R.drawable.tutor_pic3
-            , R.drawable.turor_pic4};
+    private int[] tutorResID = {
+             R.drawable.lunbo_1,
+            R.drawable.lunbo_2,
+            R.drawable.lunbo_3};
 
     //取得全局上下文
     public static Context mContext;
 
     private List<TeacherInformation> mTeacherList;
+    //用于轮播图
+    private List<View> viewList;
 
     @Nullable
     @Override
@@ -47,9 +50,17 @@ public class HomePageFragment extends Fragment {
         mContext = view.getContext();
 
         /*这是轮番图的设置*/
-        CustomPagerAdapter customPagerAdapter = new CustomPagerAdapter();
-        ViewPager viewPager = view.findViewById(R.id.pager);
-        viewPager.setAdapter(customPagerAdapter);
+        BannerView bannerView = view.findViewById(R.id.pager);
+        viewList = new ArrayList<>();
+        for(int i = 0; i < tutorResID.length; i++) {
+            ImageView imageView = new ImageView(getContext());
+            imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT ));
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setImageResource(tutorResID[i]);
+            viewList.add(imageView);
+        }
+        bannerView.startLoop(true);
+        bannerView.setViewList(viewList);
 
         /*这是科目的RecyclerView,采用水平滑动*/
         RecyclerView recyclerView = view.findViewById(R.id.subject_recyclerView);
@@ -78,7 +89,7 @@ public class HomePageFragment extends Fragment {
     }
 
     //轮番图的适配器(逻辑开发无需管理此内部类,此为纯粹UI需要表达之逻辑呈现)
-    private class CustomPagerAdapter extends PagerAdapter {
+/*    private class CustomPagerAdapter extends PagerAdapter {
 
         private LayoutInflater mLayoutInflater;
 
@@ -111,7 +122,7 @@ public class HomePageFragment extends Fragment {
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((LinearLayout) object);
         }
-    }
+    }*/
 }
 
 //科目的适配器
@@ -323,7 +334,7 @@ class TeacherInformation {
     public static List<TeacherInformation> initTeacherInformation() {
         List<TeacherInformation> list = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            list.add(new TeacherInformation(R.drawable.tutor_pic, "小初教师", 190, 14, "何老师"));
+            list.add(new TeacherInformation(R.drawable.hit_activity_1, "小初教师", 190, 14, "何老师"));
         }
         return list;
     }
