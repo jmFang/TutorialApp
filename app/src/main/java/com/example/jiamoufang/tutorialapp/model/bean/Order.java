@@ -14,14 +14,19 @@ import cn.bmob.v3.BmobObject;
 public class Order extends BmobObject {
 
     /*
-     *订单号
-    * */
-    private String orderId;
-
-    /*
-     *订单关联的学员,需要用到性别、住址这两个信息
+     * 订单关联的学员,需要用到性别、住址这两个信息
      */
     private User user;
+
+    /* 订单关联的老师，接该订单的老师
+     *  如果订单还没人接的话则为空
+     */
+    private User teacher;
+
+    /*订单状态，是否已经有人接此单
+     * false:没人接 ； true:已经有人接了
+     */
+    private Boolean status;
 
     /*
      *科目
@@ -61,14 +66,6 @@ public class Order extends BmobObject {
     public Order() {
     }
 
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
     public User getUser() {
         return user;
     }
@@ -76,6 +73,14 @@ public class Order extends BmobObject {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public User getTeacher() { return teacher;}
+
+    public void setTeacher(User teacher) { this.teacher = teacher;}
+
+    public Boolean getStatus() { return status;}
+
+    public void setStatus(Boolean status) {this.status = status;}
 
     public String getSubject() {
         return subject;
