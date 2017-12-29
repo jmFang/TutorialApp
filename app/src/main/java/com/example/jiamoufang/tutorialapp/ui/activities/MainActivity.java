@@ -134,10 +134,10 @@ public class MainActivity extends BaseActivity{
         mTabs[2] = btn_share;
         mTabs[3] = btn_settings;
 
-        conversationFragment = new ConversationFragment();
-        homePageFragment = new HomePageFragment();
-        shareFragment = new ShareFragment();
-        mySettingsFragment = new MySettingsFragment();
+/*        conversationFragment = new ConversationFragment();*/
+  /*      homePageFragment = new HomePageFragment();*/
+/*        shareFragment = new ShareFragment();
+        mySettingsFragment = new MySettingsFragment();*/
 
         onTabSelect(btn_home);
 
@@ -146,25 +146,51 @@ public class MainActivity extends BaseActivity{
     * param view
     * */
     public void onTabSelect(View view) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        hideFragment(transaction);
         switch (view.getId()) {
             case R.id.btn_home:
-                index = 0;
-                switchFragment(mCuurentFragment, homePageFragment);
+                if (homePageFragment == null) {
+                    homePageFragment = new HomePageFragment();
+                    index = 0;
+                    transaction.add(R.id.fragment_container,homePageFragment);
+                } else {
+                    transaction.show(homePageFragment);
+                }
                 break;
             case R.id.btn_conversation:
-                index = 1;
-                switchFragment(mCuurentFragment, conversationFragment);
+                if (conversationFragment == null) {
+                    conversationFragment = new ConversationFragment();
+                    index = 1;
+                    transaction.add(R.id.fragment_container, conversationFragment);
+                } else {
+                    transaction.show(conversationFragment);
+                }
                 break;
             case R.id.btn_share:
-                index = 2;
-                switchFragment(mCuurentFragment, shareFragment);
+                if (shareFragment == null) {
+                    shareFragment = new ShareFragment();
+                    index = 2;
+                    transaction.add(R.id.fragment_container, shareFragment);
+                } else {
+                    transaction.show(shareFragment);
+                }
+
                 break;
             case R.id.btn_settings:
-                index = 3;
-                switchFragment(mCuurentFragment, mySettingsFragment);
+                if (mySettingsFragment == null) {
+                    mySettingsFragment = new MySettingsFragment();
+                    index = 3;
+                    transaction.add(R.id.fragment_container, mySettingsFragment);
+                } else {
+                    transaction.show(mySettingsFragment);
+                }
+                break;
+            default:
                 break;
         }
         onTabIndex(index);
+        transaction.commit();
     }
 
     /*TODO 设置当前选中的tab
@@ -178,28 +204,18 @@ public class MainActivity extends BaseActivity{
         currentTabIndex = index;
     }
 
-    /*TODO Tabs：Fragment切换
-    * param form
-    * param to
-    * */
-    private void switchFragment(Fragment from, Fragment to) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if (mCuurentFragment == null) {
-            transaction.add(R.id.fragment_container, to).commit();
-            mCuurentFragment = to;
-            return;
+    private void hideFragment(FragmentTransaction transaction) {
+        if(homePageFragment != null) {
+            transaction.hide(homePageFragment);
         }
-        if (mCuurentFragment != to) {
-            mCuurentFragment = to;
-            if (!to.isAdded()){
-                if (from.isAdded()) {
-                    transaction.hide(from).add(R.id.fragment_container, to).commit();
-                } else {
-                    transaction.add(R.id.fragment_container, to).commit();
-                }
-            } else {
-                transaction.hide(from).show(to).commit();
-            }
+        if (conversationFragment != null) {
+            transaction.hide(conversationFragment);
+        }
+        if (shareFragment != null) {
+            transaction.hide(shareFragment);
+        }
+        if (mySettingsFragment != null) {
+            transaction.hide(mySettingsFragment);
         }
     }
 

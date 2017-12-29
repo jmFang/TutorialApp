@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.jiamoufang.tutorialapp.ui.activities.TeacherDetailsActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/include_navi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/details_teacher_photo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="@dimen/wh_10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/circle3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <TextView
+        android:id="@+id/details_teacher_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="龐老師"
+        app:layout_constraintBottom_toBottomOf="@+id/details_teacher_info"
+        app:layout_constraintStart_toEndOf="@+id/details_teacher_info" />
+
+    <TextView
+        android:id="@+id/details_teacher_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="小初數學"
+        app:layout_constraintStart_toEndOf="@+id/details_teacher_photo"
+        app:layout_constraintTop_toTopOf="@+id/details_teacher_photo" />
+
+    <TextView
+        android:id="@+id/details_teaching_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="教齡12年"
+        app:layout_constraintBottom_toTopOf="@+id/like_or_not"
+        app:layout_constraintStart_toStartOf="@+id/details_teacher_info"
+        app:layout_constraintTop_toBottomOf="@+id/details_teacher_info" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="384dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/color_bottom_text_normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/details_teacher_photo" />
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/teacher_details_check"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="服务标准"
+                    app:layout_constraintBottom_toBottomOf="@+id/img1"
+                    app:layout_constraintStart_toEndOf="@+id/img1"
+                    app:layout_constraintTop_toTopOf="@+id/img1" />
+
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="24dp"
+                    android:src="@drawable/teacher_details_check"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt"
+                    app:layout_constraintStart_toEndOf="@+id/txt"
+                    app:layout_constraintTop_toTopOf="@+id/txt" />
+
+                <TextView
+                    android:id="@+id/txt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="实名"
+                    app:layout_constraintBottom_toBottomOf="@+id/img2"
+                    app:layout_constraintStart_toEndOf="@+id/img2"
+                    app:layout_constraintTop_toTopOf="@+id/img2" />
+
+                <ImageView
+                    android:id="@+id/img3"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="24dp"
+                    android:src="@drawable/teacher_details_check"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt2"
+                    app:layout_constraintStart_toEndOf="@+id/txt2"
+                    app:layout_constraintTop_toTopOf="@+id/txt2" />
+
+                <TextView
+                    android:id="@+id/txt3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="学历"
+                    app:layout_constraintBottom_toBottomOf="@+id/img3"
+                    app:layout_constraintStart_toEndOf="@+id/img3"
+                    app:layout_constraintTop_toTopOf="@+id/img3" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="384dp"
+                    android:layout_height="7dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/color_bottom_text_normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt2" />
+
+                <TextView
+                    android:id="@+id/txt4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="学生评价"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view2" />
+
+                <ImageView
+                    android:id="@+id/img4"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/teacher_details_star"
+                    app:layout_constraintStart_toStartOf="@id/txt4"
+                    app:layout_constraintTop_toBottomOf="@id/txt4" />
+
+                <ImageView
+                    android:id="@+id/img5"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/teacher_details_star"
+                    app:layout_constraintBottom_toBottomOf="@id/img4"
+                    app:layout_constraintStart_toEndOf="@id/img4" />
+
+                <ImageView
+                    android:id="@+id/img6"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/teacher_details_star"
+                    app:layout_constraintBottom_toBottomOf="@+id/img5"
+                    app:layout_constraintStart_toEndOf="@+id/img5" />
+
+                <ImageView
+                    android:id="@+id/img7"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/teacher_details_star"
+                    app:layout_constraintBottom_toBottomOf="@id/img6"
+                    app:layout_constraintStart_toEndOf="@id/img6" />
+
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="@dimen/wh_1dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="32dp"
+                    android:background="@color/color_bottom_text_normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/img5"
+                    app:layout_constraintStart_toEndOf="@+id/img7"
+                    app:layout_constraintTop_toTopOf="@+id/txt4" />
+
+                <TextView
+                    android:id="@+id/txt5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="效果满意率 : "
+                    app:layout_constraintStart_toEndOf="@+id/view3"
+                    app:layout_constraintTop_toTopOf="@+id/view3" />
+
+                <TextView
+                    android:id="@+id/txt6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="服务满意率 : "
+                    app:layout_constraintBottom_toBottomOf="@+id/view3"
+                    app:layout_constraintStart_toEndOf="@+id/view3" />
+
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="384dp"
+                    android:layout_height="7dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/color_bottom_text_normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+                <TextView
+                    android:id="@+id/txt7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="交学经验"
+                    app:layout_constraintStart_toStartOf="@+id/txt4"
+                    app:layout_constraintTop_toBottomOf="@+id/view4" />
+
+                <TextView
+                    android:id="@+id/teaching_XP"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginTop="8dp"
+                    android:text="大学本科数学专业,之前暑假交过高中生和初中生"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/txt7"
+                    app:layout_constraintTop_toBottomOf="@+id/txt7" />
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="384dp"
+                    android:layout_height="7dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/color_bottom_text_normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/teaching_XP" />
+
+                <TextView
+                    android:id="@+id/txt8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="教学经历"
+                    app:layout_constraintStart_toStartOf="@+id/teaching_XP"
+                    app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+                <TextView
+                    android:id="@+id/teaching_story"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginTop="8dp"
+                    android:text="在读大学生,无教学经验"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/txt8"
+                    app:layout_constraintTop_toBottomOf="@+id/txt8" />
+
+                <View
+                    android:id="@+id/view6"
+                    android:layout_width="384dp"
+                    android:layout_height="7dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/color_bottom_text_normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/teaching_story" />
+
+                <TextView
+                    android:id="@+id/txt9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="毕业/在读学校"
+                    app:layout_constraintStart_toStartOf="@+id/teaching_story"
+                    app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+                <TextView
+                    android:id="@+id/college"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginTop="8dp"
+                    android:text="中山大学 软件工程 本科"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/txt9"
+                    app:layout_constraintTop_toBottomOf="@+id/txt9" />
+
+                <View
+                    android:id="@+id/view7"
+                    android:layout_width="384dp"
+                    android:layout_height="7dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/color_bottom_text_normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/college" />
+
+                <TextView
+                    android:id="@+id/effect_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="100%"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt5"
+                    app:layout_constraintStart_toEndOf="@+id/txt5"
+                    app:layout_constraintTop_toTopOf="@+id/txt5" />
+
+                <TextView
+                    android:id="@+id/serving_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="100%"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt6"
+                    app:layout_constraintStart_toEndOf="@+id/txt6"
+                    app:layout_constraintTop_toTopOf="@+id/txt6" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/like_or_not"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/details_teacher_photo"
+        app:layout_constraintStart_toStartOf="@+id/details_teaching_age"
+        app:srcCompat="@drawable/teacher_details_like" />
+
+
+</android.support.constraint.ConstraintLayout>
+
