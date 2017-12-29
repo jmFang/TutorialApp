@@ -1,4 +1,4 @@
-package com.example.jiamoufang.tutorialapp;
+package com.example.jiamoufang.tutorialapp.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.event.DeleteCommentEvent;
 import com.example.jiamoufang.tutorialapp.event.ReplyToEvent;
 import com.example.jiamoufang.tutorialapp.model.bean.User;

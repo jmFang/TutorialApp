@@ -1,4 +1,4 @@
-package com.example.jiamoufang.tutorialapp;
+package com.example.jiamoufang.tutorialapp.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.share.bean.Love;
 
 import java.util.List;
