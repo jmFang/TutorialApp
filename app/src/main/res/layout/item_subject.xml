@@ -16,11 +16,10 @@
         android:scaleType="fitXY"
         android:layout_gravity="center_horizontal"
         android:id="@+id/item_subject_img_subject"/>
-
     <TextView
         android:id="@+id/item_subject_tv_subject"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="15dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:gravity="center_horizontal"
