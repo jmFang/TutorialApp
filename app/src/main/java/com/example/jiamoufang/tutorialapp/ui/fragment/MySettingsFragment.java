@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.jiamoufang.tutorialapp.R;
+import com.example.jiamoufang.tutorialapp.factory.ImageLoaderFactory;
 import com.example.jiamoufang.tutorialapp.model.bean.User;
 import com.example.jiamoufang.tutorialapp.ui.activities.CurrentUserInfoSettingActivity;
 import com.example.jiamoufang.tutorialapp.ui.activities.OrderActivity;
@@ -22,12 +23,14 @@ import org.w3c.dom.Text;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
 
 /*
 * preparing work by fangjiamou
 * */
-public class MySettingsFragment  extends ParentWithNaviFragment implements View.OnClickListener{
+public class MySettingsFragment  extends ParentWithNaviFragment{
     /*人物头像*/
     @Bind(R.id.my_photo)
     ImageView my_photo;
@@ -72,16 +75,7 @@ public class MySettingsFragment  extends ParentWithNaviFragment implements View.
         rootView = inflater.inflate(R.layout.fragment_my_settings, container, false);
         initNaviView();
         ButterKnife.bind(this, rootView);
-        //将图片做成Bitmap,并将其制作切割,再设置成订单图片
-        //(此处代码为UI测试所需用到的逻辑,在逻辑开发时可以注解之>)
-        Bitmap icon = BitmapFactory.decodeResource(getResources(), R.mipmap.default_ss);
-        ImageView img = rootView.findViewById(R.id.my_photo);
-        img.setImageDrawable(OrderActivity.getRoundedShape(icon, getResources()));
-
-        /*
-        * 获取当前用户资料，渲染界面信息
-        * put your code here
-        * */
+        //get current user
         currentUser = BmobUser.getCurrentUser(User.class);
         /*initialize*/
         initUserInfo();
@@ -93,7 +87,36 @@ public class MySettingsFragment  extends ParentWithNaviFragment implements View.
     * by fangjiamou
     * */
     private void initUserInfo() {
-
+        BmobFile bmobFile = currentUser.getAvatar();
+        String fileUrl = null;
+        String url = null;
+        /*如果用户当前头像不为null
+        * 尝试到云端数据库获取图片
+        * */
+        if (bmobFile != null) {
+            try{
+                fileUrl = bmobFile.getFileUrl();
+                url = bmobFile.getUrl();
+            }catch (Exception e) {
+                toast("云端获取用户头像失败");
+                e.printStackTrace();
+            }
+        }
+        //加载头像,如果为null，则使用默认
+        ImageLoaderFactory.getLoader().loadAvatar(my_photo,
+                bmobFile == null ? null : (fileUrl == null) ? (url == null ? null:url):fileUrl, R.mipmap.default_ss);
+        //用户实名or昵称or用户名
+        if (currentUser.getRealName()!= null) {
+            user_name.setText(currentUser.getRealName());
+        } else {
+            user_name.setText(currentUser.getUsername());
+        }
+        //用户角色
+        if (currentUser.getRole()  == null) {
+            user_identity.setText("未知");
+        } else {
+            user_identity.setText(currentUser.getRole() == true? "教员":"学员");
+        }
     }
 
     /*
@@ -109,7 +132,7 @@ public class MySettingsFragment  extends ParentWithNaviFragment implements View.
     * handlers for click events
     * by fangjiamou
     * */
-    @Override
+    @OnClick({R.id.info_config,R.id.my_photo,R.id.ll_my_teacher,R.id.ll_my_student, R.id.ll_my_orders})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.my_photo:

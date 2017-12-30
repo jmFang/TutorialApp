@@ -9,7 +9,9 @@
 
     <!--TODO actionBar, operate it in your java code-->
     <include layout="@layout/include_navi"/>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <!-- TODO: Update blank fragment layout -->
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,6 +34,7 @@
                 android:layout_margin="@dimen/wh_10dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
+                android:scaleType="centerCrop"
                 android:background="@drawable/circle3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -562,5 +565,6 @@
         </ScrollView>
 
     </android.support.constraint.ConstraintLayout>
+    </ScrollView>
 
 </LinearLayout>

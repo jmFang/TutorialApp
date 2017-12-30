@@ -1,552 +1,557 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context="com.example.jiamoufang.tutorialapp.ui.activities.CurrentUserInfoSettingActivity">
+    <include layout="@layout/include_navi"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
     <android.support.constraint.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:id="@+id/ll_my_avatar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="我的头像"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:textColor="@color/text_gray"
-            tools:layout_editor_absoluteY="25dp"
-            tools:layout_editor_absoluteX="0dp" />
-        <ImageView
-            android:id="@+id/img_my_avatar"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/img_my_avatar_arrow"
-            android:src="@mipmap/default_ss"
-            tools:layout_editor_absoluteY="25dp"
-            tools:layout_editor_absoluteX="299dp" />
-        <ImageView
-            android:id="@+id/img_my_avatar_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="end"
-            android:layout_marginStart="10dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/img_my_avatar"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/fragment_my_settings_arrow"
-            tools:layout_editor_absoluteY="25dp"
-            tools:layout_editor_absoluteX="339dp" />
-    </android.support.constraint.ConstraintLayout>
-    
-    <View
-        android:id="@+id/underline_ll_my_avatar"
-        android:layout_width="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/base_color_text_gray"
-        app:layout_constraintTop_toBottomOf="@+id/ll_my_avatar"
-        android:layout_height="4dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/underline_ll_my_avatar"
-        android:id="@+id/ll_my_nick"
-        tools:layout_editor_absoluteX="10dp">
-        <TextView
-            android:id="@+id/tv_nick"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="昵称"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="0dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:id="@+id/tv_my_nickname"
-            android:layout_gravity="end"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/img_my_nick_arrow"
-            android:text="宋民国"
-            android:layout_marginEnd="10dp"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="312dp" />
-        <ImageView
-            android:id="@+id/img_my_nick_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="10dp"
-            app:layout_constraintStart_toEndOf="@id/tv_my_nickname"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/fragment_my_settings_arrow"
-            tools:layout_editor_absoluteY="25dp"
-            tools:layout_editor_absoluteX="339dp" />
-    </android.support.constraint.ConstraintLayout>
-
-    <View
-        android:id="@+id/underline_ll_my_nick"
-        android:layout_width="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/base_color_text_gray"
-        app:layout_constraintTop_toBottomOf="@+id/ll_my_nick"
-        android:layout_height="4dp"/>
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/underline_ll_my_nick"
-        android:id="@+id/ll_my_role"
-        tools:layout_editor_absoluteX="10dp">
-        <TextView
-            android:id="@+id/tv_role"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="角色"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="0dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:id="@+id/tv_my_role"
-            android:layout_gravity="end"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/img_my_role_arrow"
-            android:text="学生"
-            android:layout_marginEnd="10dp"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="312dp" />
-        <ImageView
-            android:id="@+id/img_my_role_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="10dp"
-            app:layout_constraintStart_toEndOf="@id/tv_my_role"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/fragment_my_settings_arrow"
-            tools:layout_editor_absoluteY="25dp"
-            tools:layout_editor_absoluteX="339dp" />
-    </android.support.constraint.ConstraintLayout>
-
-    <View
-        android:id="@+id/underline_ll_my_role"
-        android:layout_width="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/base_color_text_gray"
-        app:layout_constraintTop_toBottomOf="@+id/ll_my_role"
-        android:layout_height="4dp"/>
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/underline_ll_my_role"
-        android:id="@+id/ll_my_sex"
-        tools:layout_editor_absoluteX="10dp">
-        <TextView
-            android:id="@+id/tv_sex"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="性别"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="0dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:id="@+id/tv_my_sex"
-            android:layout_gravity="end"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/img_my_sex_arrow"
-            android:text="男生"
-            android:layout_marginEnd="10dp"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="312dp" />
-        <ImageView
-            android:id="@+id/img_my_sex_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="10dp"
-            app:layout_constraintStart_toEndOf="@id/tv_my_sex"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/fragment_my_settings_arrow"
-            tools:layout_editor_absoluteY="25dp"
-            tools:layout_editor_absoluteX="339dp" />
-    </android.support.constraint.ConstraintLayout>
-
-    <View
-        android:id="@+id/underline_ll_my_sex"
-        android:layout_width="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/base_color_text_gray"
-        app:layout_constraintTop_toBottomOf="@+id/ll_my_sex"
-        android:layout_height="4dp"/>
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/underline_ll_my_sex"
-        android:id="@+id/ll_my_city"
-        tools:layout_editor_absoluteX="10dp">
-        <TextView
-            android:id="@+id/tv_city"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="城市"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="0dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:id="@+id/tv_my_city"
-            android:layout_gravity="end"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/img_my_city_arrow"
-            android:text="广州"
-            android:layout_marginEnd="10dp"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="312dp" />
-        <ImageView
-            android:id="@+id/img_my_city_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="10dp"
-            app:layout_constraintStart_toEndOf="@id/tv_my_city"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/fragment_my_settings_arrow"
-            tools:layout_editor_absoluteY="25dp"
-            tools:layout_editor_absoluteX="339dp" />
-    </android.support.constraint.ConstraintLayout>
-
-    <View
-        android:id="@+id/underline_ll_my_city"
-        android:layout_width="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/base_color_text_gray"
-        app:layout_constraintTop_toBottomOf="@+id/ll_my_city"
-        android:layout_height="4dp"/>
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/underline_ll_my_city"
-        android:id="@+id/ll_my_address"
-        tools:layout_editor_absoluteX="10dp">
-        <TextView
-            android:id="@+id/tv_address"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="常用地址"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="0dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:id="@+id/tv_my_address"
-            android:layout_gravity="end"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/img_my_address_arrow"
-            android:text="广州"
-            android:layout_marginEnd="10dp"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="312dp" />
-        <ImageView
-            android:id="@+id/img_my_address_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="10dp"
-            app:layout_constraintStart_toEndOf="@id/tv_my_address"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/fragment_my_settings_arrow"
-            tools:layout_editor_absoluteY="25dp"
-            tools:layout_editor_absoluteX="339dp" />
-    </android.support.constraint.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/underline_ll_my_address"
-        android:layout_width="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/base_color_text_gray"
-        android:text="账号绑定"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:textColor="@color/text_gray"
-        app:layout_constraintTop_toBottomOf="@+id/ll_my_address"
-        android:layout_height="30dp"/>
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/underline_ll_my_address"
-        android:id="@+id/ll_my_phone"
-        tools:layout_editor_absoluteX="10dp">
-        <TextView
-            android:id="@+id/tv_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="手机号码"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="0dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:id="@+id/tv_my_phone"
-            android:layout_gravity="end"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/img_my_phone_arrow"
-            android:text="137****7539"
-            android:layout_marginEnd="10dp"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="312dp" />
-        <ImageView
-            android:id="@+id/img_my_phone_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="10dp"
-            app:layout_constraintStart_toEndOf="@id/tv_my_phone"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/fragment_my_settings_arrow"
-            tools:layout_editor_absoluteY="25dp"
-            tools:layout_editor_absoluteX="339dp" />
-    </android.support.constraint.ConstraintLayout>
-
-    <View
-        android:id="@+id/underline_ll_my_phone"
-        android:layout_width="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/base_color_text_gray"
-        app:layout_constraintTop_toBottomOf="@+id/ll_my_phone"
-        android:layout_height="4dp"/>
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/underline_ll_my_phone"
-        android:id="@+id/ll_my_weChat"
-        tools:layout_editor_absoluteX="10dp">
-        <TextView
-            android:id="@+id/tv_weChat"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="微信"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="0dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:id="@+id/tv_my_weChat"
-            android:layout_gravity="end"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/img_my_weChat_arrow"
-            android:text="已绑定"
-            android:layout_marginEnd="10dp"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="312dp" />
-        <ImageView
-            android:id="@+id/img_my_weChat_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="10dp"
-            app:layout_constraintStart_toEndOf="@id/tv_my_weChat"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/fragment_my_settings_arrow"
-            tools:layout_editor_absoluteY="25dp"
-            tools:layout_editor_absoluteX="339dp" />
-    </android.support.constraint.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/underline_ll_my_weChat"
-        android:layout_width="0dp"
-        android:text="安全设置"
-        android:textColor="@color/text_gray"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/base_color_text_gray"
-        app:layout_constraintTop_toBottomOf="@+id/ll_my_weChat"
-        android:layout_height="30dp"/>
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/underline_ll_my_weChat"
-        android:id="@+id/ll_my_password"
-        tools:layout_editor_absoluteX="10dp">
-        <TextView
-            android:id="@+id/tv_password"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="登录密码"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="0dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:id="@+id/tv_my_password"
-            android:layout_gravity="end"
-            android:gravity="center_vertical"
-            android:textColor="@color/text_gray"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/img_my_password_arrow"
-            android:text="修改"
-            android:layout_marginEnd="10dp"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="312dp" />
-        <ImageView
-            android:id="@+id/img_my_password_arrow"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="10dp"
-            app:layout_constraintStart_toEndOf="@id/tv_my_password"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/fragment_my_settings_arrow"
-            tools:layout_editor_absoluteY="25dp"
-            tools:layout_editor_absoluteX="339dp" />
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        app:layout_constraintTop_toBottomOf="@id/ll_my_password"
-        android:layout_width="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/base_color_text_gray"
-        android:layout_height="wrap_content">
-        <Button
+        <android.support.constraint.ConstraintLayout
             android:layout_width="0dp"
-            android:textColor="#FFFFFF"
-            android:text="退出当前账号"
-            android:background="@drawable/bt_logout_shap"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:id="@+id/ll_my_avatar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_height="35dp" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的头像"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/text_gray"
+                tools:layout_editor_absoluteX="0dp" />
+            <ImageView
+                android:id="@+id/img_my_avatar"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="end"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/img_my_avatar_arrow"
+                android:background="@drawable/circle3"
+                tools:layout_editor_absoluteX="301dp" />
+            <ImageView
+                android:id="@+id/img_my_avatar_arrow"
+                android:layout_gravity="end"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/img_my_avatar"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/fragment_my_settings_arrow"
+                tools:layout_editor_absoluteX="346dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:id="@+id/underline_ll_my_avatar"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/base_color_text_gray"
+            app:layout_constraintTop_toBottomOf="@+id/ll_my_avatar"
+            android:layout_height="4dp"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/underline_ll_my_avatar"
+            android:id="@+id/ll_my_nick"
+            tools:layout_editor_absoluteX="10dp">
+            <TextView
+                android:id="@+id/tv_nick"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="昵称"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                tools:layout_editor_absoluteX="0dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:id="@+id/tv_my_nickname"
+                android:layout_gravity="end"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/img_my_nick_arrow"
+                android:text="宋民国"
+                tools:layout_editor_absoluteX="294dp" />
+            <ImageView
+                android:id="@+id/img_my_nick_arrow"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toEndOf="@id/tv_my_nickname"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/fragment_my_settings_arrow"
+                tools:layout_editor_absoluteX="346dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:id="@+id/underline_ll_my_nick"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/base_color_text_gray"
+            app:layout_constraintTop_toBottomOf="@+id/ll_my_nick"
+            android:layout_height="4dp"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/underline_ll_my_nick"
+            android:id="@+id/ll_my_role"
+            tools:layout_editor_absoluteX="10dp">
+            <TextView
+                android:id="@+id/tv_role"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="角色"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                tools:layout_editor_absoluteX="0dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:id="@+id/tv_my_role"
+                android:layout_gravity="end"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/img_my_role_arrow"
+                android:text="学生"
+                tools:layout_editor_absoluteX="308dp" />
+            <ImageView
+                android:id="@+id/img_my_role_arrow"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toEndOf="@id/tv_my_role"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/fragment_my_settings_arrow"
+                tools:layout_editor_absoluteX="346dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:id="@+id/underline_ll_my_role"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/base_color_text_gray"
+            app:layout_constraintTop_toBottomOf="@+id/ll_my_role"
+            android:layout_height="4dp"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/underline_ll_my_role"
+            android:id="@+id/ll_my_sex"
+            tools:layout_editor_absoluteX="10dp">
+            <TextView
+                android:id="@+id/tv_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="性别"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                tools:layout_editor_absoluteX="0dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:id="@+id/tv_my_sex"
+                android:layout_gravity="end"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/img_my_sex_arrow"
+                android:text="男生"
+                tools:layout_editor_absoluteX="308dp" />
+            <ImageView
+                android:id="@+id/img_my_sex_arrow"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toEndOf="@id/tv_my_sex"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/fragment_my_settings_arrow"
+                tools:layout_editor_absoluteX="346dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:id="@+id/underline_ll_my_sex"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/base_color_text_gray"
+            app:layout_constraintTop_toBottomOf="@+id/ll_my_sex"
+            android:layout_height="4dp"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/underline_ll_my_sex"
+            android:id="@+id/ll_my_city"
+            tools:layout_editor_absoluteX="10dp">
+            <TextView
+                android:id="@+id/tv_city"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="城市"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                tools:layout_editor_absoluteX="0dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:id="@+id/tv_my_city"
+                android:layout_gravity="end"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/img_my_city_arrow"
+                android:text="广州"
+                tools:layout_editor_absoluteX="308dp" />
+            <ImageView
+                android:id="@+id/img_my_city_arrow"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toEndOf="@id/tv_my_city"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/fragment_my_settings_arrow"
+                tools:layout_editor_absoluteX="346dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:id="@+id/underline_ll_my_city"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/base_color_text_gray"
+            app:layout_constraintTop_toBottomOf="@+id/ll_my_city"
+            android:layout_height="4dp"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/underline_ll_my_city"
+            android:id="@+id/ll_my_address"
+            tools:layout_editor_absoluteX="10dp">
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="常用地址"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                tools:layout_editor_absoluteX="0dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:id="@+id/tv_my_address"
+                android:layout_gravity="end"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/img_my_address_arrow"
+                android:text="广州"
+                tools:layout_editor_absoluteX="308dp" />
+            <ImageView
+                android:id="@+id/img_my_address_arrow"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_my_address"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/fragment_my_settings_arrow"
+                tools:layout_editor_absoluteX="346dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/underline_ll_my_address"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/base_color_text_gray"
+            android:text="账号绑定"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:textColor="@color/text_gray"
+            app:layout_constraintTop_toBottomOf="@+id/ll_my_address"
+            android:layout_height="30dp"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/underline_ll_my_address"
+            android:id="@+id/ll_my_phone"
+            tools:layout_editor_absoluteX="10dp">
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="手机号码"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                tools:layout_editor_absoluteX="0dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:id="@+id/tv_my_phone"
+                android:layout_gravity="end"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/img_my_phone_arrow"
+                android:text="137****7539"
+                tools:layout_editor_absoluteX="254dp" />
+            <ImageView
+                android:id="@+id/img_my_phone_arrow"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_my_phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/fragment_my_settings_arrow"
+                tools:layout_editor_absoluteX="346dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:id="@+id/underline_ll_my_phone"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/base_color_text_gray"
+            app:layout_constraintTop_toBottomOf="@+id/ll_my_phone"
+            android:layout_height="4dp"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/underline_ll_my_phone"
+            android:id="@+id/ll_my_weChat"
+            tools:layout_editor_absoluteX="10dp">
+            <TextView
+                android:id="@+id/tv_weChat"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="微信"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                tools:layout_editor_absoluteX="0dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:id="@+id/tv_my_weChat"
+                android:layout_gravity="end"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/img_my_weChat_arrow"
+                android:text="已绑定"
+                tools:layout_editor_absoluteX="294dp" />
+            <ImageView
+                android:id="@+id/img_my_weChat_arrow"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_my_weChat"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/fragment_my_settings_arrow"
+                tools:layout_editor_absoluteX="346dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/underline_ll_my_weChat"
+            android:layout_width="0dp"
+            android:text="安全设置"
+            android:textColor="@color/text_gray"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/base_color_text_gray"
+            app:layout_constraintTop_toBottomOf="@+id/ll_my_weChat"
+            android:layout_height="30dp"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/underline_ll_my_weChat"
+            android:id="@+id/ll_my_password"
+            tools:layout_editor_absoluteX="10dp">
+            <TextView
+                android:id="@+id/tv_password"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="登录密码"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                tools:layout_editor_absoluteX="0dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:id="@+id/tv_my_password"
+                android:layout_gravity="end"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/img_my_password_arrow"
+                android:text="修改"
+                tools:layout_editor_absoluteX="308dp" />
+            <ImageView
+                android:id="@+id/img_my_password_arrow"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_my_password"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/fragment_my_settings_arrow"
+                tools:layout_editor_absoluteX="346dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            app:layout_constraintTop_toBottomOf="@+id/ll_my_password"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="10dp"
+            android:paddingTop="10dp"
+            android:background="@color/base_color_text_gray"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="10dp">
+            <Button
+                android:id="@+id/bt_logout"
+                android:layout_width="0dp"
+                android:textColor="#FFFFFF"
+                android:text="退出当前账号"
+                android:background="@drawable/bt_logout_shap"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="48dp"
+                tools:layout_editor_absoluteY="0dp"
+                tools:layout_editor_absoluteX="0dp" />
+        </android.support.constraint.ConstraintLayout>
     </android.support.constraint.ConstraintLayout>
-</android.support.constraint.ConstraintLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>
