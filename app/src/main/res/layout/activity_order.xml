@@ -7,371 +7,293 @@
     tools:context="com.example.jiamoufang.tutorialapp.ui.activities.OrderActivity"
     tools:layout_editor_absoluteY="25dp">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/b"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/accent_blue_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/order_pic"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="24dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/circle3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/teacher_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:text="真实姓名"
-            android:textColor="@color/cardview_dark_background"
-            app:layout_constraintStart_toEndOf="@+id/order_pic"
-            app:layout_constraintTop_toTopOf="@+id/order_pic" />
-
-        <TextView
-            android:id="@+id/teacher_gender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:text="教师性别"
-            android:textColor="@color/cardview_dark_background"
-            app:layout_constraintBottom_toTopOf="@+id/teacher_address"
-            app:layout_constraintStart_toStartOf="@+id/teacher_name"
-            app:layout_constraintTop_toBottomOf="@+id/teacher_name" />
-
-        <TextView
-            android:id="@+id/teacher_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="常用地址"
-            android:textColor="@color/cardview_dark_background"
-            app:layout_constraintBottom_toBottomOf="@+id/order_pic"
-            app:layout_constraintStart_toStartOf="@+id/teacher_gender" />
-
-        <TextView
-            android:id="@+id/order_home_or_out_text"
-            android:layout_width="wrap_content"
-            android:layout_height="19dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="16dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/teacher_address" />
-
-        <TextView
-            android:id="@+id/teacher_name_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/teacher_name"
-            app:layout_constraintStart_toEndOf="@+id/teacher_name" />
-
-        <TextView
-            android:id="@+id/teacher_gender_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/teacher_gender"
-            app:layout_constraintStart_toStartOf="@+id/teacher_name_text" />
-
-        <TextView
-            android:id="@+id/teacher_address_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/teacher_address"
-            app:layout_constraintStart_toStartOf="@+id/teacher_gender_text" />
-
-
-    </android.support.constraint.ConstraintLayout>
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/color_bottom_text_normal"
-        app:layout_constraintBottom_toTopOf="@+id/order_number_pic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/b" />
-
     <ImageView
-        android:id="@+id/order_number_pic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="21dp"
-        android:src="@drawable/order_number_pic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/b" />
-
-    <TextView
-        android:id="@+id/order_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="订单号"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintBottom_toBottomOf="@+id/order_number_pic"
-        app:layout_constraintStart_toEndOf="@+id/order_number_pic"
-        app:layout_constraintTop_toTopOf="@+id/order_number_pic" />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginBottom="35dp"
-        android:layout_marginTop="35dp"
-        android:background="@color/color_bottom_text_normal"
-        app:layout_constraintBottom_toBottomOf="@+id/order_subject_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/order_number_pic" />
-
-    <ImageView
-        android:id="@+id/order_subject_pic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/order_grade_pic"
+        android:layout_width="40dp"
+        android:layout_height="42dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/order_subject"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
+        app:layout_constraintTop_toBottomOf="@+id/view9"
+        app:srcCompat="@drawable/order_grade" />
 
-
-    <TextView
-        android:id="@+id/order_subject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="科目"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintBottom_toBottomOf="@+id/order_subject_pic"
-        app:layout_constraintStart_toEndOf="@+id/order_subject_pic"
-        app:layout_constraintTop_toTopOf="@+id/order_subject_pic" />
 
     <View
         android:id="@+id/view3"
         android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginBottom="51dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:background="@color/color_bottom_text_normal"
-        app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view2" />
+        app:layout_constraintTop_toBottomOf="@+id/order_grade_pic" />
+
+    <View
+        android:id="@+id/view9"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/color_bottom_text_normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/order_grade_pic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="26dp"
+        android:id="@+id/order_salary_pic"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/order_grade"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_subject_pic" />
-
-    <TextView
-        android:id="@+id/order_teaching_age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="教授年级"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintBottom_toBottomOf="@+id/order_grade_pic"
-        app:layout_constraintEnd_toEndOf="@+id/order_subject"
-        app:layout_constraintStart_toEndOf="@+id/order_subject"
-        app:layout_constraintTop_toTopOf="@+id/order_grade_pic" />
+        app:layout_constraintStart_toStartOf="@+id/order_grade_pic"
+        app:layout_constraintTop_toBottomOf="@+id/view3"
+        app:srcCompat="@drawable/order_money" />
 
     <View
         android:id="@+id/view4"
         android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginBottom="35dp"
-        android:layout_marginTop="35dp"
+        android:layout_height="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:background="@color/color_bottom_text_normal"
-        app:layout_constraintBottom_toBottomOf="@+id/order_salary_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/order_grade_pic" />
+        app:layout_constraintTop_toBottomOf="@+id/order_salary_pic" />
 
     <ImageView
-        android:id="@+id/order_salary_pic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:src="@drawable/order_salary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_grade_pic" />
-
-    <TextView
-        android:id="@+id/order_salary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="薪酬"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintBottom_toBottomOf="@+id/order_salary_pic"
-        app:layout_constraintStart_toEndOf="@+id/order_salary_pic"
-        app:layout_constraintTop_toTopOf="@+id/order_salary_pic" />
+        android:id="@+id/order_subject_pic"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/order_salary_pic"
+        app:layout_constraintTop_toBottomOf="@+id/view4"
+        app:srcCompat="@drawable/order_subject" />
 
     <View
         android:id="@+id/view5"
         android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginBottom="34dp"
-        android:layout_marginTop="34dp"
+        android:layout_height="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:background="@color/color_bottom_text_normal"
-        app:layout_constraintBottom_toBottomOf="@+id/order_teaching_period_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/order_salary_pic" />
+        app:layout_constraintTop_toBottomOf="@+id/order_subject_pic" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="26dp"
-        android:src="@drawable/order_time"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_salary_pic" />
-
-    <TextView
-        android:id="@+id/order_teaching_period"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="教授时段"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="@+id/order_salary"
-        app:layout_constraintStart_toEndOf="@+id/order_salary"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        android:id="@+id/order_address_pic"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/order_subject_pic"
+        app:layout_constraintTop_toBottomOf="@+id/view5"
+        app:srcCompat="@drawable/order_address" />
 
     <View
         android:id="@+id/view6"
         android:layout_width="0dp"
-        android:layout_height="5dp"
-        android:layout_marginBottom="11dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="16dp"
         android:background="@color/color_bottom_text_normal"
-        app:layout_constraintBottom_toTopOf="@+id/text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/order_address_pic" />
+
+    <View
+        android:id="@+id/view10"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/color_bottom_text_normal"
+        app:layout_constraintEnd_toEndOf="@+id/view6"
+        app:layout_constraintStart_toStartOf="@+id/view6"
+        app:layout_constraintTop_toBottomOf="@+id/order_diploma_pic" />
+
+    <View
+        android:id="@+id/view11"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:background="@color/color_bottom_text_normal"
+        app:layout_constraintBottom_toTopOf="@+id/view10"
+        app:layout_constraintStart_toEndOf="@+id/order_address_text"
+        app:layout_constraintTop_toBottomOf="@+id/view9" />
+
+    <View
+        android:id="@+id/view8"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/color_bottom_text_normal"
+        app:layout_constraintEnd_toEndOf="@+id/view10"
+        app:layout_constraintStart_toStartOf="@+id/view10"
+        app:layout_constraintTop_toBottomOf="@+id/view10" />
 
     <ImageView
-        android:id="@+id/order_info_pic"
-        android:layout_width="wrap_content"
+        android:id="@+id/order_diploma_pic"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/order_address_pic"
+        app:layout_constraintTop_toBottomOf="@+id/view6"
+        app:srcCompat="@drawable/order_diploma" />
+
+    <Button
+        android:id="@+id/order_submit"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:src="@drawable/order_info"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/view6" />
+        android:text="提交"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/view8"
+        app:layout_constraintStart_toStartOf="@+id/view8"
+        app:layout_constraintTop_toBottomOf="@+id/order_reset" />
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/order_grade_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="6dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="28dp"
-        android:text="学生状态信息"
-        android:textColor="@color/cardview_dark_background"
-        app:layout_constraintEnd_toStartOf="@+id/order_teaching_period_text"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="13dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/order_student_state_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="messagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessage" />
-        </LinearLayout>
-    </ScrollView>
-
-    <TextView
-        android:id="@+id/order_number_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/order_number"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
-
-    <TextView
-        android:id="@+id/order_subject_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/order_number_text"
-        app:layout_constraintTop_toBottomOf="@+id/order_number_text" />
-
-    <TextView
-        android:id="@+id/order_teaching_age_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/view4"
-        app:layout_constraintStart_toStartOf="@+id/order_subject_text" />
+        android:text="学段"
+        android:textColor="@color/black_31"
+        app:layout_constraintBottom_toBottomOf="@+id/order_grade_pic"
+        app:layout_constraintEnd_toStartOf="@+id/view11"
+        app:layout_constraintStart_toEndOf="@+id/order_grade_pic"
+        app:layout_constraintTop_toTopOf="@+id/order_grade_pic" />
 
     <TextView
         android:id="@+id/order_salary_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/view5"
-        app:layout_constraintStart_toStartOf="@+id/order_teaching_age_text" />
+        android:text="期望金额"
+        android:textColor="@color/black_31"
+        app:layout_constraintBottom_toBottomOf="@+id/order_salary_pic"
+        app:layout_constraintEnd_toStartOf="@+id/view11"
+        app:layout_constraintStart_toEndOf="@+id/order_salary_pic"
+        app:layout_constraintTop_toTopOf="@+id/order_salary_pic" />
 
     <TextView
-        android:id="@+id/order_teaching_period_text"
+        android:id="@+id/order_subject_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="17dp"
-        android:text="TextView"
+        android:text="科目"
+        android:textColor="@color/black_31"
+        app:layout_constraintBottom_toBottomOf="@+id/order_subject_pic"
+        app:layout_constraintEnd_toStartOf="@+id/view11"
+        app:layout_constraintStart_toEndOf="@+id/order_subject_pic"
+        app:layout_constraintTop_toTopOf="@+id/order_subject_pic" />
+
+    <TextView
+        android:id="@+id/order_address_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="学员所在地"
+        android:textColor="@color/black_31"
+        app:layout_constraintBottom_toBottomOf="@+id/order_address_pic"
+        app:layout_constraintStart_toEndOf="@+id/order_address_pic"
+        app:layout_constraintTop_toTopOf="@+id/order_address_pic" />
+
+    <TextView
+        android:id="@+id/order_diploma_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="教师学历"
+        android:textColor="@color/black_31"
+        app:layout_constraintBottom_toBottomOf="@+id/order_diploma_pic"
+        app:layout_constraintEnd_toEndOf="@+id/view11"
+        app:layout_constraintStart_toEndOf="@+id/order_diploma_pic"
+        app:layout_constraintTop_toTopOf="@+id/order_diploma_pic" />
+
+    <Spinner
+        android:id="@+id/order_class_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:entries="@array/class_string"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="@+id/order_grade_text"
+        app:layout_constraintStart_toEndOf="@+id/view11"
+        app:layout_constraintTop_toTopOf="@+id/order_grade_text"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/order_grade_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+
+        android:entries="@array/grade_string"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="@+id/order_class_spinner"
+        app:layout_constraintStart_toEndOf="@+id/order_class_spinner"
+        app:layout_constraintTop_toTopOf="@+id/order_class_spinner"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/order_subject_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/subject"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="@+id/order_subject_text"
+        app:layout_constraintEnd_toEndOf="@+id/order_class_spinner"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/order_class_spinner"
+        app:layout_constraintTop_toTopOf="@+id/order_subject_text" />
+
+    <Spinner
+        android:id="@+id/order_diploma_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/diploma"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toTopOf="@+id/view10"
+        app:layout_constraintEnd_toEndOf="@+id/order_subject_spinner"
+        app:layout_constraintStart_toStartOf="@+id/order_subject_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+    <Button
+        android:id="@+id/order_reset"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="重写"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/view8"
+        app:layout_constraintStart_toStartOf="@+id/view8"
+        app:layout_constraintTop_toTopOf="@+id/view8" />
+
+    <EditText
+        android:id="@+id/order_address_editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="住家地址"
+        android:inputType="textPostalAddress"
         app:layout_constraintBottom_toTopOf="@+id/view6"
-        app:layout_constraintStart_toStartOf="@+id/order_salary_text" />
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/order_salary_editText"
+        app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+    <EditText
+        android:id="@+id/order_salary_editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:hint="RMB/HR"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/view4"
+        app:layout_constraintEnd_toEndOf="@+id/view3"
+        app:layout_constraintStart_toEndOf="@+id/view11"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
 
 
 </android.support.constraint.ConstraintLayout>
