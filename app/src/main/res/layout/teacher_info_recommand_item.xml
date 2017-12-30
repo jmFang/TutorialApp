@@ -5,50 +5,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="#FFFFFF"
-    android:layout_marginLeft="10dp"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/recommend_teacher_pic"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="20dp"
+        android:layout_marginStart="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="8dp" />
 
     <TextView
-        android:id="@+id/recommend_teacher_info"
+        android:id="@+id/tv_subjects"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="小初数学何老师"
+        android:text="小学数学"
+        android:textSize="14sp"
+        android:layout_marginStart="10dp"
         app:layout_constraintStart_toEndOf="@+id/recommend_teacher_pic"
         app:layout_constraintTop_toTopOf="@+id/recommend_teacher_pic"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_recommend_teacherName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="何老师"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_subjects"
+        app:layout_constraintTop_toTopOf="@+id/tv_subjects"
         tools:layout_editor_absoluteX="132dp" />
 
     <TextView
-        android:id="@+id/recommend_teaching_age"
+        android:id="@+id/tv_recommend_teaching_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="教龄14"
+        android:textSize="12sp"
         android:textColor="@color/accent_yellow"
-        app:layout_constraintStart_toStartOf="@+id/recommend_teacher_info"
-        app:layout_constraintTop_toBottomOf="@+id/recommend_teacher_info"
+        app:layout_constraintStart_toStartOf="@+id/tv_subjects"
+        app:layout_constraintTop_toBottomOf="@+id/tv_subjects"
         tools:layout_editor_absoluteX="132dp" />
 
     <TextView
-        android:id="@+id/recommend_teacher_salary"
+        android:id="@+id/tv_recommend_teacher_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:text="$190起"
+        android:textSize="12sp"
         android:textColor="@color/accent_yellow"
-        app:layout_constraintBottom_toBottomOf="@+id/recommend_teaching_age"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_recommend_teaching_age"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/recommend_teacher_info"
+        app:layout_constraintTop_toTopOf="@+id/tv_recommend_teaching_age"
         tools:layout_editor_absoluteX="331dp" />
 
     <View
@@ -56,9 +70,9 @@
         android:layout_height="1dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:background="@color/color_bottom_text_normal"
+        android:background="@color/color_divide_line"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/recommend_teacher_salary"
+        app:layout_constraintEnd_toEndOf="@id/tv_recommend_teacher_price"
         app:layout_constraintStart_toStartOf="@id/recommend_teacher_pic"
         app:layout_constraintTop_toBottomOf="@+id/recommend_teacher_pic"
         tools:layout_editor_absoluteX="8dp" />

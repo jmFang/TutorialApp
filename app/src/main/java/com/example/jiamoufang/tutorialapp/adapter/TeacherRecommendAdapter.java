@@ -29,15 +29,16 @@ public class TeacherRecommendAdapter extends RecyclerView.Adapter<TeacherRecomme
 
 
         private ImageView img;
-        private TextView teacherInfo,teacherSalary,teachingAge;
+        private TextView tv_subjects,teacherInfo,teacherSalary,teachingAge;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             img = itemView.findViewById(R.id.recommend_teacher_pic);
-            teacherInfo = itemView.findViewById(R.id.recommend_teacher_info);
-            teacherSalary = itemView.findViewById(R.id.recommend_teacher_salary);
-            teachingAge = itemView.findViewById(R.id.recommend_teaching_age);
+            tv_subjects = itemView.findViewById(R.id.tv_subjects);
+            teacherInfo = itemView.findViewById(R.id.tv_recommend_teacherName);
+            teacherSalary = itemView.findViewById(R.id.tv_recommend_teacher_price);
+            teachingAge = itemView.findViewById(R.id.tv_recommend_teaching_age);
 
         }
     }
@@ -54,6 +55,7 @@ public class TeacherRecommendAdapter extends RecyclerView.Adapter<TeacherRecomme
     @Override
     public void onBindViewHolder(TeacherRecommendAdapter.ViewHolder holder, int position) {
         TeacherInformation teacher = mList.get(position);
+        holder.tv_subjects.setText(teacher.getSubject());
         holder.teacherSalary.setText("$" + teacher.getPrice() + "起");
         holder.img.setImageResource(teacher.getPictureID());
         holder.teacherInfo.setText(teacher.getInfo() + teacher.getName());

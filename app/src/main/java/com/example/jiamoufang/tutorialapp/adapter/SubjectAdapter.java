@@ -4,38 +4,43 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jiamoufang.tutorialapp.R;
+import com.example.jiamoufang.tutorialapp.adapter.entities.Subject;
 import com.example.jiamoufang.tutorialapp.ui.fragment.HomePageFragment;
 
+import java.util.List;
+
 /**
- * Created by a0924 on 2017/12/30.
+ * Created by jiamoufang on 2017/12/30.
  */
 
-public//科目的适配器
-class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHolder> {
+public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHolder> {
 
-    private String[] subjectMsg;
+    private List<Subject> subjectList;
 
-    public SubjectAdapter(String[] subjectMsg) {
-        this.subjectMsg = subjectMsg;
+    public SubjectAdapter(List<Subject> subjectList) {
+        this.subjectList = subjectList;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView subjectName;
+        private ImageView imgSubject;
+        private TextView textSubject;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            subjectName = itemView.findViewById(R.id.textView);
+            imgSubject = itemView.findViewById(R.id.item_subject_img_subject);
+            textSubject = itemView.findViewById(R.id.item_subject_tv_subject);
 
-            subjectName.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(HomePageFragment.mContext, SubjectAdapter.ViewHolder.this.subjectName.getText().toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomePageFragment.mContext,textSubject.getText().toString(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -43,20 +48,19 @@ class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(HomePageFragment.mContext).inflate(R.layout.subject_item, parent, false);
+        View view = LayoutInflater.from(HomePageFragment.mContext).inflate(R.layout.item_subject, parent, false);
         SubjectAdapter.ViewHolder viewHolder = new SubjectAdapter.ViewHolder(view);
-
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(SubjectAdapter.ViewHolder holder, int position) {
-        holder.subjectName.setText(subjectMsg[position]);
+        Subject subject = subjectList.get(position);
+        holder.imgSubject.setImageResource(subject.getSubjectImgId());
+        holder.textSubject.setText(subject.getSubjectText());
     }
-
     @Override
     public int getItemCount() {
-        return subjectMsg.length;
+        return subjectList.size();
     }
 }

@@ -13,12 +13,14 @@ public//此为老师资讯类
 class TeacherInformation {
 
     private int pictureID;
+    private String subject;
     private String info;
     private float price;
     private int teachingAge;
     private String name;
 
-    public TeacherInformation(int pictureID, String info, float price, int teachingAge, String name) {
+    public TeacherInformation(int pictureID, String subject,String info, float price, int teachingAge, String name) {
+        this.subject = subject;
         this.pictureID = pictureID;
         this.info = info;
         this.price = price;
@@ -66,13 +68,21 @@ class TeacherInformation {
         this.price = price;
     }
 
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
     //利用静态方法创造该类的对象实体
     //这里用回圈创建20个实体,只是为了表现UI可以滑动功能.
     //PS 逻辑开发时可以连这个类都注解掉, 去创建自己需要的对象个数和对象的meta-data
     public static List<TeacherInformation> initTeacherInformation() {
         List<TeacherInformation> list = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            list.add(new TeacherInformation(R.drawable.hit_activity_1, "小初教师", 190, 14, "何老师"));
+            list.add(new TeacherInformation(R.drawable.hit_activity_1, "小初数学","何老师", 190, 14, "何老师"));
         }
         return list;
     }

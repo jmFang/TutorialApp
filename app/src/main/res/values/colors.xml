@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#29BCC3</color>
-    <color name="colorPrimaryDark">#29BCC3</color>
+    <color name="colorPrimary">#8BC34A</color>
+    <color name="colorPrimaryDark">#689F38</color>
     <color name="colorAccent">#CDDC39</color>
 
     <color name="base_color_text_black">#3e3e39</color>
     <color name="base_color_text_gray">#f9f9f9</color>
     <color name="base_color_text_white">#ffffff</color>
-    <color name="color_theme">#29BCC3</color>
-
+    <color name="color_theme">#212121</color>
+    <color name="secondary_text">#757575</color>
     <color name="color_bottom_bg">#272a2e</color>
     <color name="color_bottom_text_normal">#cdcdcd</color>
-    <color name="color_bottom_text_press">#29BCC3</color>
+    <color name="color_bottom_text_press">#8BC34A</color>
     <color name="text_gray">#969696</color>
+    <color name="color_divide_line">#E5E5E5</color>
     <color name="msg_chat_bg">#eceff4</color>
 
     <color name="theme_bg_color">#f0f2f5</color>

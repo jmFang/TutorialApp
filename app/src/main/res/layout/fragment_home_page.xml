@@ -33,32 +33,28 @@
                     android:layout_height="match_parent"
                     android:background="#f9f9f9" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/color_bottom_text_normal" />
-
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp">
-
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="15dp">
                     <ImageView
                         android:id="@+id/imageView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@android:drawable/ic_menu_edit" />
-
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:src="@mipmap/directions" />
                     <TextView
                         android:id="@+id/activity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="热门活动"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_gray"
                         android:textAlignment="center" />
+
                 </LinearLayout>
                 <!--热门活动的几个图片-->
                 <LinearLayout
@@ -121,6 +117,9 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="小学"
+                            android:layout_marginTop="5dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_gray"
                             android:textAlignment="center" />
                     </LinearLayout>
 
@@ -142,7 +141,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:textSize="12sp"
                             android:text="初中"
+                            android:textColor="@color/text_gray"
                             android:textAlignment="center" />
                     </LinearLayout>
 
@@ -165,6 +167,9 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="高中"
+                            android:layout_marginTop="5dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_gray"
                             android:textAlignment="center" />
                     </LinearLayout>
 
@@ -177,7 +182,7 @@
 
                         <ImageView
                             android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_height="58dp"
                             android:layout_gravity="center"
                             android:background="@drawable/circle2"
                             android:src="@mipmap/university" />
@@ -187,39 +192,37 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="大学"
+                            android:layout_marginTop="5dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_gray"
                             android:textAlignment="center" />
                     </LinearLayout>
-
-
                 </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/color_bottom_text_normal" />
-
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="20dp"
                     android:layout_marginTop="10dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@android:drawable/ic_menu_edit" />
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:src="@mipmap/gold_medal" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="优选教师"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_gray"
                         android:textAlignment="center" />
-
                 </LinearLayout>
 
+                <!--横向教师列表-->
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/good_teacher"
                     android:layout_width="match_parent"
@@ -227,28 +230,26 @@
                     android:layout_marginBottom="10dp"
                     android:background="#f9f9f9" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/color_bottom_text_normal" />
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="20dp"
                     android:layout_marginTop="10dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@android:drawable/ic_menu_edit" />
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:src="@mipmap/gold_medal2"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="为您推荐"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_gray"
                         android:textAlignment="center" />
 
                 </LinearLayout>
@@ -269,9 +270,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
                     android:layout_marginBottom="10dp"
                     android:text="没有更多啦"
-                    android:textSize="14sp" />
+                    android:textColor="@color/text_gray"
+                    android:textSize="12sp" />
 
                 <View
                     android:id="@+id/view"
@@ -279,7 +282,7 @@
                     android:layout_height="5dp"
                     android:layout_marginBottom="@dimen/wh_10dp"
                     android:layout_weight="1"
-                    android:background="@color/color_bottom_text_normal" />
+                    android:background="@color/color_divide_line" />
 
             </LinearLayout>
 
