@@ -152,6 +152,7 @@ public class MySettingsFragment  extends ParentWithNaviFragment{
                 * it is up to you, but i prefer the former which is more efficient
                 * */
                 Bundle bundle1 = new Bundle();
+                bundle1.putSerializable("user",currentUser);
                 startActivity(CurrentUserInfoSettingActivity.class, bundle1);
                 break;
             case R.id.img_schedule:
