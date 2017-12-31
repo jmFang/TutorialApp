@@ -93,6 +93,15 @@ public class bmobDb  {
         updateInfo();
     }
 
+    /* 修改电话号吗
+    * @param npw:新的电话号码
+    */
+    public void modifyTelnumber(String tel) {
+        user.setMobilePhoneNumberVerified(true);
+        user.setMobilePhoneNumber(tel);
+        updateInfo();
+    }
+
     /* 修改密码
     *修改密码前先进行密码的验证，包括先输入旧密码验证和两次新密码的输入是否相同
     * 验证完成后传入参数

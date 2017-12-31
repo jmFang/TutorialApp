@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.db.localDB.bean.bmobDb;
 import com.example.jiamoufang.tutorialapp.factory.ImageLoaderFactory;
+import com.example.jiamoufang.tutorialapp.model.UserModel;
 import com.example.jiamoufang.tutorialapp.model.bean.User;
 import com.example.jiamoufang.tutorialapp.ui.base.ParentWithNaviActivity;
 
@@ -299,7 +300,10 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     * @fangjiamou
     * */
     private void handlerForLogout() {
-
+        UserModel.getInstance().logout();
+        Intent intent = new Intent(CurrentUserInfoSettingActivity.this, LogActivity.class);
+        startActivity(intent);
+        finish();
     }
     /*
     * TODO Click 1.9 :click R.id.ll_my_password
@@ -344,7 +348,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                     public void onClick(DialogInterface dialog, int i) {
                         my_phone.setText(changedInfo.getText().toString());
                         phoneModified = true;
-                        //currentUser.setMobilePhoneNumber(changedInfo.getText().toString());
+                        currentUser.setMobilePhoneNumber(changedInfo.getText().toString());
                     }
                 });
         ViewGroup p = (ViewGroup) changedInfo.getParent();
@@ -364,7 +368,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                     public void onClick(DialogInterface dialog, int i) {
                         my_address.setText(changedInfo.getText().toString());
                         addrModified = true;
-                        //currentUser.setAddress(changedInfo.getText().toString());
+                        currentUser.setAddress(changedInfo.getText().toString());
                     }
                 });
         ViewGroup p = (ViewGroup) changedInfo.getParent();
@@ -384,7 +388,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                     public void onClick(DialogInterface dialog, int i) {
                         my_city.setText(changedInfo.getText().toString());
                         cityModified = true;
-                        //currentUser.setCity(changedInfo.getText().toString());
+                        currentUser.setCity(changedInfo.getText().toString());
                     }
                 });
         ViewGroup p = (ViewGroup) changedInfo.getParent();
@@ -419,10 +423,10 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                             public void onClick(DialogInterface dialog, int i) {
                                 if (currentSex == 0) {
                                     my_sex.setText("男");
-                                    //currentUser.setSex(true);
+                                    currentUser.setSex(true);
                                 } else {
                                     my_sex.setText("女");
-                                    //currentUser.setSex(false);
+                                    currentUser.setSex(false);
                                 }
                                 sexModified = true;
                             }
@@ -455,10 +459,10 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                             public void onClick(DialogInterface dialog, int i) {
                                 if (currentRole == 0) {
                                     my_role.setText("老师");
-                                    //currentUser.setRole(true);
+                                    currentUser.setRole(true);
                                 } else {
                                     my_role.setText("学生");
-                                    //currentUser.setRole(false);
+                                    currentUser.setRole(false);
                                 }
                                 roleModified = true;
                             }
@@ -488,7 +492,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                     public void onClick(DialogInterface dialog, int i) {
                         my_nickname.setText(changedInfo.getText().toString());
                         nameModified = true;
-                        //currentUser.setRealName(changedInfo.getText().toString());
+                        currentUser.setRealName(changedInfo.getText().toString());
                     }
                 });
         ViewGroup p = (ViewGroup) changedInfo.getParent();
@@ -529,6 +533,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     public void onBackPressed() {
         super.onBackPressed();
         saveAllChanges();
+        finish();
     }
 
     /*
@@ -558,6 +563,8 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
             db.modifyCity(my_city.getText().toString());
         if (addrModified)
             db.modifyAddress(my_address.getText().toString());
+        if (phoneModified)
+            db.modifyTelnumber(my_phone.getText().toString());
         if (passwordModified)
             db.modifyPassword(changed_password);
     }

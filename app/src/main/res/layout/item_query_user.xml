@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#FFFFFF"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/user_pic"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="小初数学何老师"
+        app:layout_constraintStart_toEndOf="@+id/user_pic"
+        app:layout_constraintTop_toTopOf="@+id/user_pic"
+        tools:layout_editor_absoluteX="132dp" />
+
+    <TextView
+        android:id="@+id/user_sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="男"
+        app:layout_constraintStart_toEndOf="@+id/user_name"
+        app:layout_constraintTop_toTopOf="@+id/user_pic"
+        tools:layout_editor_absoluteX="132dp" />
+
+    <TextView
+        android:id="@+id/user_educated_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="硕士"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/user_pic" />
+
+    <TextView
+        android:id="@+id/user_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="广州"
+        android:textColor="@color/accent_yellow"
+        app:layout_constraintStart_toStartOf="@+id/user_name"
+        app:layout_constraintTop_toBottomOf="@+id/user_name"
+        tools:layout_editor_absoluteX="132dp" />
+
+    <TextView
+        android:id="@+id/user_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="12345678987"
+        android:textColor="@color/accent_yellow"
+        app:layout_constraintTop_toBottomOf="@+id/user_city"
+        app:layout_constraintLeft_toLeftOf="@+id/user_city"
+        app:layout_constraintBottom_toBottomOf="@+id/user_pic"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/color_bottom_text_normal"
+        app:layout_constraintTop_toBottomOf="@+id/user_pic"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_editor_absoluteX="8dp" />
+
+</android.support.constraint.ConstraintLayout>
