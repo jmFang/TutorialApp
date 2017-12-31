@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -61,9 +63,9 @@ public class MainActivity extends BaseActivity{
     /*底部四个tab所在的容器*/
     @Bind(R.id.main_bottom)
     LinearLayout mMainBottom;
-    /*分割线*/
+  /*  *//*分割线*//*
     @Bind(R.id.line)
-    LinearLayout mLine;
+    LinearLayout mLine;*/
     /*fragment容器*/
     @Bind(R.id.fragment_container)
     RelativeLayout mFragmentContainer;
@@ -81,12 +83,6 @@ public class MainActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
         //requestWindowFeature(Window.FEATURE_NO_TITLE); //设置无标题
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);  //设置全屏
         setContentView(R.layout.activity_main);
@@ -128,6 +124,7 @@ public class MainActivity extends BaseActivity{
 
         initView();
     }
+
 
     @Override
     protected void initView() {

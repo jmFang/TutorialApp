@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/tb_search"
+        android:title="search"
+        android:orderInCategory="60"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/tb_news"
+        android:orderInCategory="70"
+        android:icon="@mipmap/alarm"
+        android:title="tips"
+        app:showAsAction="ifRoom"/>
+</menu>

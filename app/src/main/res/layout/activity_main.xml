@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clipChildren="false">
+
+    <!--fragment的容器-->
+    <RelativeLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/main_bottom"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <LinearLayout
         android:id="@+id/main_bottom"
@@ -14,7 +24,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
-
             <TextView
                 android:id="@+id/btn_home"
                 android:layout_width="match_parent"
@@ -80,6 +89,25 @@
                 android:visibility="visible"/>
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="bottom"
+            android:layout_height="70dp">
+            <ImageView
+                android:id="@+id/btn_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/plus"
+                android:background="@drawable/circle2"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"/>
+        </RelativeLayout>
+
+
+
         <TextView
             android:id="@+id/btn_share"
             android:layout_width="0dp"
@@ -110,25 +138,17 @@
             android:scaleType="matrix"
             android:text="@string/main_tab_set"
             android:textColor="@drawable/tab_textcolor"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
     </LinearLayout>
 
-    <LinearLayout
+  <!--  <LinearLayout
         android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:clipChildren="false"
         android:layout_above="@id/main_bottom"
         android:background="#f1f1f1"
         android:orientation="horizontal">
-    </LinearLayout>
-
-    <!--fragment的容器-->
-    <RelativeLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/main_bottom"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+    </LinearLayout>-->
 
 </RelativeLayout>

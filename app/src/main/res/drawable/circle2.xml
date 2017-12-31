@@ -10,7 +10,7 @@
         android:color="#FFFFFF" />
 
     <!--圆角-->
-    <corners android:radius="15dp" />
+    <corners android:radius="20dp" />
 
     <!--内边距-->
     <padding

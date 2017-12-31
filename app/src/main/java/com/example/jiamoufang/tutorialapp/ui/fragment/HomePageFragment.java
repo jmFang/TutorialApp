@@ -3,15 +3,23 @@ package com.example.jiamoufang.tutorialapp.ui.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.adapter.SubjectAdapter;
@@ -19,12 +27,13 @@ import com.example.jiamoufang.tutorialapp.adapter.TeacherAdapter;
 import com.example.jiamoufang.tutorialapp.adapter.TeacherInformation;
 import com.example.jiamoufang.tutorialapp.adapter.TeacherRecommendAdapter;
 import com.example.jiamoufang.tutorialapp.adapter.entities.Subject;
+import com.example.jiamoufang.tutorialapp.ui.base.ParentWithNaviFragment;
 import com.oragee.banners.BannerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePageFragment extends Fragment {
+public class HomePageFragment extends ParentWithNaviFragment {
 
     //这是九门功课横向滚动
     List<Subject> mSubjectList = new ArrayList<>();
@@ -41,6 +50,7 @@ public class HomePageFragment extends Fragment {
     private List<TeacherInformation> mTeacherList;
     //用于轮播图
     private List<View> viewList;
+    private Toolbar toolBar;
 
     @Nullable
     @Override
@@ -48,7 +58,20 @@ public class HomePageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
 
         mContext = view.getContext();
-
+        /*设置菜单使能*/
+        setHasOptionsMenu(true);
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.tool_bar);
+        toolbar.setTitle("");
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if(actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.mipmap.location);
+        }
+        /*设置toolbar标题为空*/
+        CollapsingToolbarLayout collapsing_tl_home_page = (CollapsingToolbarLayout)view.findViewById(R.id.collapsing_tl_home_page);
+        collapsing_tl_home_page.setTitle("");
+        collapsing_tl_home_page.setScrimAnimationDuration(1200);
         /*这是轮番图的设置*/
         BannerView bannerView = view.findViewById(R.id.pager);
         viewList = new ArrayList<>();
@@ -87,6 +110,31 @@ public class HomePageFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.toolbar,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+    /*
+     * TODO：handles with toolbar click events
+     * @fangjiamou
+     * */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.tb_search:
+                Toast.makeText(mContext, "搜索功能未开放", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tb_news:
+                Toast.makeText(mContext, "新消息通知未开放", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void initSubjectList() {
         mSubjectList.add(new Subject(R.mipmap.chinese_256px,"语文"));
         mSubjectList.add(new Subject(R.mipmap.math,"数学"));
@@ -98,5 +146,10 @@ public class HomePageFragment extends Fragment {
         mSubjectList.add(new Subject(R.mipmap.chemistry_128px,"化学"));
         mSubjectList.add(new Subject(R.mipmap.biology_128px,"生物"));
 
+    }
+
+    @Override
+    protected String title() {
+        return null;
     }
 }
