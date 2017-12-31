@@ -93,7 +93,8 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_gravity="bottom"
-            android:layout_height="70dp">
+            android:padding="2dp"
+            android:layout_height="80dp">
             <ImageView
                 android:id="@+id/btn_plus"
                 android:layout_width="wrap_content"

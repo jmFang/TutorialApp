@@ -2,12 +2,12 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <!--填充的颜色-->
-    <solid android:color="@color/colorPrimaryDark" />
+    <solid android:color="@color/base_color_text_gray" />
 
     <!--边框颜色和粗细-->
     <stroke
         android:width="2dip"
-        android:color="#FFFFFF" />
+        android:color="@color/base_color_text_gray" />
 
     <!--圆角-->
     <corners android:radius="20dp" />
