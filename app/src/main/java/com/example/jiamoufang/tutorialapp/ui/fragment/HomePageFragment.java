@@ -108,7 +108,8 @@ public class HomePageFragment extends ParentWithNaviFragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new SubjectAdapter(mSubjectList));
+        SubjectAdapter subjectAdapter = new SubjectAdapter(mSubjectList);
+        recyclerView.setAdapter(subjectAdapter);
 
         mTeacherList = TeacherInformation.initTeacherInformation();
 

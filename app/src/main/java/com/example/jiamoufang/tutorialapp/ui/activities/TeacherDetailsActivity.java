@@ -9,8 +9,9 @@ import android.widget.TextView;
 
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.model.bean.User;
+import com.example.jiamoufang.tutorialapp.ui.base.ParentWithNaviActivity;
 
-public class TeacherDetailsActivity extends AppCompatActivity {
+public class TeacherDetailsActivity extends ParentWithNaviActivity {
 
     //老师姓名
     private TextView name;
@@ -25,7 +26,7 @@ public class TeacherDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_details);
-
+        initNaviView();
         /*
         //将图片做成Bitmap,并将其制作切割,再设置成订单图片
         //(此处代码为UI测试所需用到的逻辑,在逻辑开发时可以注解之>)
@@ -61,6 +62,11 @@ public class TeacherDetailsActivity extends AppCompatActivity {
         else
             sex.setText("女");
         phone.setText("联系电话: " + teacher.getMobilePhoneNumber());
+    }
+
+    @Override
+    protected String title() {
+        return null;
     }
 
 }
