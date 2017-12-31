@@ -1,5 +1,7 @@
 package com.example.jiamoufang.tutorialapp.db.localDB.bean;
 
+import android.util.Log;
+
 import com.example.jiamoufang.tutorialapp.model.bean.Information;
 import com.example.jiamoufang.tutorialapp.model.bean.Order;
 import com.example.jiamoufang.tutorialapp.model.bean.User;
@@ -13,6 +15,7 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
 import rx.Observable;
@@ -34,13 +37,13 @@ public class bmobDb  {
      * 如：path = "sdcard/temp.jpg"
      */
     public void modifyAvatar(String path) {
-        BmobFile bmobFile = new BmobFile(new File(path));
+        final BmobFile bmobFile = new BmobFile(new File(path));
 
         bmobFile.uploadblock(new UploadFileListener() {
             @Override
             public void done(BmobException e) {
                 if(e == null){
-
+                    user.setAvatar(bmobFile);
                 } else {
 
                 }
@@ -103,8 +106,16 @@ public class bmobDb  {
         updateInfo();
     }
 
+    /* 修改电话号吗
+    * @param npw:新的电话号码
+    */
+    public void modifyTelnumber(String tel) {
+        user.setMobilePhoneNumberVerified(true);
+        user.setMobilePhoneNumber(tel);
+        updateInfo();
+    }
+
     /* 根据学生返回订单列表
-     * 适配“我的”页面“我的老师”
      * 注意由于BmobQuery采用的是异步的方法，因此调用该函数的时候能需要采用以下方法
      */
     /*
@@ -130,8 +141,8 @@ public class bmobDb  {
         return query.findObjectsObservable(Order.class);
     }
 
-    /* 根据老师返回我的订单列表
-     * 适配“我的”页面“我的学员”
+    /*
+     * 根据老师返回我的订单列表
      */
     public Observable<List<Order>> findOrderForTeacher() {
 
@@ -174,6 +185,23 @@ public class bmobDb  {
         query.order("-createdAt");    //根据订单建立时间的倒序排列
 
         return query.findObjectsObservable(Order.class);
+    }
+
+    /* 发布订单
+     * @param 参数是一个订单实例
+     * 注意传入参数前需要为order的相关属性设置对应的值
+     */
+    public void publishOrder(Order order) {
+        order.save(new SaveListener<String>() {
+            @Override
+            public void done(String objectId, BmobException e) {
+                if(e==null){
+                    Log.d("mydebug", "订单创建成功！");
+                }else{
+                    Log.d("mydebug", "订单创建失败！");
+                }
+            }
+        });
     }
 
     protected void updateInfo() {
