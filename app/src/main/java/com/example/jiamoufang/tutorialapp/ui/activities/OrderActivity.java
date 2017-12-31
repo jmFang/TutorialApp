@@ -16,9 +16,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.jiamoufang.tutorialapp.R;
+import com.example.jiamoufang.tutorialapp.ui.base.ParentWithNaviActivity;
 
 
-public class OrderActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class OrderActivity extends ParentWithNaviActivity implements AdapterView.OnItemSelectedListener {
 
     private Spinner spinner_grade, spinner_class, spinner_subject, spinner_diploma;
 
@@ -33,11 +34,17 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
 
-        initView();
+        initViews();
+        initNaviView();
 
     }
 
-    private void initView() {
+    @Override
+    protected String title() {
+        return "找老师";
+    }
+
+    private void initViews() {
         //绑定spinner
         spinner_class = (Spinner) findViewById(R.id.order_class_spinner);
         spinner_grade = (Spinner) findViewById(R.id.order_grade_spinner);

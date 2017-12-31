@@ -4,6 +4,7 @@
     <item
         android:id="@+id/tb_search"
         android:title="search"
+        android:titleCondensed="your"
         android:orderInCategory="60"
         app:showAsAction="never"/>
     <item
@@ -11,5 +12,5 @@
         android:orderInCategory="70"
         android:icon="@mipmap/alarm"
         android:title="tips"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="never"/>
 </menu>

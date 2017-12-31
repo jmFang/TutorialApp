@@ -71,7 +71,7 @@ public class HomePageFragment extends ParentWithNaviFragment {
         /*设置toolbar标题为空*/
         CollapsingToolbarLayout collapsing_tl_home_page = (CollapsingToolbarLayout)view.findViewById(R.id.collapsing_tl_home_page);
         collapsing_tl_home_page.setTitle("");
-        collapsing_tl_home_page.setScrimAnimationDuration(1200);
+        collapsing_tl_home_page.setScrimAnimationDuration(1000);
         /*这是轮番图的设置*/
         BannerView bannerView = view.findViewById(R.id.pager);
         viewList = new ArrayList<>();

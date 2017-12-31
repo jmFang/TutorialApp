@@ -62,7 +62,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginEnd="8dp"
-                        android:src="@mipmap/directions" />
+                        android:src="@mipmap/hit" />
                     <TextView
                         android:id="@+id/activity"
                         android:layout_width="wrap_content"

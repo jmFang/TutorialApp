@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context="com.example.jiamoufang.tutorialapp.ui.activities.OrderActivity"
     tools:layout_editor_absoluteY="25dp">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:id="@+id/layout_navi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/include_navi"/>
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/order_grade_pic"
@@ -13,12 +22,9 @@
         android:layout_height="42dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/order_subject"
+        android:src="@mipmap/grades"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view9"
-        app:srcCompat="@drawable/order_grade" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/view9"/>
     <View
         android:id="@+id/view3"
         android:layout_width="0dp"
@@ -34,25 +40,24 @@
     <View
         android:id="@+id/view9"
         android:layout_width="0dp"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:background="@color/color_bottom_text_normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/layout_navi" />
 
     <ImageView
         android:id="@+id/order_salary_pic"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/order_grade"
         app:layout_constraintStart_toStartOf="@+id/order_grade_pic"
         app:layout_constraintTop_toBottomOf="@+id/view3"
-        app:srcCompat="@drawable/order_money" />
+        app:srcCompat="@mipmap/order_pay" />
 
     <View
         android:id="@+id/view4"
@@ -73,7 +78,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="@+id/order_salary_pic"
         app:layout_constraintTop_toBottomOf="@+id/view4"
-        app:srcCompat="@drawable/order_subject" />
+        app:srcCompat="@mipmap/order_subject" />
 
     <View
         android:id="@+id/view5"
@@ -94,7 +99,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="@+id/order_subject_pic"
         app:layout_constraintTop_toBottomOf="@+id/view5"
-        app:srcCompat="@drawable/order_address" />
+        app:srcCompat="@mipmap/order_direction" />
 
     <View
         android:id="@+id/view6"
@@ -143,7 +148,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="@+id/order_address_pic"
         app:layout_constraintTop_toBottomOf="@+id/view6"
-        app:srcCompat="@drawable/order_diploma" />
+        app:srcCompat="@mipmap/ordere_diploma" />
 
     <Button
         android:id="@+id/order_submit"
@@ -151,7 +156,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="提交"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        android:textColor="@color/base_color_text_white"
+        android:background="@drawable/bt_logout_shap"
         app:layout_constraintEnd_toEndOf="@+id/view8"
         app:layout_constraintStart_toStartOf="@+id/view8"
         app:layout_constraintTop_toBottomOf="@+id/order_reset" />
@@ -161,6 +168,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="学段"
+        android:textSize="16sp"
         android:textColor="@color/black_31"
         app:layout_constraintBottom_toBottomOf="@+id/order_grade_pic"
         app:layout_constraintEnd_toStartOf="@+id/view11"
@@ -171,7 +179,8 @@
         android:id="@+id/order_salary_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="期望金额"
+        android:text="期望价格"
+        android:textSize="16sp"
         android:textColor="@color/black_31"
         app:layout_constraintBottom_toBottomOf="@+id/order_salary_pic"
         app:layout_constraintEnd_toStartOf="@+id/view11"
@@ -183,6 +192,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="科目"
+        android:textSize="16sp"
         android:textColor="@color/black_31"
         app:layout_constraintBottom_toBottomOf="@+id/order_subject_pic"
         app:layout_constraintEnd_toStartOf="@+id/view11"
@@ -195,6 +205,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="学员所在地"
+        android:textSize="16sp"
         android:textColor="@color/black_31"
         app:layout_constraintBottom_toBottomOf="@+id/order_address_pic"
         app:layout_constraintStart_toEndOf="@+id/order_address_pic"
@@ -205,6 +216,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="教师学历"
+        android:textSize="16sp"
         android:textColor="@color/black_31"
         app:layout_constraintBottom_toBottomOf="@+id/order_diploma_pic"
         app:layout_constraintEnd_toEndOf="@+id/view11"
@@ -264,8 +276,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="重写"
-        android:textSize="18sp"
+        android:text="重填"
+        android:textSize="16sp"
+        android:textColor="@color/base_color_text_white"
+        android:background="@drawable/bt_logout_shap"
         app:layout_constraintEnd_toEndOf="@+id/view8"
         app:layout_constraintStart_toStartOf="@+id/view8"
         app:layout_constraintTop_toTopOf="@+id/view8" />
@@ -288,7 +302,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:ems="10"
-        android:hint="RMB/HR"
+        android:hint="RMB/hour"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="@+id/view3"

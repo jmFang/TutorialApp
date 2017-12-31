@@ -93,13 +93,13 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_gravity="bottom"
-            android:padding="2dp"
+            android:padding="8dp"
             android:layout_height="80dp">
             <ImageView
                 android:id="@+id/btn_plus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/plus"
+                android:src="@mipmap/add_icon_200"
                 android:background="@drawable/circle2"
                 android:gravity="center"
                 android:layout_centerHorizontal="true"

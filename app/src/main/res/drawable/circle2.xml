@@ -7,15 +7,15 @@
     <!--边框颜色和粗细-->
     <stroke
         android:width="2dip"
-        android:color="@color/base_color_text_gray" />
+        android:color="@color/color_divide_line" />
 
     <!--圆角-->
     <corners android:radius="20dp" />
 
     <!--内边距-->
     <padding
-        android:bottom="7dp"
-        android:left="7dp"
-        android:right="7dp"
-        android:top="7dp" />
+        android:bottom="15dp"
+        android:left="15dp"
+        android:right="15dp"
+        android:top="15dp" />
 </shape>
