@@ -80,7 +80,7 @@
         <activity android:name=".ui.activities.PostDetailsActivity" />
         <activity android:name=".ui.activities.OrderActivity" />
         <activity android:name=".ui.activities.TeacherDetailsActivity" />
-        <activity android:name=".ui.activities.CurrentUserInfoSettingActivity"></activity>
+        <activity android:name=".ui.activities.CurrentUserInfoSettingActivity" />
     </application>
 
 </manifest>
