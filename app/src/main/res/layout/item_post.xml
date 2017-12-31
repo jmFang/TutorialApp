@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/rl_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/iv_user_avatar"
@@ -11,7 +13,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginTop="16dp"
-        android:src="@mipmap/icon_message_press"/>
+        android:src="@mipmap/default_smg"/>
 
     <TextView
         android:id="@+id/tv_user_name"
@@ -28,10 +30,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_user_name"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_toRightOf="@id/iv_user_avatar"
         android:text="帖子内容"
-        android:textSize="18sp"/>
+        android:textColor="@color/secondary_text"
+        android:textSize="14sp"/>
 
     <TextView
         android:id="@+id/tv_post_time"
@@ -39,11 +43,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_post_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:layout_toRightOf="@id/iv_user_avatar"
         android:text="2017-08-31 16：34"
         android:textSize="10sp"/>
-
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/tv_post_time"
+        android:background="@color/color_divide_line"/>
 
 
 </RelativeLayout>

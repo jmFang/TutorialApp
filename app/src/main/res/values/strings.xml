@@ -76,4 +76,42 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="class_string">
+        <item>小学</item>
+        <item>中学</item>
+        <item>高中</item>
+        <item>大学</item>
+    </string-array>
+
+    <string-array name="grade_string">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+
+    <string-array name="subject">
+        <item>语文</item>
+        <item>英文</item>
+        <item>数学</item>
+        <item>物理</item>
+        <item>化学</item>
+        <item>生物</item>
+        <item>政治</item>
+        <item>历史</item>
+        <item>地理</item>
+    </string-array>
+
+    <string-array name="diploma">
+        <item>小学</item>
+        <item>中学</item>
+        <item>高中</item>
+        <item>专科</item>
+        <item>本科</item>
+        <item>研究所</item>
+        <item>博士</item>
+    </string-array>
 </resources>

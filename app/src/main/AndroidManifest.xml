@@ -78,8 +78,9 @@
         <activity android:name=".ui.activities.UserInfoActivity" />
         <activity android:name=".ui.activities.PublishPostActivity" />
         <activity android:name=".ui.activities.PostDetailsActivity" />
-        <activity android:name=".ui.activities.OrderActivity"></activity>
-        <activity android:name=".ui.activities.TeacherDetailsActivity"></activity>
+        <activity android:name=".ui.activities.OrderActivity" />
+        <activity android:name=".ui.activities.TeacherDetailsActivity" />
+        <activity android:name=".ui.activities.CurrentUserInfoSettingActivity"></activity>
     </application>
 
 </manifest>
