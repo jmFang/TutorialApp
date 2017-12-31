@@ -129,6 +129,9 @@ public class HomePageFragment extends ParentWithNaviFragment {
             case R.id.tb_news:
                 Toast.makeText(mContext, "新消息通知未开放", Toast.LENGTH_SHORT).show();
                 break;
+            case android.R.id.home:
+                toast("定位功能未开放");
+                break;
             default:
                 break;
         }

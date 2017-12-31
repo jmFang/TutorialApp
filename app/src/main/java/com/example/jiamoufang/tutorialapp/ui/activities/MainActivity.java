@@ -153,8 +153,11 @@ public class MainActivity extends BaseActivity{
         mTabs[2] = btn_share;
         mTabs[3] = btn_settings;
 
-/*        conversationFragment = new ConversationFragment();*/
-  /*      homePageFragment = new HomePageFragment();*/
+        homePageFragment = new HomePageFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container,homePageFragment).show(homePageFragment).commit();
+/*        conversationFragment = new ConversationFragment();
+  /*
 /*        shareFragment = new ShareFragment();
         mySettingsFragment = new MySettingsFragment();*/
 
