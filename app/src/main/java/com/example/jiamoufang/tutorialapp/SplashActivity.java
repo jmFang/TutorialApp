@@ -28,6 +28,9 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+
+                //UserModel.getInstance().logout();
+
                 User user = UserModel.getInstance().getCurrentUser();
                 if (user == null) {
                     Intent it = new Intent(SplashActivity.this, LogActivity.class);

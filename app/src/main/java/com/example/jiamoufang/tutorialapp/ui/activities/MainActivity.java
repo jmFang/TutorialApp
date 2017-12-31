@@ -15,8 +15,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.jiamoufang.tutorialapp.R;
+import com.example.jiamoufang.tutorialapp.db.localDB.bean.bmobDb;
 import com.example.jiamoufang.tutorialapp.event.RefreshEvent;
 import com.example.jiamoufang.tutorialapp.model.UserModel;
+import com.example.jiamoufang.tutorialapp.model.bean.Order;
 import com.example.jiamoufang.tutorialapp.model.bean.User;
 import com.example.jiamoufang.tutorialapp.ui.base.BaseActivity;
 import com.example.jiamoufang.tutorialapp.ui.fragment.ConversationFragment;
@@ -96,6 +98,10 @@ public class MainActivity extends BaseActivity{
         /*登录成功、注册成功后或处于登录状态重新打开应用后执行连接IM服务器的操作
         * 判断用户是否登录，并且当连接状态是未连接，则进行连接
         * */
+
+        //测试函数，可以不用管
+        // test();
+
         if (!TextUtils.isEmpty(user.getObjectId()) && BmobIM.getInstance().getCurrentStatus().getCode() != ConnectionStatus.CONNECTED.getCode()) {
             BmobIM.connect(user.getObjectId(), new ConnectListener() {
                 @Override
@@ -239,7 +245,6 @@ public class MainActivity extends BaseActivity{
         //进入应用后，通知栏取消
         BmobNotificationManager.getInstance(this).cancelNotification();
     }
-
 
     @Override
     protected void onDestroy() {

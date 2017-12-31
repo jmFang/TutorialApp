@@ -64,6 +64,7 @@ public class Order extends BmobObject {
     private Boolean mode;
 
     public Order() {
+        status = false;
     }
 
     public User getUser() {
