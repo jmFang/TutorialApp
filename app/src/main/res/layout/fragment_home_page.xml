@@ -167,7 +167,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/high_school"
+                        android:id="@+id/ll_high_school"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -192,7 +192,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/college"
+                        android:id="@+id/ll_college"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

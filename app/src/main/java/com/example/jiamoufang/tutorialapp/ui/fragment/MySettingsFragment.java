@@ -18,6 +18,8 @@ import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.factory.ImageLoaderFactory;
 import com.example.jiamoufang.tutorialapp.model.bean.User;
 import com.example.jiamoufang.tutorialapp.ui.activities.CurrentUserInfoSettingActivity;
+import com.example.jiamoufang.tutorialapp.ui.activities.MyStudentsActivity;
+import com.example.jiamoufang.tutorialapp.ui.activities.MyTeachersActivity;
 import com.example.jiamoufang.tutorialapp.ui.activities.OrderActivity;
 import com.example.jiamoufang.tutorialapp.ui.base.ParentWithNaviFragment;
 
@@ -182,12 +184,16 @@ public class MySettingsFragment  extends ParentWithNaviFragment{
                 * look over your teachers that you like
                 * show them in another Activity
                 * */
+                Bundle bundle6 = new Bundle();
+                startActivity(MyTeachersActivity.class, bundle6);
                 break;
             case R.id.ll_my_student:
                 /*
                 * look over your students that you like
                 * show them in another Activity
                 * */
+                Bundle bundle7 = new Bundle();
+                startActivity(MyStudentsActivity.class, bundle7);
                 break;
             case R.id.ll_my_orders:
                 /*

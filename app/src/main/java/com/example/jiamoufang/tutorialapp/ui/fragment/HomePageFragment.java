@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.jiamoufang.tutorialapp.R;
@@ -26,12 +27,19 @@ import com.example.jiamoufang.tutorialapp.adapter.SubjectAdapter;
 import com.example.jiamoufang.tutorialapp.adapter.TeacherAdapter;
 import com.example.jiamoufang.tutorialapp.adapter.TeacherInformation;
 import com.example.jiamoufang.tutorialapp.adapter.TeacherRecommendAdapter;
+import com.example.jiamoufang.tutorialapp.adapter.TeacherWantedAdapter;
 import com.example.jiamoufang.tutorialapp.adapter.entities.Subject;
+import com.example.jiamoufang.tutorialapp.adapter.entities.TeacherWanted;
+import com.example.jiamoufang.tutorialapp.ui.activities.TeacherWantedActivity;
 import com.example.jiamoufang.tutorialapp.ui.base.ParentWithNaviFragment;
 import com.oragee.banners.BannerView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class HomePageFragment extends ParentWithNaviFragment {
 
@@ -52,11 +60,20 @@ public class HomePageFragment extends ParentWithNaviFragment {
     private List<View> viewList;
     private Toolbar toolBar;
 
+    @Bind(R.id.ll_elementary)
+    LinearLayout ll_elementary;
+    @Bind(R.id.ll_junior_high_school)
+    LinearLayout ll_junior_high_school;
+    @Bind(R.id.ll_high_school)
+    LinearLayout ll_high_school;
+    @Bind(R.id.ll_college)
+    LinearLayout ll_college;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
-
+        ButterKnife.bind(this,view);
         mContext = view.getContext();
         /*设置菜单使能*/
         setHasOptionsMenu(true);
@@ -115,6 +132,33 @@ public class HomePageFragment extends ParentWithNaviFragment {
         menu.clear();
         inflater.inflate(R.menu.toolbar,menu);
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    /*
+    * TODO : handles with click events
+    * @fangjiamou
+    * */
+
+    @OnClick({R.id.ll_elementary, R.id.ll_junior_high_school, R.id.ll_high_school, R.id.ll_college})
+    public void handlerForClick(View view) {
+        Bundle bundle = new Bundle();
+        switch (view.getId()) {
+            case R.id.ll_elementary:
+                bundle.putInt("level",1);
+                break;
+            case R.id.ll_junior_high_school:
+                bundle.putInt("level",2);
+                break;
+            case R.id.ll_high_school:
+                bundle.putInt("level",3);
+                break;
+            case R.id.ll_college:
+                bundle.putInt("level",4);
+                break;
+            default:
+                break;
+        }
+        startActivity(TeacherWantedActivity.class, bundle);
     }
     /*
      * TODO：handles with toolbar click events

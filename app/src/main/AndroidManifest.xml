@@ -81,7 +81,10 @@
         <activity android:name=".ui.activities.OrderActivity" />
         <activity android:name=".ui.activities.TeacherDetailsActivity" />
         <activity android:name=".ui.activities.CurrentUserInfoSettingActivity" />
-        <activity android:name=".ui.activities.TeacherWantedActivity"></activity>
+        <activity android:name=".ui.activities.TeacherWantedActivity" />
+        <activity android:name=".ui.activities.MyTeachersActivity" />
+        <activity android:name=".ui.activities.MyStudentsActivity" />
+        <activity android:name=".ui.activities.QueryTeacherBySubjectActivity"></activity>
     </application>
 
 </manifest>

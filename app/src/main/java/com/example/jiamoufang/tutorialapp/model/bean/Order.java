@@ -38,6 +38,7 @@ public class Order extends BmobObject {
      */
     private Integer grade;
 
+
     /*
      *薪酬，可以是一个范围的表示
      */
@@ -62,8 +63,33 @@ public class Order extends BmobObject {
      *老师上门：true; 学生上门：false
      */
     private Boolean mode;
+    /*
+    * 教学地址（与用户User Class的地址区别开）
+    * */
+    private String address;
+
+    /*
+    * 所期望的教师的学历
+    * */
+    private String educatedLevel;
+
+    public void setEducatedLevel(String educatedLevel) {
+        this.educatedLevel = educatedLevel;
+    }
+
+    public String getEducatedLevel() {
+        return educatedLevel;
+    }
 
     public Order() {
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public User getUser() {
