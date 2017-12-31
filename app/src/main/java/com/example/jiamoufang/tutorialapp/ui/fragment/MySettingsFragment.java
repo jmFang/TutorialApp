@@ -9,8 +9,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +16,7 @@ import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.factory.ImageLoaderFactory;
 import com.example.jiamoufang.tutorialapp.model.bean.User;
 import com.example.jiamoufang.tutorialapp.ui.activities.CurrentUserInfoSettingActivity;
+import com.example.jiamoufang.tutorialapp.ui.activities.MyOrdersActivity;
 import com.example.jiamoufang.tutorialapp.ui.activities.MyStudentsActivity;
 import com.example.jiamoufang.tutorialapp.ui.activities.MyTeachersActivity;
 import com.example.jiamoufang.tutorialapp.ui.activities.OrderActivity;
@@ -200,6 +199,9 @@ public class MySettingsFragment  extends ParentWithNaviFragment{
                 * look over your orders (you may be student or teacher, it is both ok)
                 * show them in another Activity
                 * */
+                Bundle bundle8 = new Bundle();
+                bundle8.putSerializable("user", currentUser);
+                startActivity(MyOrdersActivity.class, bundle8);
                 break;
             default:
                 break;

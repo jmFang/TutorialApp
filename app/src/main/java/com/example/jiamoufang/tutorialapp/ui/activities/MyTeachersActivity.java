@@ -83,13 +83,7 @@ public class MyTeachersActivity extends ParentWithNaviActivity {
             public void onClick(int position) {
                 Intent intent = new Intent(MyTeachersActivity.this, TeacherDetailsActivity.class);
                 Bundle bundle = new Bundle();
-                User teacher = data.get(position).getTeacher();
-                bundle.putString("name", teacher.getRealName());
-                if (teacher.getSex())
-                    bundle.putString("sex", "男");
-                else
-                    bundle.putString("sex", "女");
-                bundle.putString("phone", teacher.getMobilePhoneNumber());
+                bundle.putSerializable("teacher", data.get(position).getTeacher());
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

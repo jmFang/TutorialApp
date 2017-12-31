@@ -10,8 +10,6 @@ import android.widget.TextView;
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.model.bean.User;
 
-import butterknife.Bind;
-
 public class TeacherDetailsActivity extends AppCompatActivity {
 
     //老师姓名
@@ -20,6 +18,8 @@ public class TeacherDetailsActivity extends AppCompatActivity {
     private TextView sex;
     //老师电话
     private TextView phone;
+
+    private User teacher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,21 +35,32 @@ public class TeacherDetailsActivity extends AppCompatActivity {
         img.setImageDrawable(OrderActivity.getRoundedShape(icon, getResources()));
         */
 
-        initializeViews();
+        setUp();
     }
 
-    private void initializeViews() {
+    private void setUp() {
         findViews();
-        Bundle bundle = getIntent().getExtras();
-        name.setText((String) bundle.get("name"));
-        sex.setText((String) bundle.get("sex"));
-        phone.setText("联系电话: " + (String) bundle.get("phone"));
+        teacher = getTeacher();
+        initializeViews();
     }
 
     private void findViews() {
         name = (TextView) findViewById(R.id.details_teacher_info);
         sex = (TextView) findViewById(R.id.details_teacher_name);
         phone = (TextView) findViewById(R.id.details_teaching_age);
+    }
+
+    private User getTeacher() {
+        return (User) getIntent().getExtras().getSerializable("teacher");
+    }
+
+    private void initializeViews() {
+        name.setText(teacher.getRealName());
+        if (teacher.getSex())
+            sex.setText("男");
+        else
+            sex.setText("女");
+        phone.setText("联系电话: " + teacher.getMobilePhoneNumber());
     }
 
 }

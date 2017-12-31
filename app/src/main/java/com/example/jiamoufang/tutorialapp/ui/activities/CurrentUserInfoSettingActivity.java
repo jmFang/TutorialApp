@@ -39,7 +39,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     * and bind them in method onCreate()
     * */
    /* @Bind()*/
-   @Bind(R.id.ll_my_avatar)
+    @Bind(R.id.ll_my_avatar)
     ConstraintLayout ll_my_avatar;
     @Bind(R.id.ll_my_nick)
     ConstraintLayout ll_my_nick;
@@ -348,7 +348,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                     public void onClick(DialogInterface dialog, int i) {
                         my_phone.setText(changedInfo.getText().toString());
                         phoneModified = true;
-                        currentUser.setMobilePhoneNumber(changedInfo.getText().toString());
+                        //currentUser.setMobilePhoneNumber(changedInfo.getText().toString());
                     }
                 });
         ViewGroup p = (ViewGroup) changedInfo.getParent();
@@ -368,7 +368,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                     public void onClick(DialogInterface dialog, int i) {
                         my_address.setText(changedInfo.getText().toString());
                         addrModified = true;
-                        currentUser.setAddress(changedInfo.getText().toString());
+                        //currentUser.setAddress(changedInfo.getText().toString());
                     }
                 });
         ViewGroup p = (ViewGroup) changedInfo.getParent();
@@ -388,7 +388,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                     public void onClick(DialogInterface dialog, int i) {
                         my_city.setText(changedInfo.getText().toString());
                         cityModified = true;
-                        currentUser.setCity(changedInfo.getText().toString());
+                        //currentUser.setCity(changedInfo.getText().toString());
                     }
                 });
         ViewGroup p = (ViewGroup) changedInfo.getParent();
@@ -406,9 +406,9 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
         sexDialog = new AlertDialog.Builder(this);
         String str = my_sex.getText().toString();
         if (str.equals("女"))
-            currentRole = 1;
+            currentSex = 1;
         else
-            currentRole = 0;
+            currentSex = 0;
         sexDialog.setTitle("您的性别")
                 .setSingleChoiceItems(
                         new String[] { "男", "女" }, currentSex,
@@ -423,10 +423,10 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                             public void onClick(DialogInterface dialog, int i) {
                                 if (currentSex == 0) {
                                     my_sex.setText("男");
-                                    currentUser.setSex(true);
+                                    //currentUser.setSex(true);
                                 } else {
                                     my_sex.setText("女");
-                                    currentUser.setSex(false);
+                                    //currentUser.setSex(false);
                                 }
                                 sexModified = true;
                             }
@@ -459,10 +459,10 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                             public void onClick(DialogInterface dialog, int i) {
                                 if (currentRole == 0) {
                                     my_role.setText("老师");
-                                    currentUser.setRole(true);
+                                    //currentUser.setRole(true);
                                 } else {
                                     my_role.setText("学生");
-                                    currentUser.setRole(false);
+                                    //currentUser.setRole(false);
                                 }
                                 roleModified = true;
                             }
@@ -492,7 +492,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                     public void onClick(DialogInterface dialog, int i) {
                         my_nickname.setText(changedInfo.getText().toString());
                         nameModified = true;
-                        currentUser.setRealName(changedInfo.getText().toString());
+                        //currentUser.setRealName(changedInfo.getText().toString());
                     }
                 });
         ViewGroup p = (ViewGroup) changedInfo.getParent();
