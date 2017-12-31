@@ -127,7 +127,7 @@
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_gravity="center"
-                            android:background="@drawable/circle2"
+                            android:background="@drawable/image_circle"
                             android:scaleType="centerCrop"
                             android:src="@mipmap/primary_school" />
                         <TextView
@@ -152,7 +152,7 @@
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_gravity="center"
-                            android:background="@drawable/circle2"
+                            android:background="@drawable/image_circle"
                             android:src="@mipmap/middle_school" />
 
                         <TextView
@@ -177,7 +177,7 @@
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_gravity="center"
-                            android:background="@drawable/circle2"
+                            android:background="@drawable/image_circle"
                             android:src="@mipmap/high_school" />
 
                         <TextView
@@ -202,7 +202,7 @@
                             android:layout_width="60dp"
                             android:layout_height="58dp"
                             android:layout_gravity="center"
-                            android:background="@drawable/circle2"
+                            android:background="@drawable/image_circle"
                             android:src="@mipmap/university" />
 
                         <TextView
