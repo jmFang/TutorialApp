@@ -7,6 +7,16 @@
     tools:context="com.example.jiamoufang.tutorialapp.ui.activities.OrderActivity"
     tools:layout_editor_absoluteY="25dp">
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:id="@+id/navi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/include_navi"/>
+    </LinearLayout>
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/b"
         android:layout_width="0dp"
@@ -14,7 +24,7 @@
         android:background="@color/color_bottom_text_press"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/navi">
 
         <ImageView
             android:id="@+id/order_pic"

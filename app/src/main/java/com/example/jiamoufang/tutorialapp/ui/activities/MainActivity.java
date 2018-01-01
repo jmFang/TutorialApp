@@ -3,11 +3,14 @@ package com.example.jiamoufang.tutorialapp.ui.activities;
 import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -32,6 +35,7 @@ import com.example.jiamoufang.tutorialapp.ui.fragment.ConversationFragment;
 import com.example.jiamoufang.tutorialapp.ui.fragment.HomePageFragment;
 import com.example.jiamoufang.tutorialapp.ui.fragment.MySettingsFragment;
 import com.example.jiamoufang.tutorialapp.ui.fragment.ShareFragment;
+import com.example.jiamoufang.tutorialapp.utils.ActivityCollector;
 import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
@@ -271,6 +275,24 @@ public class MainActivity extends BaseActivity{
         BmobNotificationManager.getInstance(this).cancelNotification();
     }
 
+    /*
+    * TODO 退出应用
+    * 在mainActivity中按下返回键，应该是要退出应用的，因为此时mainActivity是活动栈中唯一的活动
+    * 双击退出
+    * */
+    private long mExitTime;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            if ((System.currentTimeMillis() - mExitTime) > 3000) {
+                toast("再按一次退出应用");
+                mExitTime = System.currentTimeMillis();
+            } else {
+                ActivityCollector.getInstance().exitApp();
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     @Override
     protected void onDestroy() {

@@ -131,7 +131,7 @@ public class ShareFragment extends ParentWithNaviFragment implements ShowPostVie
 
     @Override
     protected String title() {
-        return "学圈";
+        return null;
     }
 
     @Override

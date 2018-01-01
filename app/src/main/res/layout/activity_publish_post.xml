@@ -9,12 +9,8 @@
     tools:context="com.example.jiamoufang.tutorialapp.ui.activities.PublishPostActivity">
 
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:id="@id/tool_bar"
-        android:layout_height="wrap_content">
+    <include layout="@layout/include_navi"/>
 
-    </android.support.v7.widget.Toolbar>
 
     <EditText
         android:id="@+id/edt_post_content"
@@ -27,13 +23,13 @@
         android:hint="请输入内容"
         android:paddingLeft="16sp"
         android:textColor="#B4B4B4"
-        android:textSize="15sp"/>
+        android:textSize="14sp"/>
 
 
     <Button
 
         android:id="@+id/btn_publish"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/bt_logout_shap"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

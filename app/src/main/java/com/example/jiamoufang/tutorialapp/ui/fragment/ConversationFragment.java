@@ -59,7 +59,7 @@ public class ConversationFragment extends ParentWithNaviFragment {
     * */
     @Override
     protected String title() {
-        return "会话";
+        return null;
     }
     /*
     * 只需要添加right控件，right控件的点击事件是
