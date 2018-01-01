@@ -108,7 +108,7 @@ public class bmobDb  {
     * @param npw:新的电话号码
     */
     public void modifyTelnumber(String tel) {
-        user.setMobilePhoneNumberVerified(true);
+        user.setMobilePhoneNumberVerified(false);
         user.setMobilePhoneNumber(tel);
         updateInfo();
     }
@@ -241,7 +241,6 @@ public class bmobDb  {
                 }
             }
         });
-
     }
 
     protected void updateInfo() {
