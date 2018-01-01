@@ -3,14 +3,11 @@ package com.example.jiamoufang.tutorialapp.ui.activities;
 import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.GestureDetector;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -35,7 +32,6 @@ import com.example.jiamoufang.tutorialapp.ui.fragment.ConversationFragment;
 import com.example.jiamoufang.tutorialapp.ui.fragment.HomePageFragment;
 import com.example.jiamoufang.tutorialapp.ui.fragment.MySettingsFragment;
 import com.example.jiamoufang.tutorialapp.ui.fragment.ShareFragment;
-import com.example.jiamoufang.tutorialapp.utils.ActivityCollector;
 import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
@@ -274,6 +270,7 @@ public class MainActivity extends BaseActivity{
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     /*
     * TODO 退出应用
     * 在mainActivity中按下返回键，应该是要退出应用的，因为此时mainActivity是活动栈中唯一的活动
@@ -292,6 +289,8 @@ public class MainActivity extends BaseActivity{
         }
         return super.onKeyDown(keyCode, event);
     }
+=======
+>>>>>>> parent of ba11ebc... 处理内存泄露问题
 
 =======
 >>>>>>> 2eb2c815f16326acf004031f38356c4fd570dd7a

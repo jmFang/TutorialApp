@@ -145,7 +145,7 @@ public class UserModel extends BaseModel {
             e.printStackTrace();
         }
 
-        query.addWhereContains("username", username);
+        query.addWhereEqualTo("username", username);
         query.setLimit(limit);
         /*按注册时间先后排序*/
         query.order("-createdAt");

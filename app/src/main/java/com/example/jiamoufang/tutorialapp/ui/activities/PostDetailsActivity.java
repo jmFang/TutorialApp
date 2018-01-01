@@ -29,7 +29,6 @@ import com.example.jiamoufang.tutorialapp.share.bean.Post;
 import com.example.jiamoufang.tutorialapp.share.presenter.PostDetailsPresenter;
 import com.example.jiamoufang.tutorialapp.share.view.PostDetailsView;
 import com.example.jiamoufang.tutorialapp.ui.base.BaseActivity;
-import com.example.jiamoufang.tutorialapp.ui.base.ParentWithNaviActivity;
 import com.example.jiamoufang.tutorialapp.utils.BmobUtils;
 import com.example.jiamoufang.tutorialapp.widget.SwipeRecyclerView;
 
@@ -50,8 +49,10 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.PushListener;
 
-public class PostDetailsActivity extends ParentWithNaviActivity implements PostDetailsView {
+public class PostDetailsActivity extends BaseActivity implements PostDetailsView {
 
+    @Bind(R.id.tool_bar)
+    Toolbar mToolBar;
     @Bind(R.id.iv_user_avatar)
     ImageView mIvUserAvatar;
     @Bind(R.id.tv_user_name)
@@ -100,7 +101,11 @@ public class PostDetailsActivity extends ParentWithNaviActivity implements PostD
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_details);
         ButterKnife.bind(this);
-        initNaviView();
+        //设置帖子来源
+        mToolBar.setTitle("from:" + BmobUser.getCurrentUser().getUsername());
+        mToolBar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
+        mToolBar.setBackgroundColor(ContextCompat.getColor(this, R.color.color_theme));
+
         //获取从上一个activity传过来的post
         mPost = (Post) getIntent().getSerializableExtra("post");
         //如果当前发帖用户的头像为Null，则加载默认头像
@@ -159,10 +164,6 @@ public class PostDetailsActivity extends ParentWithNaviActivity implements PostD
         }
     }
 
-    @Override
-    protected String title() {
-        return null;
-    }
 
     /**
      *

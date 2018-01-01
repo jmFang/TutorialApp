@@ -7,9 +7,8 @@ import android.widget.TextView;
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.model.bean.Order;
 import com.example.jiamoufang.tutorialapp.model.bean.User;
-import com.example.jiamoufang.tutorialapp.ui.base.ParentWithNaviActivity;
 
-public class OrderDetailActivity extends ParentWithNaviActivity {
+public class OrderDetailActivity extends AppCompatActivity {
 
     private TextView teacher_name_text, teacher_gender_text, teacher_address_text,
             order_home_or_out_text, order_number_text, order_subject_text,
@@ -22,13 +21,7 @@ public class OrderDetailActivity extends ParentWithNaviActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
-        initNaviView();
         setUp();
-    }
-
-    @Override
-    protected String title() {
-        return null;
     }
 
     private void setUp() {

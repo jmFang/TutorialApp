@@ -6,14 +6,4 @@
     android:layout_height="match_parent"
     tools:context="com.example.jiamoufang.tutorialapp.ui.activities.QueryTeacherBySubjectActivity">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_height="wrap_content">
-        <include layout="@layout/include_navi"/>
-    </LinearLayout>
-
-
 </android.support.constraint.ConstraintLayout>

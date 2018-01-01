@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.view.textservice.TextInfo;
 import android.widget.ImageView;
@@ -14,7 +12,6 @@ import android.widget.TextView;
 
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.model.bean.User;
-import com.example.jiamoufang.tutorialapp.utils.ActivityCollector;
 
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.socketio.callback.StringCallback;
@@ -27,17 +24,9 @@ import cn.bmob.v3.socketio.callback.StringCallback;
  */
 
 public abstract class ParentWithNaviActivity extends BaseActivity {
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.d("ParentWithNaviActivity", getClass().getSimpleName());
-        ActivityCollector.getInstance().addActivity(this);
-    }
-
     /*
-        * 接口封装
-        * */
+    * 接口封装
+    * */
     public interface ToolBarListener {
         void clickLeft();
         void clickRight();
