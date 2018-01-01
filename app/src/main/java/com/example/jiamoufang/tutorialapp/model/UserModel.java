@@ -129,7 +129,7 @@ public class UserModel extends BaseModel {
         BmobUser.logOut();
     }
 
-    /*TODO 用户管理：1.5 查询用户
+    /*TODO 用户管理：1.5 查询用户(所有用户)
     * @param username
     * @param limit
     * @param listener
@@ -174,6 +174,29 @@ public class UserModel extends BaseModel {
         BmobQuery<User> query = new BmobQuery<>();
 
         query.addWhereEqualTo("objectId",objectId);
+        query.findObjects(new FindListener<User>() {
+            @Override
+            public void done(List<User> list, BmobException e) {
+                if (e == null) {
+                    if (list != null && list.size() > 0) {
+                        listener.done(list.get(0), e);
+                    } else {
+                        listener.done(null, new BmobException(000,"查无此人"));
+                    }
+                } else {
+                    listener.done(null,e);
+                }
+            }
+        });
+    }
+    /*TODO 用户管理：2.6 查询指定用户信息
+    * @param username
+    * @param listener
+    * */
+    public void queryUser(String username, final QueryUserListener listener) {
+        BmobQuery<User> query = new BmobQuery<>();
+
+        query.addWhereEqualTo("username",username);
         query.findObjects(new FindListener<User>() {
             @Override
             public void done(List<User> list, BmobException e) {

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_school"
+        android:layout_width="wrap_content"
+        android:text="小学"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_grade"
+        android:layout_width="50dp"
+        android:text="一年级"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toTopOf="@id/tv_school"
+        app:layout_constraintStart_toEndOf="@id/tv_school"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_subject"
+        android:layout_width="wrap_content"
+        android:text="语文"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toTopOf="@id/tv_school"
+        app:layout_constraintStart_toEndOf="@id/tv_grade"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_address_pre"
+        android:text="地点: "
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/tv_school"
+        app:layout_constraintTop_toBottomOf="@id/tv_school"
+        android:layout_marginTop="10dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_address"
+        android:textColor="@color/text_gray"
+        android:text="新港东路"
+        android:textSize="14sp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@id/tv_address_pre"
+        app:layout_constraintTop_toTopOf="@id/tv_address_pre"/>
+
+    <TextView
+        android:id="@+id/tv_orderId_pre"
+        android:text="单号: "
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_school"
+        app:layout_constraintEnd_toStartOf="@+id/tv_orderId"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_orderId"
+        android:layout_width="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="15dp"
+        android:textSize="12sp"
+        android:textColor="@color/text_gray"
+        android:text="ghghg4548dfdfd"
+        app:layout_constraintTop_toTopOf="@id/tv_school"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_comma"
+        android:text="￥ "
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:textColor="#FFA000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_address_pre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_payment"
+        android:text="280"
+        android:textSize="16sp"
+        android:textColor="#FFA000"
+        app:layout_constraintStart_toEndOf="@id/tv_comma"
+        app:layout_constraintTop_toTopOf="@id/tv_comma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="元/小时"
+        android:id="@+id/tv_payment_post"
+        android:textSize="16sp"
+        android:textColor="@color/text_gray"
+        app:layout_constraintStart_toEndOf="@id/tv_payment"
+        app:layout_constraintTop_toTopOf="@id/tv_comma"
+        android:layout_marginStart="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_order_status"
+        android:text="未预约"
+        android:textSize="14sp"
+        android:textColor="@color/text_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_comma"
+        android:layout_marginEnd="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_visit_pre"
+        android:text="浏览次数："
+        android:textSize="12sp"
+        android:textColor="@color/text_gray"
+        app:layout_constraintStart_toStartOf="@id/tv_comma"
+        app:layout_constraintTop_toBottomOf="@+id/tv_comma"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_visit_times"
+        android:text="23"
+        android:textSize="12sp"
+        android:textColor="@color/text_gray"
+        app:layout_constraintStart_toEndOf="@id/tv_visit_pre"
+        app:layout_constraintTop_toTopOf="@+id/tv_visit_pre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:background="@color/base_color_text_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_visit_pre"
+        android:layout_marginTop="10dp"
+        android:id="@+id/baseline"/>
+</android.support.constraint.ConstraintLayout>

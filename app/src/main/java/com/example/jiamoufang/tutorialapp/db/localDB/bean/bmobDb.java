@@ -25,6 +25,12 @@ public class bmobDb  {
     private User user;
     private int count = 0;
 
+    // 单例模式
+    private static bmobDb instance = new bmobDb();
+    public static bmobDb getInstance() {
+        return instance;
+    }
+
     public bmobDb() {
         user = BmobUser.getCurrentUser(User.class);
     }
@@ -168,6 +174,17 @@ public class bmobDb  {
     public Observable<List<Order>> findOrderByGrade(int grade) {
         BmobQuery<Order> query = new BmobQuery<Order>();
         query.addWhereEqualTo("grade", grade);
+        query.order("-createdAt");    //根据订单建立时间的倒序排列
+
+        return query.findObjectsObservable(Order.class);
+    }
+    /*
+    * 找出处于两个年级数之间的订单
+    * */
+    public Observable<List<Order>> findOrderByGradeInterval(int grade1, int grade2) {
+        BmobQuery<Order> query = new BmobQuery<Order>();
+        query.addWhereLessThanOrEqualTo("grade",grade2);
+        query.addWhereGreaterThanOrEqualTo("grade",grade1);
         query.order("-createdAt");    //根据订单建立时间的倒序排列
 
         return query.findObjectsObservable(Order.class);

@@ -1,5 +1,6 @@
 package com.example.jiamoufang.tutorialapp.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,10 @@ import android.widget.Toast;
 
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.adapter.entities.Subject;
+import com.example.jiamoufang.tutorialapp.ui.activities.ChatActivity;
+import com.example.jiamoufang.tutorialapp.ui.activities.QueryTeacherBySubjectActivity;
+import com.example.jiamoufang.tutorialapp.ui.activities.TeacherWantedActivity;
+import com.example.jiamoufang.tutorialapp.ui.base.BaseActivity;
 import com.example.jiamoufang.tutorialapp.ui.fragment.HomePageFragment;
 
 import java.util.List;
@@ -41,6 +46,10 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(HomePageFragment.mContext,textSubject.getText().toString(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePageFragment.mContext, QueryTeacherBySubjectActivity.class);
+                    //传给QueryTeacherBySubjectActivity聘教信息Activity，根据学科条件过滤选择
+                    intent.putExtra("subject",textSubject.getText().toString());
+                    HomePageFragment.mContext.startActivity(intent);
                 }
             });
         }

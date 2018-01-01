@@ -153,11 +153,6 @@ public class MainActivity extends BaseActivity{
         mTabs[2] = btn_share;
         mTabs[3] = btn_settings;
 
-/*        conversationFragment = new ConversationFragment();*/
-  /*      homePageFragment = new HomePageFragment();*/
-/*        shareFragment = new ShareFragment();
-        mySettingsFragment = new MySettingsFragment();*/
-
         onTabSelect(btn_home);
 
     }
