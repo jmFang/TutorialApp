@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -30,6 +31,7 @@ import java.io.File;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 
 public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
@@ -103,12 +105,15 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     private AlertDialog.Builder uploadDialog, inputDialog, roleDialog, sexDialog;
     //嵌入AlertDialog的输入框
     private EditText changedInfo;
-    private boolean avatarModified = false, nameModified = false, roleModified = false,
+    private boolean nameModified = false, roleModified = false,
             sexModified = false, cityModified = false, addrModified = false,
             phoneModified = false, passwordModified = false;
 
     //当前用户
     private User currentUser;
+
+    //数据库Instance
+    bmobDb db = new bmobDb();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,25 +121,37 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
         setContentView(R.layout.activity_current_user_info_setting);
         //初始化导航栏
         initNaviView();
-        /**/
-        /*
-        * get bundle of current user
-        * getBundle is from BaseActivity
-        * */
-        currentUser = (User)getBundle().getSerializable("user");
         /*
         * initialize user info
         * */
         initUserInfo();
         setUp();
     }
+
+    /*
+     * 重加载页面及时更新UI
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initUserInfo();
+    }
+
     /*
     * initialize user info
     * @by fangjiamou
     * */
     private void initUserInfo() {
-        if (currentUser.getAvatar() != null)
+        /*
+        * get the latest inforation of the currentUser
+        * */
+        currentUser = BmobUser.getCurrentUser(User.class);
+
+        if (currentUser.getAvatar() != null) {
+            //测试过URL是正确的
             ImageLoaderFactory.getLoader().loadAvatar(my_avatar, currentUser.getAvatar().getUrl(), R.mipmap.default_ss);
+        }
+
         if (currentUser.getRealName() != null)
             my_nickname.setText(currentUser.getRealName());
         if (currentUser.getRole() != null) {
@@ -155,6 +172,14 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
             my_address.setText(currentUser.getAddress());
         if (currentUser.getMobilePhoneNumber() != null)
             my_phone.setText(currentUser.getMobilePhoneNumber());
+
+        nameModified = false;
+        roleModified = false;
+        sexModified = false;
+        cityModified = false;
+        addrModified = false;
+        phoneModified = false;
+        passwordModified = false;
     }
 
     private void setUp() {
@@ -236,14 +261,13 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                 Bitmap pic = BitmapFactory.decodeFile(changed_avatar_path);
                 my_avatar.setImageBitmap(pic);
             }
-
         } else if (requestCode == 1) {
             Uri uri = Uri.fromFile(tempFile);
             Bitmap pic = BitmapFactory.decodeFile(uri.getPath());
             my_avatar.setImageBitmap(pic);
             changed_avatar_path = tempFile.getPath();
         }
-        avatarModified = true;
+        db.modifyAvatar(changed_avatar_path);
         //BmobFile bmobFile = new BmobFile(new File(changed_avatar_path));
         //currentUser.setAvatar(bmobFile);
     }
@@ -284,7 +308,6 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                 handlerForChangeMyPassword();
                 break;
             case R.id.bt_logout:
-                saveAllChanges();// all changes are saved before logout
                 handlerForLogout();
                 break;
             default:
@@ -300,6 +323,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     * @fangjiamou
     * */
     private void handlerForLogout() {
+        saveAllChanges();
         UserModel.getInstance().logout();
         Intent intent = new Intent(CurrentUserInfoSettingActivity.this, LogActivity.class);
         startActivity(intent);
@@ -314,7 +338,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        if (changedInfo.getText().toString().equals(""))
+                        if (changedInfo.getText().toString().trim().equals(""))
                             Toast.makeText(CurrentUserInfoSettingActivity.this,
                                     "密码不能为空",
                                     Toast.LENGTH_SHORT).show();
@@ -542,11 +566,9 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     *       @fangjiamou
     * */
     private void saveAllChanges() {
-        bmobDb db = new bmobDb();
-        if (avatarModified)
-            db.modifyAvatar(changed_avatar_path);
-        if (nameModified)
-            db.modifyNickname(my_nickname.getText().toString());
+        if (nameModified) {
+            db.modifyNickname(my_nickname.getText().toString().trim());
+        }
         if (roleModified) {
             if (my_role.getText().toString().equals("老师"))
                 db.modifyRole(true);
@@ -559,13 +581,18 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
             else
                 db.modifySex(false);
         }
-        if (cityModified)
-            db.modifyCity(my_city.getText().toString());
-        if (addrModified)
-            db.modifyAddress(my_address.getText().toString());
-        if (phoneModified)
-            db.modifyTelnumber(my_phone.getText().toString());
-        if (passwordModified)
-            db.modifyPassword(changed_password);
+        if (cityModified) {
+            db.modifyCity(my_city.getText().toString().trim());
+        }
+        if (addrModified) {
+            db.modifyAddress(my_address.getText().toString().trim());
+        }
+        if (phoneModified) {
+            db.modifyTelnumber(my_phone.getText().toString().trim());
+        }
+
+        if (passwordModified) {
+            db.modifyPassword(changed_password.trim());
+        }
     }
 }

@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.jiamoufang.tutorialapp.R;
+import com.example.jiamoufang.tutorialapp.db.localDB.bean.bmobDb;
 import com.example.jiamoufang.tutorialapp.event.RefreshEvent;
 import com.example.jiamoufang.tutorialapp.model.UserModel;
 import com.example.jiamoufang.tutorialapp.model.bean.Order;
@@ -97,6 +98,11 @@ public class MainActivity extends BaseActivity{
 
         final User user = BmobUser.getCurrentUser(User.class);
 
+        /*
+         *测试函数，可忽略
+         */
+        test();
+
         if (!TextUtils.isEmpty(user.getObjectId()) && BmobIM.getInstance().getCurrentStatus().getCode() != ConnectionStatus.CONNECTED.getCode()) {
             BmobIM.connect(user.getObjectId(), new ConnectListener() {
                 @Override
@@ -127,6 +133,8 @@ public class MainActivity extends BaseActivity{
 
         //需要解决内存泄露问题？
 
+
+
         initView();
         /*
         * 启动填写家教招聘信息的活动
@@ -137,6 +145,10 @@ public class MainActivity extends BaseActivity{
                 startActivity(new Intent(MainActivity.this, OrderActivity.class));
             }
         });
+    }
+
+    void test() {
+
     }
 
 
