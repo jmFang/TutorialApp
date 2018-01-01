@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.db.localDB.bean.bmobDb;
 import com.example.jiamoufang.tutorialapp.factory.ImageLoaderFactory;
@@ -105,9 +106,6 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     private AlertDialog.Builder uploadDialog, inputDialog, roleDialog, sexDialog;
     //嵌入AlertDialog的输入框
     private EditText changedInfo;
-    private boolean nameModified = false, roleModified = false,
-            sexModified = false, cityModified = false, addrModified = false,
-            phoneModified = false, passwordModified = false;
 
     //当前用户
     private User currentUser;
@@ -149,7 +147,11 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
 
         if (currentUser.getAvatar() != null) {
             //测试过URL是正确的
-            ImageLoaderFactory.getLoader().loadAvatar(my_avatar, currentUser.getAvatar().getUrl(), R.mipmap.default_ss);
+            Glide.with(this).load(currentUser.getAvatar().getUrl()).into(my_avatar);
+
+            // ImageLoaderFactory.getLoader().loadAvatar(, currentUser.getAvatar().getUrl(), R.mipmap.default_ss);
+        } else {
+            Glide.with(this).load(R.mipmap.default_ss).into(my_avatar);
         }
 
         if (currentUser.getRealName() != null)
@@ -172,14 +174,6 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
             my_address.setText(currentUser.getAddress());
         if (currentUser.getMobilePhoneNumber() != null)
             my_phone.setText(currentUser.getMobilePhoneNumber());
-
-        nameModified = false;
-        roleModified = false;
-        sexModified = false;
-        cityModified = false;
-        addrModified = false;
-        phoneModified = false;
-        passwordModified = false;
     }
 
     private void setUp() {
@@ -271,7 +265,6 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
         //BmobFile bmobFile = new BmobFile(new File(changed_avatar_path));
         //currentUser.setAvatar(bmobFile);
     }
-
     /*
     * handlers for click events
     * @by fangjiamou
@@ -323,12 +316,12 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     * @fangjiamou
     * */
     private void handlerForLogout() {
-        saveAllChanges();
         UserModel.getInstance().logout();
         Intent intent = new Intent(CurrentUserInfoSettingActivity.this, LogActivity.class);
         startActivity(intent);
         finish();
     }
+
     /*
     * TODO Click 1.9 :click R.id.ll_my_password
     * tips: refers to TODO Click 1.1:click R.id.ll_my_nick
@@ -343,8 +336,8 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                                     "密码不能为空",
                                     Toast.LENGTH_SHORT).show();
                         else {
-                            changed_password = changedInfo.getText().toString();
-                            passwordModified = true;
+                            changed_password = changedInfo.getText().toString().trim();
+                            db.modifyPassword(changed_password.trim());
                             //currentUser.setPassword(changed_password);
                         }
                     }
@@ -370,8 +363,8 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        my_phone.setText(changedInfo.getText().toString());
-                        phoneModified = true;
+                        my_phone.setText(changedInfo.getText().toString().trim());
+                        db.modifyTelnumber(my_phone.getText().toString().trim());
                         //currentUser.setMobilePhoneNumber(changedInfo.getText().toString());
                     }
                 });
@@ -390,8 +383,8 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        my_address.setText(changedInfo.getText().toString());
-                        addrModified = true;
+                        my_address.setText(changedInfo.getText().toString().trim());
+                        db.modifyAddress(my_address.getText().toString().trim());
                         //currentUser.setAddress(changedInfo.getText().toString());
                     }
                 });
@@ -410,8 +403,8 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        my_city.setText(changedInfo.getText().toString());
-                        cityModified = true;
+                        my_city.setText(changedInfo.getText().toString().trim());
+                        db.modifyCity(my_city.getText().toString().trim());
                         //currentUser.setCity(changedInfo.getText().toString());
                     }
                 });
@@ -447,12 +440,13 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                             public void onClick(DialogInterface dialog, int i) {
                                 if (currentSex == 0) {
                                     my_sex.setText("男");
+                                    db.modifySex(true);
                                     //currentUser.setSex(true);
                                 } else {
                                     my_sex.setText("女");
+                                    db.modifySex(false);
                                     //currentUser.setSex(false);
                                 }
-                                sexModified = true;
                             }
                         })
                 .setNegativeButton("取消", null).create().show();
@@ -483,12 +477,13 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                             public void onClick(DialogInterface dialog, int i) {
                                 if (currentRole == 0) {
                                     my_role.setText("老师");
+                                    db.modifyRole(true);
                                     //currentUser.setRole(true);
                                 } else {
                                     my_role.setText("学生");
+                                    db.modifyRole(false);
                                     //currentUser.setRole(false);
                                 }
-                                roleModified = true;
                             }
                         })
                 .setNegativeButton("取消", null).create().show();
@@ -515,7 +510,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         my_nickname.setText(changedInfo.getText().toString());
-                        nameModified = true;
+                        db.modifyNickname(my_nickname.getText().toString().trim());
                         //currentUser.setRealName(changedInfo.getText().toString());
                     }
                 });
@@ -542,7 +537,6 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
         super.setNaviListener(new ToolBarListener() {
             @Override
             public void clickLeft() {
-                saveAllChanges();
                 finish();
             }
 
@@ -556,7 +550,6 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        saveAllChanges();
         finish();
     }
 
@@ -565,34 +558,4 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     *       when the user click return, this method should be called.
     *       @fangjiamou
     * */
-    private void saveAllChanges() {
-        if (nameModified) {
-            db.modifyNickname(my_nickname.getText().toString().trim());
-        }
-        if (roleModified) {
-            if (my_role.getText().toString().equals("老师"))
-                db.modifyRole(true);
-            else
-                db.modifyRole(false);
-        }
-        if (sexModified) {
-            if (my_sex.getText().toString().equals("男"))
-                db.modifySex(true);
-            else
-                db.modifySex(false);
-        }
-        if (cityModified) {
-            db.modifyCity(my_city.getText().toString().trim());
-        }
-        if (addrModified) {
-            db.modifyAddress(my_address.getText().toString().trim());
-        }
-        if (phoneModified) {
-            db.modifyTelnumber(my_phone.getText().toString().trim());
-        }
-
-        if (passwordModified) {
-            db.modifyPassword(changed_password.trim());
-        }
-    }
 }
