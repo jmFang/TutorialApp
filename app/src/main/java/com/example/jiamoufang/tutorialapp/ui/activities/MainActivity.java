@@ -138,7 +138,6 @@ public class MainActivity extends BaseActivity{
         //需要解决内存泄露问题？
 
 
-
         initView();
         /*
         * 启动填写家教招聘信息的活动
@@ -154,7 +153,6 @@ public class MainActivity extends BaseActivity{
     void test() {
 
     }
-
 
     @Override
     protected void initView() {
@@ -275,6 +273,7 @@ public class MainActivity extends BaseActivity{
         BmobNotificationManager.getInstance(this).cancelNotification();
     }
 
+<<<<<<< HEAD
     /*
     * TODO 退出应用
     * 在mainActivity中按下返回键，应该是要退出应用的，因为此时mainActivity是活动栈中唯一的活动
@@ -294,6 +293,8 @@ public class MainActivity extends BaseActivity{
         return super.onKeyDown(keyCode, event);
     }
 
+=======
+>>>>>>> 2eb2c815f16326acf004031f38356c4fd570dd7a
     @Override
     protected void onDestroy() {
         super.onDestroy();
