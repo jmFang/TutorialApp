@@ -134,7 +134,6 @@ public class MainActivity extends BaseActivity{
         //需要解决内存泄露问题？
 
 
-
         initView();
         /*
         * 启动填写家教招聘信息的活动
@@ -150,7 +149,6 @@ public class MainActivity extends BaseActivity{
     void test() {
 
     }
-
 
     @Override
     protected void initView() {
@@ -270,7 +268,6 @@ public class MainActivity extends BaseActivity{
         //进入应用后，通知栏取消
         BmobNotificationManager.getInstance(this).cancelNotification();
     }
-
 
     @Override
     protected void onDestroy() {
