@@ -20,7 +20,14 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
  */
 
 public class UniversalImageLoader implements ILoader{
-    public UniversalImageLoader(){}
+
+    protected ImageLoader imageLoader;
+
+    public UniversalImageLoader( Context context){
+        imageLoader = ImageLoader.getInstance();
+        imageLoader.init(ImageLoaderConfiguration.createDefault(context));
+    }
+
 
     /*
     * 为view加载图片

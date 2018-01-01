@@ -31,7 +31,7 @@ public class MyOrdersActivity extends ParentWithNaviActivity {
 
     @Override
     protected String title() {
-        return "我的订单";
+        return null;
     }
 
     @Override

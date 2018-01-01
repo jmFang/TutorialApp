@@ -21,8 +21,11 @@ import cn.bmob.newim.bean.BmobIMConversationType;
 
 public class ConversationAdapter extends BaseRecyclerAdapter<Conversation>{
 
+    private Context mContext;
+
     public ConversationAdapter(Context context, IMultipleItem<Conversation> items, Collection<Conversation> datas) {
         super(context, items, datas);
+        mContext = context;
     }
 
     @Override

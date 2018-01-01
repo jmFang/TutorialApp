@@ -61,7 +61,7 @@ public class SendVideoHolder extends BaseViewHolder implements View.OnClickListe
         final BmobIMMessage message = (BmobIMMessage)o;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         final BmobIMUserInfo info = message.getBmobIMUserInfo();
-        ImageLoaderFactory.getLoader().loadAvatar(iv_avatar,info != null ? info.getAvatar() : null, R.mipmap.icon_message_press);
+        ImageLoaderFactory.getLoader(mContext).loadAvatar(iv_avatar,info != null ? info.getAvatar() : null, R.mipmap.icon_message_press);
 
         String time = dateFormat.format(message.getCreateTime());
         String content = message.getContent();

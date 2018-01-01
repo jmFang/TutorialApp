@@ -31,7 +31,7 @@ public class MyTeachersActivity extends ParentWithNaviActivity {
 
     @Override
     protected String title() {
-        return "我的老师";
+        return null;
     }
 
     @Override
@@ -65,7 +65,7 @@ public class MyTeachersActivity extends ParentWithNaviActivity {
                     url = teacher.getAvatar().getUrl();
                 else
                     url = "";
-                ImageLoaderFactory.getLoader().loadAvatar(user_pic, url, R.mipmap.default_ss);
+                ImageLoaderFactory.getLoader(getApplicationContext()).loadAvatar(user_pic, url, R.mipmap.default_ss);
                 TextView user_name = holder.getView(R.id.user_name);
                 user_name.setText(teacher.getRealName());
                 TextView user_sex = holder.getView(R.id.user_sex);

@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.model.UserModel;
+import com.example.jiamoufang.tutorialapp.utils.ActivityCollector;
 import com.orhanobut.logger.Logger;
 
 import butterknife.Bind;
@@ -51,6 +52,7 @@ public class LogActivity extends AppCompatActivity {
         * @comment by fangjiamouo
         * */
         ButterKnife.bind(this);
+
     }
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 
@@ -83,13 +85,14 @@ public class LogActivity extends AppCompatActivity {
                         if (e == null) {
                             Explode explode = new Explode();
                             explode.setDuration(500);
-                            Toast.makeText(LogActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(LogActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                             /*动画*/
                             getWindow().setExitTransition(explode);
                             getWindow().setEnterTransition(explode);
                             ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LogActivity.this);
                             Intent it2 = new Intent(LogActivity.this, MainActivity.class);
                             startActivity(it2, oc2.toBundle());
+                            ActivityCollector.getInstance().addActivity(LogActivity.this);
                         } else {
                             Logger.e(e.getMessage() + "(" + e.getErrorCode() + ")");
                             Toast.makeText(LogActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
@@ -100,5 +103,16 @@ public class LogActivity extends AppCompatActivity {
             default:
                 break;
         }
+    }
+
+    /*
+    * from currentUserInfoSettingActivity to LogActivity,
+    * some activity resource not be released, releases them here
+    * */
+
+    @Override
+    public void onBackPressed() {
+        ActivityCollector.getInstance().exitApp();
+        super.onBackPressed();
     }
 }

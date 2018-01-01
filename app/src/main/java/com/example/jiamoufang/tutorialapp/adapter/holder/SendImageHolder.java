@@ -66,7 +66,7 @@ public class SendImageHolder extends BaseViewHolder {
         * 必须在buildFromDB之前，否则会报错'Entity is detached from DAO context'
         * */
         final BmobIMUserInfo info = msg.getBmobIMUserInfo();
-        ImageLoaderFactory.getLoader().loadAvatar(iv_avatar,
+        ImageLoaderFactory.getLoader(mContext).loadAvatar(iv_avatar,
                 info != null ? info.getAvatar() : null, R.mipmap.default_ss);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
         String time = dateFormat.format(msg.getCreateTime());
@@ -98,7 +98,7 @@ public class SendImageHolder extends BaseViewHolder {
         /*
         * 如果发送的不是远程图片地址，则取本地地址
         * */
-        ImageLoaderFactory.getLoader().load(iv_picture,
+        ImageLoaderFactory.getLoader(mContext).load(iv_picture,
                 TextUtils.isEmpty(message.getRemoteUrl())?message.getLocalPath(): message.getRemoteUrl(),R.mipmap.default_ss,null);
         /*
         * 点击头像，显示聊天对象的个人资料

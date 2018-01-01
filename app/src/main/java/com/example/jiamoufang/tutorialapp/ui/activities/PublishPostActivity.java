@@ -20,14 +20,11 @@ import com.example.jiamoufang.tutorialapp.share.presenter.PublishPostPresenter;
 import com.example.jiamoufang.tutorialapp.share.view.PostDetailsView;
 import com.example.jiamoufang.tutorialapp.share.view.PublishPostView;
 import com.example.jiamoufang.tutorialapp.ui.base.BaseActivity;
+import com.example.jiamoufang.tutorialapp.ui.base.ParentWithNaviActivity;
 import com.example.jiamoufang.tutorialapp.utils.BmobUtils;
 
-public class PublishPostActivity extends BaseActivity implements PublishPostView {
+public class PublishPostActivity extends ParentWithNaviActivity implements PublishPostView {
 
-
-
-    @Bind(R.id.tool_bar)
-    Toolbar mToolBar;
     @Bind(R.id.btn_publish)
     Button mBtnPublish;
     @Bind(R.id.edt_post_content)
@@ -39,10 +36,12 @@ public class PublishPostActivity extends BaseActivity implements PublishPostView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publish_post);
         ButterKnife.bind(this);
-        mToolBar.setTitle("发布帖子");
-        mToolBar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
-        mToolBar.setBackgroundColor(ContextCompat.getColor(this, R.color.color_theme));
         mPublishPostPresenter = new PublishPostPresenter(this);
+    }
+
+    @Override
+    protected String title() {
+        return null;
     }
 
     @OnClick(R.id.btn_publish)

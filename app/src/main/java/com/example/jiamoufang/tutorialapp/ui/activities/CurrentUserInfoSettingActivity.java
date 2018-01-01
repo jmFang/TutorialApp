@@ -1,14 +1,23 @@
 package com.example.jiamoufang.tutorialapp.ui.activities;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +41,7 @@ import java.io.File;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import cn.bmob.newim.BmobIM;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 
@@ -188,8 +198,11 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
         uploadDialog.setItems(choices, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (which == 0)
-                    takeCamera();
+                if (which == 0) {
+                    //先动态申请权限，申请成功在拍照
+                    dynamicPermissionRequest();
+                }
+
                 else
                     pickPhoto();
             }
@@ -221,7 +234,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                 Environment.MEDIA_MOUNTED)) {
             tempFile = new File(
                     Environment.getExternalStorageDirectory(),
-                    "temp_photo.jpg");
+                    "temp_photo" + System.currentTimeMillis() + ".jpg");
             Uri uri = Uri.fromFile(tempFile);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
             startActivityForResult(intent, 1);
@@ -232,9 +245,39 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
         }
     }
 
+    private void dynamicPermissionRequest() {
+        if(Build.VERSION.SDK_INT >= 23) {
+            int checkCallPhonePerssion = ContextCompat.checkSelfPermission(CurrentUserInfoSettingActivity.this, Manifest.permission.CAMERA);
+            int checkCallPhonePerssion1 = ContextCompat.checkSelfPermission(CurrentUserInfoSettingActivity.this, Manifest.permission.READ_PHONE_STATE);
+            if (checkCallPhonePerssion != PackageManager.PERMISSION_GRANTED || checkCallPhonePerssion1 != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(CurrentUserInfoSettingActivity.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_PHONE_STATE}, 222);
+            } else {
+                takeCamera();
+            }
+        } else {
+            takeCamera();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 222:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                    takeCamera();
+                } else {
+                    toast("拍照权限被禁用，无法拍照");
+                }
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode,permissions,grantResults);
+                break;
+        }
+    }
+
     /*
-    * 从相册中获取图片
-    * */
+        * 从相册中获取图片
+        * */
     private void pickPhoto() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
@@ -317,6 +360,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     * */
     private void handlerForLogout() {
         UserModel.getInstance().logout();
+        BmobIM.getInstance().disConnect();
         Intent intent = new Intent(CurrentUserInfoSettingActivity.this, LogActivity.class);
         startActivity(intent);
         finish();
@@ -526,7 +570,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     * */
     @Override
     protected String title() {
-        return "我的资料";
+        return null;
     }
     /*
     * set click listener for left or right clickable components

@@ -1,5 +1,6 @@
 package com.example.jiamoufang.tutorialapp.adapter.base;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
@@ -7,8 +8,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.model.ImageVideoModelLoader;
+import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.factory.ImageLoaderFactory;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * Created by jiamoufang on 2017/12/21.
@@ -18,6 +22,7 @@ public class BaseRecyclerHolder extends RecyclerView.ViewHolder {
 
     private final SparseArray<View> mViews =  new SparseArray<>(8);
     public int layoutId;
+    protected Context context;
 
     /*
     * 构造函数
@@ -25,6 +30,7 @@ public class BaseRecyclerHolder extends RecyclerView.ViewHolder {
     public BaseRecyclerHolder(int layoutId, View itemView) {
         super(itemView);
         this.layoutId = layoutId;
+        context = itemView.getContext();
     }
     /*
     * 获取SparseArray
@@ -119,7 +125,8 @@ public class BaseRecyclerHolder extends RecyclerView.ViewHolder {
     * */
     public BaseRecyclerHolder setImageView(String avatar, int defaultRes, int viewId) {
         ImageView iv = getView(viewId);
-        ImageLoaderFactory.getLoader().loadAvatar(iv, avatar, defaultRes);
+        //Glide.with(context).load(R.mipmap.default_smg).into(iv_avatar);
+       ImageLoaderFactory.getLoader(context).loadAvatar(iv, avatar, defaultRes);
         return this;
     }
 }

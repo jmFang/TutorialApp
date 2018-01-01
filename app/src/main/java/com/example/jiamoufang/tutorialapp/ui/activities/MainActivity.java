@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -32,6 +33,7 @@ import com.example.jiamoufang.tutorialapp.ui.fragment.ConversationFragment;
 import com.example.jiamoufang.tutorialapp.ui.fragment.HomePageFragment;
 import com.example.jiamoufang.tutorialapp.ui.fragment.MySettingsFragment;
 import com.example.jiamoufang.tutorialapp.ui.fragment.ShareFragment;
+import com.example.jiamoufang.tutorialapp.utils.ActivityCollector;
 import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
@@ -110,7 +112,7 @@ public class MainActivity extends BaseActivity{
                     if (e == null) {
                         //服务器连接成功后发送一个更新事件，同步更新聊天会话和主页的小红点
                         EventBus.getDefault().post(new RefreshEvent());
-                        toast("连接服务器成功");
+                       // toast("连接服务器成功");
                         //更新用户资料，用户再会话聊天界面以及个人信息页面显示
                         BmobIM.getInstance().updateUserInfo(new BmobIMUserInfo(user.getObjectId(), user.getUsername(),null));
                     } else {
@@ -229,7 +231,7 @@ public class MainActivity extends BaseActivity{
     * */
     public boolean showPlusButtonAnimation() {
         final Animation plusAnimation = new ScaleAnimation(1.0F,1.3F, 1.0F, 1.3F, 1, 0.5F, 1, 0.5F);
-        plusAnimation.setDuration(100L);
+        plusAnimation.setDuration(200L);
         btn_plus.startAnimation(plusAnimation);
         return false;
     }
@@ -269,8 +271,6 @@ public class MainActivity extends BaseActivity{
         BmobNotificationManager.getInstance(this).cancelNotification();
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     /*
     * TODO 退出应用
     * 在mainActivity中按下返回键，应该是要退出应用的，因为此时mainActivity是活动栈中唯一的活动
@@ -286,21 +286,17 @@ public class MainActivity extends BaseActivity{
             } else {
                 ActivityCollector.getInstance().exitApp();
             }
+            return true;
         }
         return super.onKeyDown(keyCode, event);
     }
-=======
->>>>>>> parent of ba11ebc... 处理内存泄露问题
 
-=======
->>>>>>> 2eb2c815f16326acf004031f38356c4fd570dd7a
     @Override
     protected void onDestroy() {
         super.onDestroy();
         //清理导致内存泄露的资源
         BmobIM.getInstance().clear();
-        UserModel.getInstance().logout();
-        BmobIM.getInstance().disConnect();
+      //UserModel.getInstance().logout();
     }
     /*TODO 消息接收：4.1 通知有在线消息接收
     * 注册消息接收事件

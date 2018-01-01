@@ -165,7 +165,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (e == null) {
                     /*发出完成登录的事件消息，通知相应的fragment或activity*/
                     EventBus.getDefault().post(new FinishEvent());
-                    Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                     finish();
                 } else {
