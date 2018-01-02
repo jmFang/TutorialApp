@@ -48,7 +48,7 @@ public class SearchUserActivity extends ParentWithNaviActivity {
     * */
     @Override
     protected String title() {
-        return "搜索用户";
+        return "抱大腿";
     }
     /*
     * 初始化

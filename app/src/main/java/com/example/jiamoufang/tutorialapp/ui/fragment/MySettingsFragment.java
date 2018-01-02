@@ -128,7 +128,7 @@ public class MySettingsFragment  extends ParentWithNaviFragment{
     * */
     @Override
     protected String title() {
-        return "我的";
+        return null;
     }
 
     /*

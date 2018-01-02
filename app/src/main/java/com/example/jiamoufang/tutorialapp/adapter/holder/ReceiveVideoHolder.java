@@ -53,7 +53,7 @@ public class ReceiveVideoHolder extends BaseViewHolder {
         String time = dateFormat.format(message.getCreateTime());
         tv_time.setText(time);
         final BmobIMUserInfo info = message.getBmobIMUserInfo();
-        ImageLoaderFactory.getLoader().loadAvatar(iv_avatar,info != null ? info.getAvatar() : null, R.mipmap.icon_message_press);
+        ImageLoaderFactory.getLoader(mContext).loadAvatar(iv_avatar,info != null ? info.getAvatar() : null, R.mipmap.icon_message_press);
         String content =  message.getContent();
         tv_message.setText("接收到的视频文件："+content);
         iv_avatar.setOnClickListener(new View.OnClickListener() {

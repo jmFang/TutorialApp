@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.factory.ImageLoaderFactory;
 import com.example.jiamoufang.tutorialapp.model.UserModel;
@@ -90,14 +91,22 @@ public class UserInfoActivity extends ParentWithNaviActivity {
         info = new BmobIMUserInfo(user.getObjectId(), user.getUsername(),
                 bmobFile == null ? null : (fileUrl == null) ? (url == null ? null:url):fileUrl );
         //加载头像
-        ImageLoaderFactory.getLoader().loadAvatar(iv_avatar,
-                bmobFile == null ? null : (fileUrl == null) ? (url == null ? null:url):fileUrl, R.mipmap.default_ss);
+        if (bmobFile!= null) {
+            if(fileUrl != null) {
+                Glide.with(this).load(fileUrl).into(iv_avatar);
+            } else {
+                Glide.with(this).load(R.mipmap.default_smg).into(iv_avatar);
+            }
+        } else {
+            Glide.with(this).load(R.mipmap.default_smg).into(iv_avatar);
+        }
+        //ImageLoaderFactory.getLoader().loadAvatar(iv_avatar, bmobFile == null ? null : (fileUrl == null) ? (url == null ? null:url):fileUrl, R.mipmap.default_ss);
         tv_name.setText(user.getUsername());
     }
 
     @Override
     protected String title() {
-        return "个人简介";
+        return "求问";
     }
 
     @OnClick({R.id.btn_add_friend, R.id.btn_chat})

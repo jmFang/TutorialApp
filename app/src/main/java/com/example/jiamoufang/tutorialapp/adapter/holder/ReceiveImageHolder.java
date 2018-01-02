@@ -42,9 +42,11 @@ public class ReceiveImageHolder extends BaseViewHolder {
     protected ImageView iv_picture;
     @Bind(R.id.progress_load)
     protected ProgressBar progress_load;
+    //protected Context mContext;
 
     public ReceiveImageHolder(Context context, ViewGroup root, OnRecyclerViewListener onRecyclerViewListener) {
         super(context, root, R.layout.item_chat_received_image,onRecyclerViewListener);
+       // mContext = context;
     }
 
     @Override
@@ -52,14 +54,14 @@ public class ReceiveImageHolder extends BaseViewHolder {
         BmobIMMessage msg = (BmobIMMessage)o;
         //用户信息的获取必须在buildFromDB之前，否则会报错'Entity is detached from DAO context'
         final BmobIMUserInfo info = msg.getBmobIMUserInfo();
-        ImageLoaderFactory.getLoader().loadAvatar(iv_avatar,info != null ? info.getAvatar() : null, R.mipmap.icon_message_press);
+        ImageLoaderFactory.getLoader(mContext).loadAvatar(iv_avatar,info != null ? info.getAvatar() : null, R.mipmap.icon_message_press);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
         String time = dateFormat.format(msg.getCreateTime());
         tv_time.setText(time);
         //可使用buildFromDB方法转化为指定类型的消息
         final BmobIMImageMessage message = BmobIMImageMessage.buildFromDB(false,msg);
         //显示图片
-        ImageLoaderFactory.getLoader().load(iv_picture,message.getRemoteUrl(),  R.mipmap.icon_message_press,new ImageLoadingListener(){;
+        ImageLoaderFactory.getLoader(mContext).load(iv_picture,message.getRemoteUrl(),  R.mipmap.icon_message_press,new ImageLoadingListener(){;
 
             @Override
             public void onLoadingStarted(String s, View view) {

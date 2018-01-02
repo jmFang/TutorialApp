@@ -43,7 +43,7 @@ public class BmobIMApplication extends Application {
         BmobIM.registerDefaultMessageHandler(new DemoMessageHandler(this));
 
         if (getApplicationInfo().packageName.equals(getMyProcessName())) {
-            Bmob.initialize(this, "b94b1a62e1e3666cd004dd65992fcba1");
+           Bmob.initialize(this, "b94b1a62e1e3666cd004dd65992fcba1");
             BmobIM.init(this);
             BmobIM.registerDefaultMessageHandler(new DemoMessageHandler(this));
         }
