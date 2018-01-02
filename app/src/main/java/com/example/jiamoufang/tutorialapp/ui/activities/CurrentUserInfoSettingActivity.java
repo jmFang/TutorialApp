@@ -121,7 +121,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     private User currentUser;
 
     //数据库Instance
-    bmobDb db = new bmobDb();
+    private bmobDb db = new bmobDb();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +129,19 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
         setContentView(R.layout.activity_current_user_info_setting);
         //初始化导航栏
         initNaviView();
+
+        /*
+        * get the latest inforation of the currentUser
+        * */
+        currentUser = BmobUser.getCurrentUser(User.class);
+        if (currentUser.getAvatar() != null) {
+            //测试过URL是正确的
+            Glide.with(this).load(currentUser.getAvatar().getUrl()).into(my_avatar);
+
+            // ImageLoaderFactory.getLoader().loadAvatar(, currentUser.getAvatar().getUrl(), R.mipmap.default_ss);
+        } else {
+            Glide.with(this).load(R.mipmap.default_ss).into(my_avatar);
+        }
         /*
         * initialize user info
         * */
@@ -150,20 +163,6 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     * @by fangjiamou
     * */
     private void initUserInfo() {
-        /*
-        * get the latest inforation of the currentUser
-        * */
-        currentUser = BmobUser.getCurrentUser(User.class);
-
-        if (currentUser.getAvatar() != null) {
-            //测试过URL是正确的
-            Glide.with(this).load(currentUser.getAvatar().getUrl()).into(my_avatar);
-
-            // ImageLoaderFactory.getLoader().loadAvatar(, currentUser.getAvatar().getUrl(), R.mipmap.default_ss);
-        } else {
-            Glide.with(this).load(R.mipmap.default_ss).into(my_avatar);
-        }
-
         if (currentUser.getRealName() != null)
             my_nickname.setText(currentUser.getRealName());
         if (currentUser.getRole() != null) {

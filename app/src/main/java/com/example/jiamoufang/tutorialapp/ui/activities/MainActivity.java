@@ -100,11 +100,6 @@ public class MainActivity extends BaseActivity{
 
         final User user = BmobUser.getCurrentUser(User.class);
 
-        /*
-         *测试函数，可忽略
-         */
-        test();
-
         if (!TextUtils.isEmpty(user.getObjectId()) && BmobIM.getInstance().getCurrentStatus().getCode() != ConnectionStatus.CONNECTED.getCode()) {
             BmobIM.connect(user.getObjectId(), new ConnectListener() {
                 @Override
@@ -146,10 +141,6 @@ public class MainActivity extends BaseActivity{
                 startActivity(new Intent(MainActivity.this, OrderActivity.class));
             }
         });
-    }
-
-    void test() {
-
     }
 
     @Override
