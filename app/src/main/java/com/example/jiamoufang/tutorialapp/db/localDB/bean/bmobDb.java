@@ -2,6 +2,7 @@ package com.example.jiamoufang.tutorialapp.db.localDB.bean;
 
 import android.util.Log;
 
+import com.example.jiamoufang.tutorialapp.model.UserModel;
 import com.example.jiamoufang.tutorialapp.model.bean.Information;
 import com.example.jiamoufang.tutorialapp.model.bean.Order;
 import com.example.jiamoufang.tutorialapp.model.bean.User;
@@ -25,7 +26,7 @@ import rx.Observable;
  */
 
 public class bmobDb  {
-    private User user;
+    private static User user;
     private int count = 0;
 
     // 单例模式
@@ -88,6 +89,13 @@ public class bmobDb  {
         updateInfo();
     }
 
+    /*
+    * 修改学历
+    * */
+    public void modifyEducatedLevel(Integer i) {
+        user.setEducatedLevel(i);
+        updateInfo();
+    }
     /* 修改城市
     * @param 城市名
     */

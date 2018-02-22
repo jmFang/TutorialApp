@@ -2,6 +2,7 @@ package com.example.jiamoufang.tutorialapp.ui.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.jiamoufang.tutorialapp.R;
@@ -15,6 +16,7 @@ public class OrderDetailActivity extends ParentWithNaviActivity {
             order_home_or_out_text, order_number_text, order_subject_text,
             order_teaching_age_text, order_salary_text, order_teaching_period_text,
             order_student_state_text;
+    private ImageView order_pic;
 
     private Order order;
 
@@ -48,6 +50,7 @@ public class OrderDetailActivity extends ParentWithNaviActivity {
         order_salary_text = (TextView) findViewById(R.id.order_salary_text);
         order_teaching_period_text = (TextView) findViewById(R.id.order_teaching_period_text);
         order_student_state_text = (TextView) findViewById(R.id.order_student_state_text);
+        order_pic = (ImageView) findViewById(R.id.order_pic);
     }
 
     private void initializeViews() {
@@ -59,17 +62,38 @@ public class OrderDetailActivity extends ParentWithNaviActivity {
             else
                 teacher_gender_text.setText("女");
             teacher_address_text.setText(teacher.getAddress());
+            if (teacher.getAvatar()!=null) {
+                //把老师的头像加载进来
+            } else {
+                //使用默认头像
+            }
             order_home_or_out_text.setText("已接单");
         } else {
+            teacher_name_text.setText("未知");
+            teacher_gender_text.setText("未知");
+            teacher_address_text.setText("未知");
             order_home_or_out_text.setText("无人接单");
         }
         User student = order.getUser();
-        order_number_text.setText(student.getRealName());
+        if (student.getRealName() != null)
+            order_number_text.setText(student.getRealName());
+        else
+            order_number_text.setText("ID"+ student.getObjectId());
+
         order_subject_text.setText(order.getSubject());
         order_teaching_age_text.setText(grade(order.getGrade()));
         order_salary_text.setText(order.getSalary());
-        order_teaching_period_text.setText(order.getTime());
-        order_student_state_text.setText(order.getDes());
+        if (order.getTime() != null) {
+            order_teaching_period_text.setText(order.getTime());
+        } else {
+            order_teaching_period_text.setText("未确定");
+        }
+        if (order.getDes() != null) {
+            order_student_state_text.setText(order.getDes());
+        } else {
+            order_student_state_text.setText("未描述");
+        }
+
     }
 
     private String grade(Integer grade) {

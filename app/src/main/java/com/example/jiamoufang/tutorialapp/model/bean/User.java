@@ -28,7 +28,7 @@ public class User extends BmobUser {
     private Boolean sex;
 
     /*学历
-    * 小学，初中，高中，大专，本科，硕士，博士分别为 1,2,3,4,5,6,7
+    * 小学，初中，高中，大专，本科，硕士，博士分别为 0,1,2,3,4,5,6
     * */
     private Integer educatedLevel;
 

@@ -12,6 +12,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.StrictMode;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -36,6 +38,7 @@ import com.example.jiamoufang.tutorialapp.factory.ImageLoaderFactory;
 import com.example.jiamoufang.tutorialapp.model.UserModel;
 import com.example.jiamoufang.tutorialapp.model.bean.User;
 import com.example.jiamoufang.tutorialapp.ui.base.ParentWithNaviActivity;
+import com.nostra13.universalimageloader.utils.ImageSizeUtils;
 
 import java.io.File;
 
@@ -60,6 +63,8 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     ConstraintLayout ll_my_role;
     @Bind(R.id.ll_my_sex)
     ConstraintLayout ll_my_sex;
+    @Bind(R.id.ll_my_diploma)
+    ConstraintLayout ll_my_diploma;
     @Bind(R.id.ll_my_city)
     ConstraintLayout ll_my_city;
     @Bind(R.id.ll_my_address)
@@ -80,6 +85,8 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     @Bind(R.id.tv_my_nickname)
     TextView my_nickname;
     //用户角色显示
+    @Bind(R.id.tv_my_diploma)
+    TextView tv_my_diploma;
     @Bind(R.id.tv_my_role)
     TextView my_role;
     //用户性别显示
@@ -104,6 +111,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     * 学生 : 1
     * */
     private int currentRole;
+    private int currentDiploma;
     /*用户性别
     * 更改性别时用于判断
     * 男 : 0
@@ -127,6 +135,10 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_user_info_setting);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+        }
         //初始化导航栏
         initNaviView();
         /*
@@ -151,14 +163,13 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     * */
     private void initUserInfo() {
         /*
-        * get the latest inforation of the currentUser
+        * get the latest information of the currentUser
         * */
         currentUser = BmobUser.getCurrentUser(User.class);
 
         if (currentUser.getAvatar() != null) {
             //测试过URL是正确的
             Glide.with(this).load(currentUser.getAvatar().getUrl()).into(my_avatar);
-
             // ImageLoaderFactory.getLoader().loadAvatar(, currentUser.getAvatar().getUrl(), R.mipmap.default_ss);
         } else {
             Glide.with(this).load(R.mipmap.default_ss).into(my_avatar);
@@ -182,8 +193,16 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
             my_city.setText(currentUser.getCity());
         if (currentUser.getAddress() != null)
             my_address.setText(currentUser.getAddress());
+        else my_address.setText("未填写");
         if (currentUser.getMobilePhoneNumber() != null)
             my_phone.setText(currentUser.getMobilePhoneNumber());
+        else my_phone.setText("未绑定");
+        if (currentUser.getEducatedLevel() != null) {
+            currentDiploma = currentUser.getEducatedLevel();
+            tv_my_diploma.setText(IntToDiploma(currentDiploma));
+        } else {
+            tv_my_diploma.setText("未填写");
+        }
     }
 
     private void setUp() {
@@ -201,10 +220,9 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                 if (which == 0) {
                     //先动态申请权限，申请成功在拍照
                     dynamicPermissionRequest();
-                }
-
-                else
+                }else {
                     pickPhoto();
+                }
             }
         });
         uploadDialog.setPositiveButton("取消",
@@ -228,13 +246,10 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     * 拍摄获取图片
     * */
     private void takeCamera() {
-        Intent intent = new Intent(
-                MediaStore.ACTION_IMAGE_CAPTURE);
-        if (Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED)) {
-            tempFile = new File(
-                    Environment.getExternalStorageDirectory(),
-                    "temp_photo" + System.currentTimeMillis() + ".jpg");
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            Log.d("CurrentUserInfoSetting","enter catch photo");
+            tempFile = new File(Environment.getExternalStorageDirectory(), "temp_photo" + System.currentTimeMillis() + ".jpg");
             Uri uri = Uri.fromFile(tempFile);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
             startActivityForResult(intent, 1);
@@ -248,9 +263,14 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     private void dynamicPermissionRequest() {
         if(Build.VERSION.SDK_INT >= 23) {
             int checkCallPhonePerssion = ContextCompat.checkSelfPermission(CurrentUserInfoSettingActivity.this, Manifest.permission.CAMERA);
-            int checkCallPhonePerssion1 = ContextCompat.checkSelfPermission(CurrentUserInfoSettingActivity.this, Manifest.permission.READ_PHONE_STATE);
+            int checkCallPhonePerssion1 = ContextCompat.checkSelfPermission(CurrentUserInfoSettingActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
             if (checkCallPhonePerssion != PackageManager.PERMISSION_GRANTED || checkCallPhonePerssion1 != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(CurrentUserInfoSettingActivity.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_PHONE_STATE}, 222);
+                ActivityCompat.requestPermissions(CurrentUserInfoSettingActivity.this, new String[]{
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.READ_PHONE_STATE
+                }, 222);
             } else {
                 takeCamera();
             }
@@ -263,7 +283,10 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case 222:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED
+                        && grantResults[1] == PackageManager.PERMISSION_GRANTED
+                        && grantResults[2] == PackageManager.PERMISSION_GRANTED
+                        && grantResults[3] == PackageManager.PERMISSION_GRANTED) {
                     takeCamera();
                 } else {
                     toast("拍照权限被禁用，无法拍照");
@@ -312,7 +335,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
     * handlers for click events
     * @by fangjiamou
     * */
-    @OnClick({R.id.ll_my_avatar, R.id.ll_my_nick,R.id.ll_my_role,R.id.ll_my_sex,R.id.ll_my_city,R.id.ll_my_address,
+    @OnClick({R.id.ll_my_avatar, R.id.ll_my_nick,R.id.ll_my_role,R.id.ll_my_sex,R.id.ll_my_diploma,R.id.ll_my_city,R.id.ll_my_address,
             R.id.ll_my_phone,R.id.ll_my_weChat,R.id.ll_my_password,R.id.bt_logout})
     public void onClick(View v) {
         switch (v.getId()) {
@@ -324,6 +347,9 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                 break;
             case R.id.ll_my_role:
                 handlerForChangeRole();
+                break;
+            case R.id.ll_my_diploma:
+                handlerForChangeDiploma();
                 break;
             case R.id.ll_my_sex:
                 handlerForChangeSex();
@@ -447,8 +473,8 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        my_city.setText(changedInfo.getText().toString().trim());
-                        db.modifyCity(my_city.getText().toString().trim());
+                        my_city.setText(changedInfo.getText().toString());
+                        db.modifyCity(my_city.getText().toString());
                         //currentUser.setCity(changedInfo.getText().toString());
                     }
                 });
@@ -495,7 +521,42 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
                         })
                 .setNegativeButton("取消", null).create().show();
     }
-
+    /*
+    * TODO Click 1.3.1: click R.id.ll_my_diploma
+    * tips: refers to TODO Click 1.1:click R.id.ll_my_diploma
+    * */
+    private void handlerForChangeDiploma() {
+        roleDialog = new AlertDialog.Builder(this);
+        roleDialog.setTitle("您的学历")
+                .setSingleChoiceItems(
+                        new String[] { "小学","初中","高中", "大专","本科","硕士","博士" }, currentDiploma,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                currentDiploma = which;
+                            }
+                        })
+                .setPositiveButton("确定",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                    tv_my_diploma.setText(IntToDiploma(currentDiploma));
+                                    db.modifyEducatedLevel(currentDiploma);
+                            }
+                        })
+                .setNegativeButton("取消", null).create().show();
+    }
+    private String IntToDiploma(int i) {
+        switch (i) {
+            case 0:return "小学";
+            case 1:return "初中";
+            case 2:return "高中";
+            case 3:return "大专";
+            case 4:return "本科";
+            case 5:return "硕士";
+            case 6:return "博士";
+        }
+        return "";
+    }
     /*
     * TODO Click 1.3: click R.id.ll_my_role
     * tips: refers to TODO Click 1.1:click R.id.ll_my_nick

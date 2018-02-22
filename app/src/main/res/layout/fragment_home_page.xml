@@ -86,6 +86,7 @@
                         android:layout_marginLeft="@dimen/wh_10dp"
                         android:layout_marginRight="@dimen/wh_10dp"
                         android:layout_weight="1"
+                        android:id="@+id/img_hit_bigger"
                         android:background="@drawable/hit_activity_1" />
 
                     <LinearLayout
@@ -99,6 +100,7 @@
                             android:layout_marginBottom="@dimen/wh_10dp"
                             android:layout_marginRight="@dimen/wh_10dp"
                             android:layout_weight="1"
+                            android:id="@+id/img_hit_smaller1"
                             android:background="@drawable/hit_activity_2" />
 
                         <ImageView
@@ -106,6 +108,7 @@
                             android:layout_height="60dp"
                             android:layout_marginRight="@dimen/wh_10dp"
                             android:layout_weight="1"
+                            android:id="@+id/img_hit_smaller2"
                             android:background="@drawable/hit_activity_3" />
                     </LinearLayout>
                 </LinearLayout>

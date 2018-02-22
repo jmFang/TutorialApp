@@ -183,16 +183,24 @@ public class MySettingsFragment  extends ParentWithNaviFragment{
                 * look over your teachers that you like
                 * show them in another Activity
                 * */
-                Bundle bundle6 = new Bundle();
-                startActivity(MyTeachersActivity.class, bundle6);
+                if (currentUser.getRole()) {
+                    toast("您当前是老师，请切换到学生状态");
+                } else {
+                    Bundle bundle6 = new Bundle();
+                    startActivity(MyTeachersActivity.class, bundle6);
+                }
                 break;
             case R.id.ll_my_student:
                 /*
                 * look over your students that you like
                 * show them in another Activity
                 * */
-                Bundle bundle7 = new Bundle();
-                startActivity(MyStudentsActivity.class, bundle7);
+                if (!currentUser.getRole()) {
+                    toast("您当前是学生，请切换到老师状态");
+                } else {
+                    Bundle bundle7 = new Bundle();
+                    startActivity(MyStudentsActivity.class, bundle7);
+                }
                 break;
             case R.id.ll_my_orders:
                 /*

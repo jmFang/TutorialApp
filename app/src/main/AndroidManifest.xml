@@ -21,7 +21,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <!-- WIFI状态 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".BmobIMApplication"
@@ -85,9 +85,10 @@
         <activity android:name=".ui.activities.TeacherWantedActivity" />
         <activity android:name=".ui.activities.MyTeachersActivity" />
         <activity android:name=".ui.activities.MyStudentsActivity" />
-        <activity android:name=".ui.activities.QueryTeacherBySubjectActivity"></activity>
+        <activity android:name=".ui.activities.QueryTeacherBySubjectActivity" />
         <activity android:name=".ui.activities.MyOrdersActivity" />
         <activity android:name=".ui.activities.OrderDetailActivity" />
+        <activity android:name=".ui.activities.WebviewActivity"></activity>
     </application>
 
 </manifest>

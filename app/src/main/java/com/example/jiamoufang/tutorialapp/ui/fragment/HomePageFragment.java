@@ -1,6 +1,8 @@
 package com.example.jiamoufang.tutorialapp.ui.fragment;
 
 import android.content.Context;
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -18,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -31,6 +34,7 @@ import com.example.jiamoufang.tutorialapp.adapter.TeacherWantedAdapter;
 import com.example.jiamoufang.tutorialapp.adapter.entities.Subject;
 import com.example.jiamoufang.tutorialapp.adapter.entities.TeacherWanted;
 import com.example.jiamoufang.tutorialapp.ui.activities.TeacherWantedActivity;
+import com.example.jiamoufang.tutorialapp.ui.activities.WebviewActivity;
 import com.example.jiamoufang.tutorialapp.ui.base.ParentWithNaviFragment;
 import com.oragee.banners.BannerView;
 
@@ -60,6 +64,15 @@ public class HomePageFragment extends ParentWithNaviFragment {
     private List<View> viewList;
     private Toolbar toolBar;
 
+    /*几个活动图片的更新，打算尝试热修复*/
+    @Bind(R.id.img_hit_bigger)
+    ImageView img_hit_bigger;
+    @Bind(R.id.img_hit_smaller1)
+    ImageView img_hit_smaller1;
+    @Bind(R.id.img_hit_smaller2)
+    ImageView img_hit_smaller2;
+
+    /*四个学年段的layout*/
     @Bind(R.id.ll_elementary)
     LinearLayout ll_elementary;
     @Bind(R.id.ll_junior_high_school)
@@ -140,26 +153,54 @@ public class HomePageFragment extends ParentWithNaviFragment {
     * @fangjiamou
     * */
 
-    @OnClick({R.id.ll_elementary, R.id.ll_junior_high_school, R.id.ll_high_school, R.id.ll_college})
+    @OnClick({R.id.ll_elementary, R.id.ll_junior_high_school, R.id.ll_high_school, R.id.ll_college,
+            R.id.img_hit_bigger, R.id.img_hit_smaller1, R.id.img_hit_smaller2})
     public void handlerForClick(View view) {
         Bundle bundle = new Bundle();
+        boolean ok = false;
+        String url = "https://www.baidu.com";
         switch (view.getId()) {
             case R.id.ll_elementary:
                 bundle.putInt("level",1);
+                ok = true;
                 break;
             case R.id.ll_junior_high_school:
                 bundle.putInt("level",2);
+                ok = true;
                 break;
             case R.id.ll_high_school:
                 bundle.putInt("level",3);
+                ok = true;
                 break;
             case R.id.ll_college:
                 bundle.putInt("level",4);
+                ok = true;
+                break;
+            case R.id.img_hit_bigger:
+                ok = false;
+                url = "http://www.xdf.cn/";
+                break;
+            case R.id.img_hit_smaller1:
+                ok = false;
+                url = "http://www.cetu.net.cn/";
+                break;
+            case R.id.img_hit_smaller2:
+                ok = false;
+                url = "http://www.xueersi.com/";
                 break;
             default:
                 break;
         }
-        startActivity(TeacherWantedActivity.class, bundle);
+        //按学年段跳转
+        if (ok) {
+            startActivity(TeacherWantedActivity.class, bundle);
+        } else {
+            //点击热门图片的链接
+            Intent intent1 = new Intent(getContext(),WebviewActivity.class);
+            intent1.putExtra("url", url);
+            startActivity(intent1);
+        }
+
     }
     /*
      * TODO：handles with toolbar click events
