@@ -27,6 +27,7 @@ import com.example.jiamoufang.tutorialapp.db.localDB.bean.bmobDb;
 import com.example.jiamoufang.tutorialapp.event.RefreshEvent;
 import com.example.jiamoufang.tutorialapp.model.UserModel;
 import com.example.jiamoufang.tutorialapp.model.bean.Order;
+import com.example.jiamoufang.tutorialapp.model.bean.TeacherInformation;
 import com.example.jiamoufang.tutorialapp.model.bean.User;
 import com.example.jiamoufang.tutorialapp.ui.base.BaseActivity;
 import com.example.jiamoufang.tutorialapp.ui.fragment.ConversationFragment;
@@ -146,6 +147,7 @@ public class MainActivity extends BaseActivity{
                 startActivity(new Intent(MainActivity.this, OrderActivity.class));
             }
         });
+
     }
 
     void test() {

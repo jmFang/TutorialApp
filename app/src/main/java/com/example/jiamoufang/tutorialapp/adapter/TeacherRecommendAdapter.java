@@ -4,9 +4,11 @@ package com.example.jiamoufang.tutorialapp.adapter;
  * Created by a0924 on 2017/12/30.
  */
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +16,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.jiamoufang.tutorialapp.R;
+import com.example.jiamoufang.tutorialapp.db.localDB.bean.bmobDb;
 import com.example.jiamoufang.tutorialapp.model.UserModel;
-import com.example.jiamoufang.tutorialapp.model.bean.User;
+import com.example.jiamoufang.tutorialapp.model.bean.*;
+import com.example.jiamoufang.tutorialapp.model.bean.TeacherInformation;
 import com.example.jiamoufang.tutorialapp.model.intface.QueryUserListener;
 import com.example.jiamoufang.tutorialapp.ui.activities.TeacherDetailsActivity;
 import com.example.jiamoufang.tutorialapp.ui.fragment.HomePageFragment;
@@ -24,30 +29,31 @@ import com.example.jiamoufang.tutorialapp.ui.fragment.HomePageFragment;
 import java.util.List;
 
 import cn.bmob.v3.exception.BmobException;
+import rx.functions.Action1;
 
 public class TeacherRecommendAdapter extends RecyclerView.Adapter<TeacherRecommendAdapter.ViewHolder>{
 
-    private List<TeacherInformation> mList;
+    private List<User> mList;
+    private Context mContext;
 
-    public TeacherRecommendAdapter(List<TeacherInformation> mList) {
-
+    public TeacherRecommendAdapter(Context context, List<User> mList) {
+        mContext = context;
         this.mList = mList;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
 
-        private ImageView img;
-        private TextView tv_subjects,teacherInfo,teacherSalary,teachingAge;
+        private ImageView img_recommend_avatar;
+        private TextView tv_recommend_diploma,tv_teacher_name,tv_teaching_saying;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            img = itemView.findViewById(R.id.recommend_teacher_pic);
-            tv_subjects = itemView.findViewById(R.id.tv_subjects);
-            teacherInfo = itemView.findViewById(R.id.tv_recommend_teacherName);
-            teacherSalary = itemView.findViewById(R.id.tv_recommend_teacher_price);
-            teachingAge = itemView.findViewById(R.id.tv_recommend_teaching_age);
+            img_recommend_avatar = itemView.findViewById(R.id.recommend_teacher_pic);
+            tv_recommend_diploma = itemView.findViewById(R.id.tv_recommend_diploma);
+            tv_teacher_name = itemView.findViewById(R.id.tv_recommend_teacherName);
+            tv_teaching_saying = itemView.findViewById(R.id.tv_recommend_teaching_saying);
 
         }
     }
@@ -63,9 +69,9 @@ public class TeacherRecommendAdapter extends RecyclerView.Adapter<TeacherRecomme
             public void onClick(View v) {
                 int index = viewHolder.getAdapterPosition();
                 if (index >= 0) {
-                    Toast.makeText(HomePageFragment.mContext, "hehe", Toast.LENGTH_SHORT).show();
-                    TeacherInformation teacherInformation = mList.get(index);
-                    fundTeacherInfo(teacherInformation);
+                    //Toast.makeText(HomePageFragment.mContext, "hehe", Toast.LENGTH_SHORT).show();
+                    User teacherInformation = mList.get(index);
+                    findTeacherInfo(teacherInformation);
                 }
             }
         });
@@ -80,7 +86,7 @@ public class TeacherRecommendAdapter extends RecyclerView.Adapter<TeacherRecomme
         HomePageFragment.mContext.startActivity(intent);
     }
 
-    private void fundTeacherInfo(TeacherInformation teacherInformation) {
+    private void findTeacherInfo(User teacherInformation) {
         String username = teacherInformation.getUsername();
         UserModel.getInstance().queryUser(username, new QueryUserListener() {
             @Override
@@ -95,14 +101,51 @@ public class TeacherRecommendAdapter extends RecyclerView.Adapter<TeacherRecomme
         });
     }
 
+    private String educatedLevelToString(Integer educatedLevel) {
+        switch (educatedLevel) {
+            case 0:return "小学";
+            case 1:return "初中";
+            case 2:return "高中";
+            case 3:return "大专";
+            case 4:return "本科";
+            case 5:return "硕士";
+            case 6:return "博士";
+            default:return "未设置";
+        }
+    }
     @Override
     public void onBindViewHolder(TeacherRecommendAdapter.ViewHolder holder, int position) {
-        TeacherInformation teacher = mList.get(position);
-        holder.tv_subjects.setText(teacher.getSubject());
-        holder.teacherSalary.setText("$" + teacher.getPrice() + "起");
-        holder.img.setImageResource(teacher.getPictureID());
-        holder.teacherInfo.setText(teacher.getInfo() + teacher.getName());
-        holder.teachingAge.setText("教龄" + teacher.getTeachingAge());
+        User teacher = mList.get(position);
+        holder.tv_recommend_diploma.setText(educatedLevelToString(teacher.getEducatedLevel()));
+        if (teacher.getAvatar() != null) {
+            Glide.with(mContext).load(teacher.getAvatar().getUrl()).into(holder.img_recommend_avatar);
+        } else {
+            Glide.with(mContext).load(R.mipmap.default_smg).into(holder.img_recommend_avatar);
+        }
+        holder.tv_teacher_name.setText(teacher.getRealName()==null? teacher.getUsername():teacher.getRealName());
+        holder.tv_teaching_saying.setText(findSayingOfTeacherByUsername(teacher.getUsername()));
+
+    }
+
+    private String output="";
+
+    private String findSayingOfTeacherByUsername(String username) {
+        bmobDb.getInstance().findSayingOfTeacherByUsername(username).subscribe(new Action1<List<com.example.jiamoufang.tutorialapp.model.bean.TeacherInformation>>() {
+            @Override
+            public void call(List<TeacherInformation> teacherInformations) {
+                if (teacherInformations.size() != 1) {
+                    Log.d("TeacherRecommendAdapter", "查询结果不唯一或为空");
+                } else {
+                    output = teacherInformations.get(0).getTeachingSaying();
+                }
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                Log.d("TeacherRecommendAdapter","查询回调出错");
+            }
+        });
+        return output;
     }
 
     @Override

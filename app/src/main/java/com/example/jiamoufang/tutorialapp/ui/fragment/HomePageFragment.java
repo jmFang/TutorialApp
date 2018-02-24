@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,6 +34,8 @@ import com.example.jiamoufang.tutorialapp.adapter.TeacherRecommendAdapter;
 import com.example.jiamoufang.tutorialapp.adapter.TeacherWantedAdapter;
 import com.example.jiamoufang.tutorialapp.adapter.entities.Subject;
 import com.example.jiamoufang.tutorialapp.adapter.entities.TeacherWanted;
+import com.example.jiamoufang.tutorialapp.db.localDB.bean.bmobDb;
+import com.example.jiamoufang.tutorialapp.model.bean.User;
 import com.example.jiamoufang.tutorialapp.ui.activities.TeacherWantedActivity;
 import com.example.jiamoufang.tutorialapp.ui.activities.WebviewActivity;
 import com.example.jiamoufang.tutorialapp.ui.base.ParentWithNaviFragment;
@@ -44,6 +47,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.functions.Action1;
 
 public class HomePageFragment extends ParentWithNaviFragment {
 
@@ -59,7 +63,7 @@ public class HomePageFragment extends ParentWithNaviFragment {
     //取得全局上下文
     public static Context mContext;
 
-    private List<TeacherInformation> mTeacherList;
+    private List<User> mTeacherList = new ArrayList<>();
     //用于轮播图
     private List<View> viewList;
     private Toolbar toolBar;
@@ -81,6 +85,9 @@ public class HomePageFragment extends ParentWithNaviFragment {
     LinearLayout ll_high_school;
     @Bind(R.id.ll_college)
     LinearLayout ll_college;
+
+    TeacherRecommendAdapter TRAdapter;
+    TeacherAdapter TAdapter;
 
     @Nullable
     @Override
@@ -124,20 +131,44 @@ public class HomePageFragment extends ParentWithNaviFragment {
         SubjectAdapter subjectAdapter = new SubjectAdapter(mSubjectList);
         recyclerView.setAdapter(subjectAdapter);
 
-        mTeacherList = TeacherInformation.initTeacherInformation();
-
-        /*这是优选老师的RecyclerView,采用水平滑动*/
+         /*这是优选老师的RecyclerView,采用水平滑动*/
         recyclerView = view.findViewById(R.id.good_teacher);
         layoutManager = new LinearLayoutManager(mContext);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new TeacherAdapter(mTeacherList));
+        TAdapter = new TeacherAdapter(mContext, mTeacherList);
+        recyclerView.setAdapter(TAdapter);
 
         /*这是推荐老师的RecyclerView,采用垂直滑动*/
         recyclerView = view.findViewById(R.id.recommend_teacher);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        recyclerView.setAdapter(new TeacherRecommendAdapter(mTeacherList));
+        TRAdapter = new TeacherRecommendAdapter(mContext, mTeacherList);
+        recyclerView.setAdapter(TRAdapter);
 
+        //测试用的数据
+      //  mTeacherList = TeacherInformation.initTeacherInformation();
+        bmobDb.getInstance().getExcellentTeachers().subscribe(new Action1<List<User>>() {
+            @Override
+            public void call(List<User> users) {
+                Log.d("HomePageFragment",String.valueOf(users.size()));
+                if (users.size() > 0) {
+                    for (User u : users) {
+                        mTeacherList.add(u);
+                    }
+                    TAdapter.notifyDataSetChanged();
+                    TRAdapter.notifyDataSetChanged();
+                }
+                Log.d("HomePageFragment",String.valueOf(mTeacherList.size()));
+                if (mTeacherList.size() == 0) {
+                    Log.d("HomePageFragment", "teachers' size is 0");
+                }
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                Log.d("HomePageFragment","回调error");
+            }
+        });
         return view;
     }
 

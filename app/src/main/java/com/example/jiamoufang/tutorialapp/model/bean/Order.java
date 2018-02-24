@@ -72,6 +72,18 @@ public class Order extends BmobObject {
     * 所期望的教师的学历
     * */
     private String educatedLevel;
+    /*
+    * 访问次数
+    * */
+    private Integer visitedTimes;
+
+    public Integer getVisitedTimes() {
+        return visitedTimes;
+    }
+
+    public void setVisitedTimes() {
+        this.visitedTimes = 0;
+    }
 
     public void setEducatedLevel(String educatedLevel) {
         this.educatedLevel = educatedLevel;
@@ -82,6 +94,7 @@ public class Order extends BmobObject {
     }
 
     public Order() {
+        setVisitedTimes();
     }
 
     public String getAddress() {

@@ -136,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="日程"
+                    android:text="简历"
                     app:layout_constraintEnd_toEndOf="@+id/img_schedule"
                     app:layout_constraintStart_toStartOf="@+id/img_schedule"
                     app:layout_constraintTop_toBottomOf="@+id/img_schedule"

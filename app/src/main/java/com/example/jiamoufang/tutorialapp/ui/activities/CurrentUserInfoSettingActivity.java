@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.jiamoufang.tutorialapp.R;
+import  com.example.jiamoufang.tutorialapp.model.bean.TeacherInformation;
 import com.example.jiamoufang.tutorialapp.db.localDB.bean.bmobDb;
 import com.example.jiamoufang.tutorialapp.factory.ImageLoaderFactory;
 import com.example.jiamoufang.tutorialapp.model.UserModel;
@@ -146,6 +147,7 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
         * */
         initUserInfo();
         setUp();
+
     }
 
     /*
@@ -654,8 +656,14 @@ public class CurrentUserInfoSettingActivity extends ParentWithNaviActivity{
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+
+        if (my_role.getText().toString() == null) {
+            toast("请完成全部资料");
+        } else {
+            db.modifyDirty(true);
+            super.onBackPressed();
+            finish();
+        }
     }
 
     /*

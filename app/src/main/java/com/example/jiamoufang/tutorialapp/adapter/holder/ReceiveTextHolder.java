@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.adapter.base.BaseViewHolder;
 import com.example.jiamoufang.tutorialapp.adapter.listener.OnRecyclerViewListener;
@@ -53,7 +54,9 @@ public class ReceiveTextHolder extends BaseViewHolder {
         String time = dateFormat.format(message.getCreateTime());
         tv_time.setText(time);
         final BmobIMUserInfo info = message.getBmobIMUserInfo();
-        ImageLoaderFactory.getLoader(mContext).loadAvatar(iv_avatar, info != null ? info.getAvatar() : null, R.mipmap.default_ss);
+        if (info != null) Glide.with(mContext).load(info.getAvatar()).into(iv_avatar);
+        else  Glide.with(mContext).load(R.mipmap.default_smg).into(iv_avatar);
+       // ImageLoaderFactory.getLoader(mContext).loadAvatar(iv_avatar, info != null ? info.getAvatar() : null, R.mipmap.default_ss);
         String content = message.getContent();
         tv_message.setText(content);
         iv_avatar.setOnClickListener(new View.OnClickListener() {

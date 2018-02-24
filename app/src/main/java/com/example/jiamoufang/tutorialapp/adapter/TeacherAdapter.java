@@ -1,8 +1,10 @@
 package com.example.jiamoufang.tutorialapp.adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.model.UserModel;
 import com.example.jiamoufang.tutorialapp.model.bean.User;
@@ -28,29 +31,31 @@ import cn.bmob.v3.listener.FindListener;
  * Created by a0924 on 2017/12/30.
  */
 
-public//优选老师的适配器
-class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHolder> {
+public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHolder> {
 
-    private List<TeacherInformation> mList;
+    private List<User> mList;
+    private Context mContext;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView img;
-        private TextView info;
-        private TextView salary;
+        private ImageView good_teacher_avatar;
+        private TextView good_teacher_name;
+        private TextView good_teacher_diploma;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            img = itemView.findViewById(R.id.good_teacher_pic);
-            info = itemView.findViewById(R.id.good_teacher_info);
-            salary = itemView.findViewById(R.id.good_teacher_salary);
+            good_teacher_avatar = itemView.findViewById(R.id.good_teacher_avatar);
+            good_teacher_name = itemView.findViewById(R.id.good_teacher_name);
+            good_teacher_diploma = itemView.findViewById(R.id.good_teacher_diploma);
 
         }
     }
 
-    public TeacherAdapter(List<TeacherInformation> mList) {
+    public TeacherAdapter(Context context, List<User> mList) {
         this.mList = mList;
+        mContext = context;
+        Log.d("TeacherAdapter",String.valueOf(mList.size()));
     }
 
     @Override
@@ -63,28 +68,16 @@ class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHolder> {
             public void onClick(View v) {
                 int index = viewHolder.getAdapterPosition();
                 if (index >= 0) {
-                    Toast.makeText(HomePageFragment.mContext, "hehe", Toast.LENGTH_SHORT).show();
-                    TeacherInformation teacherInformation = mList.get(index);
-                    fundTeacherInfo(teacherInformation);
+                    User teacherInformation = mList.get(index);
+                    findTeacherInfo(teacherInformation);
                 }
             }
         });
         return viewHolder;
     }
 
-    private void fundTeacherInfo(TeacherInformation teacherInformation) {
-        String username = teacherInformation.getUsername();
-        UserModel.getInstance().queryUser(username, new QueryUserListener() {
-            @Override
-            public void done(User user, BmobException e) {
-                if (e == null) {
-                    startActivity(user);
-                } else {
-                    e.printStackTrace();
-                    Toast.makeText(HomePageFragment.mContext, "wrong", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+    private void findTeacherInfo(User user) {
+        startActivity(user);
     }
 
     private void startActivity(User user) {
@@ -98,10 +91,29 @@ class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(TeacherAdapter.ViewHolder holder, int position) {
-        TeacherInformation teacher = mList.get(position);
-        holder.img.setImageResource(teacher.getPictureID());
-        holder.info.setText(teacher.getInfo());
-        holder.salary.setText("$" + teacher.getPrice() + "起");
+        User teacher = mList.get(position);
+        if (teacher.getAvatar()!= null) {
+            Glide.with(mContext).load(teacher.getAvatar().getUrl()).into(holder.good_teacher_avatar);
+        } else {
+            Glide.with(mContext).load(R.mipmap.default_smg).into(holder.good_teacher_avatar);
+        }
+        holder.good_teacher_name.setText((teacher.getRealName()==null)?teacher.getUsername():teacher.getRealName());
+        holder.good_teacher_diploma.setText(EducatedLevelToString(teacher.getEducatedLevel()));
+    }
+
+    private String EducatedLevelToString(Integer educatedLevel) {
+        if (educatedLevel == null) return "未知";
+        int i = educatedLevel.intValue();
+        switch (i) {
+            case 0:return "小学";
+            case 1:return "初中";
+            case 2:return "高中";
+            case 3:return "大专";
+            case 4:return "本科";
+            case 5:return "硕士";
+            case 6:return "博士";
+            default:return "未知";
+        }
     }
 
     @Override

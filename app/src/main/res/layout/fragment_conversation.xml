@@ -7,6 +7,15 @@
     android:orientation="vertical" >
 
     <include android:id="@+id/ll" layout="@layout/include_navi"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:textSize="12sp"
+        android:id="@+id/news_tip"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/text_gray"
+        android:text="目前没有任何消息~"/>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/sw_refresh"

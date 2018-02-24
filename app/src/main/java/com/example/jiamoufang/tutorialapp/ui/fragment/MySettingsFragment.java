@@ -1,6 +1,7 @@
 package com.example.jiamoufang.tutorialapp.ui.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.example.jiamoufang.tutorialapp.ui.activities.MyOrdersActivity;
 import com.example.jiamoufang.tutorialapp.ui.activities.MyStudentsActivity;
 import com.example.jiamoufang.tutorialapp.ui.activities.MyTeachersActivity;
 import com.example.jiamoufang.tutorialapp.ui.activities.OrderActivity;
+import com.example.jiamoufang.tutorialapp.ui.activities.ResumeActivity;
 import com.example.jiamoufang.tutorialapp.ui.base.ParentWithNaviFragment;
 
 import org.w3c.dom.Text;
@@ -135,7 +137,7 @@ public class MySettingsFragment  extends ParentWithNaviFragment{
     * handlers for click events
     * by fangjiamou
     * */
-    @OnClick({R.id.info_config,R.id.my_photo,R.id.ll_my_teacher,R.id.ll_my_student, R.id.ll_my_orders})
+    @OnClick({R.id.info_config,R.id.my_photo,R.id.ll_my_teacher,R.id.ll_my_student, R.id.ll_my_orders, R.id.img_schedule})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.my_photo:
@@ -159,9 +161,7 @@ public class MySettingsFragment  extends ParentWithNaviFragment{
                 startActivity(CurrentUserInfoSettingActivity.class, bundle1);
                 break;
             case R.id.img_schedule:
-                /*
-                * do nothing, because we don't have enough time
-                * */
+                startActivity(new Intent(getActivity(),ResumeActivity.class));
                 break;
             case R.id.img_score:
                 /*
@@ -183,6 +183,10 @@ public class MySettingsFragment  extends ParentWithNaviFragment{
                 * look over your teachers that you like
                 * show them in another Activity
                 * */
+                if (!currentUser.getDirty()) {
+                    toast("您尚未设置个人信息");
+                    break;
+                }
                 if (currentUser.getRole()) {
                     toast("您当前是老师，请切换到学生状态");
                 } else {
@@ -195,6 +199,10 @@ public class MySettingsFragment  extends ParentWithNaviFragment{
                 * look over your students that you like
                 * show them in another Activity
                 * */
+                if (!currentUser.getDirty()) {
+                    toast("您尚未设置个人信息");
+                    break;
+                }
                 if (!currentUser.getRole()) {
                     toast("您当前是学生，请切换到老师状态");
                 } else {
@@ -207,9 +215,13 @@ public class MySettingsFragment  extends ParentWithNaviFragment{
                 * look over your orders (you may be student or teacher, it is both ok)
                 * show them in another Activity
                 * */
-                Bundle bundle8 = new Bundle();
-                bundle8.putSerializable("user", currentUser);
-                startActivity(MyOrdersActivity.class, bundle8);
+                if (!currentUser.getDirty()) {
+                    toast("您尚未设置个人信息");
+                } else {
+                    Bundle bundle8 = new Bundle();
+                    bundle8.putSerializable("user", currentUser);
+                    startActivity(MyOrdersActivity.class, bundle8);
+                }
                 break;
             default:
                 break;

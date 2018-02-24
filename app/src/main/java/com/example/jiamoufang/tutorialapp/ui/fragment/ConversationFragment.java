@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.TextView;
 
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.adapter.ConversationAdapter;
@@ -49,6 +50,8 @@ public class ConversationFragment extends ParentWithNaviFragment {
     //recyclerView外面的可下拉刷新的SwipeRefreshLayout
     @Bind(R.id.sw_refresh)
     SwipeRefreshLayout sw_refresh;
+    @Bind(R.id.news_tip)
+    TextView news_tip;
     //消息item的适配器
     ConversationAdapter adapter;
     LinearLayoutManager layoutManager;
@@ -183,6 +186,7 @@ public class ConversationFragment extends ParentWithNaviFragment {
         //加载所有本地会话
         List<BmobIMConversation> list = BmobIM.getInstance().loadAllConversation();
         if (list != null && list.size() > 0) {
+            news_tip.setVisibility(View.GONE);
             for (BmobIMConversation item : list) {
                 switch (item.getConversationType()) {
                     case 1://私聊
@@ -193,6 +197,8 @@ public class ConversationFragment extends ParentWithNaviFragment {
 
                 }
             }
+        } else {
+            news_tip.setVisibility(View.VISIBLE);
         }
         //本项目不涉及添加好友
         //重新排序

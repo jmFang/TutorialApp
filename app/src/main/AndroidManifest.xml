@@ -88,7 +88,8 @@
         <activity android:name=".ui.activities.QueryTeacherBySubjectActivity" />
         <activity android:name=".ui.activities.MyOrdersActivity" />
         <activity android:name=".ui.activities.OrderDetailActivity" />
-        <activity android:name=".ui.activities.WebviewActivity"></activity>
+        <activity android:name=".ui.activities.WebviewActivity" />
+        <activity android:name=".ui.activities.ResumeActivity"></activity>
     </application>
 
 </manifest>

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.jiamoufang.tutorialapp.R;
 import com.example.jiamoufang.tutorialapp.adapter.base.BaseViewHolder;
 import com.example.jiamoufang.tutorialapp.adapter.listener.OnRecyclerViewListener;
@@ -40,9 +41,11 @@ public class ConversationHolder extends BaseViewHolder {
     public TextView tv_recent_time;
     @Bind(R.id.tv_recent_unread)
     public TextView tv_recent_unread;
+    private Context mContext;
 
     public ConversationHolder(Context context, ViewGroup root, OnRecyclerViewListener listener) {
         super(context, root, R.layout.item_conversation, listener);
+        mContext = context;
     }
     @Override
     public void bindData(Object object) {
@@ -68,7 +71,11 @@ public class ConversationHolder extends BaseViewHolder {
         /*
         * 会话图标设置
         * */
-        ViewUtil.setAvatar(conversation.getConversationIcon(), R.mipmap.default_ss, iv_recent_avatar);
+        if (conversation.getConversationIcon() != null)
+            Glide.with(mContext).load(conversation.getConversationIcon()).into(iv_recent_avatar);
+        else
+            Glide.with(mContext).load( R.mipmap.icon_message_press).into(iv_recent_avatar);
+        //ViewUtil.setAvatar(conversation.getConversationIcon(), R.mipmap.default_ss, iv_recent_avatar);
         /*
         * 会话标题
         * */

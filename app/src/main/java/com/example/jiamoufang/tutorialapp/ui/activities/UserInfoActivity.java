@@ -60,10 +60,10 @@ public class UserInfoActivity extends ParentWithNaviActivity {
         user = (User) getBundle().getSerializable("u");
         //如果是当前用户本身
         if (user.getObjectId().equals(getCurrentUid())) {
-            btn_add_friend.setVisibility(View.GONE);
+           // btn_add_friend.setVisibility(View.GONE);
             btn_chat.setVisibility(View.GONE);
         } else {
-            btn_add_friend.setVisibility(View.VISIBLE);
+           // btn_add_friend.setVisibility(View.VISIBLE);
             btn_chat.setVisibility(View.VISIBLE);
         }
         /*
@@ -88,19 +88,14 @@ public class UserInfoActivity extends ParentWithNaviActivity {
         /*
         * 构造用户会话信息
         * */
-        info = new BmobIMUserInfo(user.getObjectId(), user.getUsername(),
-                bmobFile == null ? null : (fileUrl == null) ? (url == null ? null:url):fileUrl );
+        info = new BmobIMUserInfo(user.getObjectId(), (user.getRealName()==null)?user.getUsername():user.getRealName(),
+                bmobFile == null ? null : url);
         //加载头像
         if (bmobFile!= null) {
-            if(fileUrl != null) {
-                Glide.with(this).load(fileUrl).into(iv_avatar);
-            } else {
-                Glide.with(this).load(R.mipmap.default_smg).into(iv_avatar);
-            }
+            Glide.with(this).load(url).into(iv_avatar);
         } else {
             Glide.with(this).load(R.mipmap.default_smg).into(iv_avatar);
         }
-        //ImageLoaderFactory.getLoader().loadAvatar(iv_avatar, bmobFile == null ? null : (fileUrl == null) ? (url == null ? null:url):fileUrl, R.mipmap.default_ss);
         tv_name.setText(user.getUsername());
     }
 

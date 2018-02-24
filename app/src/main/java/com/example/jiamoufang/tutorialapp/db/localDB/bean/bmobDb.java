@@ -1,16 +1,20 @@
 package com.example.jiamoufang.tutorialapp.db.localDB.bean;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.jiamoufang.tutorialapp.model.UserModel;
 import com.example.jiamoufang.tutorialapp.model.bean.Information;
 import com.example.jiamoufang.tutorialapp.model.bean.Order;
+import com.example.jiamoufang.tutorialapp.model.bean.TeacherInformation;
 import com.example.jiamoufang.tutorialapp.model.bean.User;
+import com.nostra13.universalimageloader.utils.L;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
@@ -90,6 +94,14 @@ public class bmobDb  {
     }
 
     /*
+    * 设置脏值
+    * */
+    public void modifyDirty(Boolean dirty) {
+        user.setDirty(dirty);
+        updateInfo();
+    }
+
+    /*
     * 修改学历
     * */
     public void modifyEducatedLevel(Integer i) {
@@ -130,6 +142,108 @@ public class bmobDb  {
         user.setPassword(npw);
         updateInfo();
     }
+    /*
+    * 查询优秀教师
+    * */
+    public Observable<List<User>> getExcellentTeachers() {
+        BmobQuery<User> query = new BmobQuery<>();
+        query.addWhereEqualTo("role",true);
+        query.setLimit(12);
+        return query.findObjectsObservable(User.class);
+    }
+
+    /*
+    * 添加个人信息
+    * */
+    public void saveTeacherInformation(TeacherInformation teacherInformation) {
+        teacherInformation.save();
+       // updateInfo();
+    }
+
+    public void updateTeacherInformation(TeacherInformation teacherInformation, String sch, String exp, String saying, String pra) {
+        Log.d("Obj",teacherInformation.toString());
+        TeacherInformation t = new TeacherInformation(user);
+        t.setExperience(exp);
+        t.setSchool(sch);
+        t.setTeachingSaying(saying);
+        t.setPractice(pra);
+        t.update(teacherInformation.getObjectId(),new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null) {
+                    Log.d("MyDebug","修改老师信息成功");
+                } else {
+                    Log.d("MyDebug",e.getMessage().toString());
+                }
+            }
+        });
+    }
+
+    public void modifyTeachInfoAtPractice(TeacherInformation teacherInfo, String practice) {
+        TeacherInformation t = new TeacherInformation(teacherInfo);
+        t.setPractice(practice);
+        t.update(teacherInfo.getObjectId(),new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null) {
+                    Log.d("MyDebug","修改老师信息成功");
+                } else {
+                    Log.d("MyDebug",e.getMessage().toString());
+                }
+            }
+        });
+    }
+    public void modifyTeachInfoAtExp(TeacherInformation teacherInfo, String exp) {
+        TeacherInformation t = new TeacherInformation(teacherInfo);
+        t.setExperience(exp);
+        t.update(teacherInfo.getObjectId(),new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null) {
+                    Log.d("MyDebug","修改老师信息成功");
+                } else {
+                    Log.d("MyDebug",e.getMessage().toString());
+                }
+            }
+        });
+    }
+    public void modifyTeachInfoAtSchool(TeacherInformation teacherInfo, String school) {
+        TeacherInformation t = new TeacherInformation(teacherInfo);
+        t.setSchool(school);
+        t.update(teacherInfo.getObjectId(),new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null) {
+                    Log.d("MyDebug","修改老师信息成功");
+                } else {
+                    Log.d("MyDebug",e.getMessage().toString());
+                }
+            }
+        });
+    }
+
+    public void modifyTeachInfoAtSaying(TeacherInformation teacherInfo, String saying) {
+        TeacherInformation t = new TeacherInformation(teacherInfo);
+        t.setTeachingSaying(saying);
+        t.update(teacherInfo.getObjectId(),new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null) {
+                    Log.d("MyDebug","修改老师信息成功");
+                } else {
+                    Log.d("MyDebug",e.getMessage().toString());
+                }
+            }
+        });
+    }
+
+    public Observable<List<TeacherInformation>> findSayingOfTeacherByUsername(String username) {
+        BmobQuery<TeacherInformation> query = new BmobQuery<>();
+        query.addWhereEqualTo("username", username);
+        query.include("user");
+        return query.findObjectsObservable(TeacherInformation.class);
+    }
+
 
     /* 根据学生返回订单列表
      * 注意由于BmobQuery采用的是异步的方法，因此调用该函数的时候能需要采用以下方法
@@ -148,6 +262,32 @@ public class bmobDb  {
             }
         });
      */
+
+    /*
+     * 找出教师信息，根据满意率
+     */
+
+    public Observable<List<TeacherInformation>> findTeacherInformation() {
+        BmobQuery<TeacherInformation> query = new BmobQuery<TeacherInformation>();
+        query.addWhereGreaterThanOrEqualTo("satisfyingOfEffect", 70);
+        query.order("-createdAt");
+        query.include("user");
+        return query.findObjectsObservable(TeacherInformation.class);
+    }
+
+    /*
+    * 按用户名查找用户的TeacherInformation
+    * */
+    public Observable<List<TeacherInformation>> findTeacherInformationByUsername(String username) {
+        BmobQuery<TeacherInformation> query = new BmobQuery<>();
+        query.addWhereEqualTo("username", username);
+        query.order("-createdAt");
+        query.include("user");
+        return query.findObjectsObservable(TeacherInformation.class);
+    }
+    /*
+    * 根据学生返回订单
+    * */
     public Observable<List<Order>> findOrderForStudent() {
 
         BmobQuery<Order> query = new BmobQuery<Order>();
@@ -181,6 +321,19 @@ public class bmobDb  {
         return query.findObjectsObservable(User.class);
     }
 
+    /*
+    * 根据教师学历来筛选教师信息
+    * @param 学历：0：小学 2 初中, 2 高中 3 大专 4 本科 5 硕士 6 博士
+    * */
+
+    public Observable<List<User>> findTeacherInfoByDiploma(int low, int high) {
+        BmobQuery<User> query = new BmobQuery<>();
+        query.addWhereGreaterThanOrEqualTo("educatedLevel", low);
+        query.addWhereLessThanOrEqualTo("educatedLevel", high);
+        query.setLimit(40);
+        query.order("-createdAt");
+        return query.findObjectsObservable(User.class);
+    }
     /* 根据年级来筛选家教订单
      * @param 年级数：小学：1~6； 初中7~9； 高中：10~12； 大学：13； 其他：0
      */

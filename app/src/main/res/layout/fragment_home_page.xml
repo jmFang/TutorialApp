@@ -137,7 +137,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="小学"
+                            android:text="小初"
                             android:layout_marginTop="5dp"
                             android:textSize="12sp"
                             android:textColor="@color/text_gray"
@@ -164,7 +164,7 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="5dp"
                             android:textSize="12sp"
-                            android:text="初中"
+                            android:text="高中"
                             android:textColor="@color/text_gray"
                             android:textAlignment="center" />
                     </LinearLayout>
@@ -187,7 +187,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="高中"
+                            android:text="专本"
                             android:layout_marginTop="5dp"
                             android:textSize="12sp"
                             android:textColor="@color/text_gray"
@@ -212,7 +212,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="大学"
+                            android:text="硕博"
                             android:layout_marginTop="5dp"
                             android:textSize="12sp"
                             android:textColor="@color/text_gray"
@@ -249,7 +249,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:background="#f9f9f9" />
+                    android:background="@color/white" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
