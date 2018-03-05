@@ -1,17 +1,9 @@
-# TutorialApp
-final project of android course
+# tutorial App Based on C2C mode
+triple go
 
-# Attention ！！！
-##  min API = 21 ！ ！！
-```
-pay attention to the version of gradle! not change the version ! 
-
-if your gradle version is not the same, please change it to this version,
-
-because my gradle version is lower than yours, just the version android studio 2.3!
-
-Thanks, best wish to the developing work!
-```
+# Attention
+### 本项目完整版已获版权保护，源代码仅供学习使用，若商用将侵权
+### 联系交流方式：sysuygm@163.com
 
 # 效果展示
 1. 登录注册界面
