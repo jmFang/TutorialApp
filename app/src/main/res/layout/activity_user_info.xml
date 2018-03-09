@@ -71,6 +71,7 @@
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:visibility="gone"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:layout_marginRight="@dimen/activity_vertical_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"

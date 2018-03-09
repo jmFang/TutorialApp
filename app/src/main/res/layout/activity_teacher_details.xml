@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="龐老師"
+        android:text="loading..."
         app:layout_constraintBottom_toBottomOf="@+id/details_teacher_info"
         app:layout_constraintStart_toEndOf="@+id/details_teacher_info" />
 
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="小初數學"
+        android:text="loading..."
         app:layout_constraintStart_toEndOf="@+id/details_teacher_photo"
         app:layout_constraintTop_toTopOf="@+id/details_teacher_photo" />
 
@@ -50,8 +50,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:text="教齡12年"
-        app:layout_constraintBottom_toTopOf="@+id/like_or_not"
+        android:text="荣誉老师"
+        app:layout_constraintBottom_toTopOf="@+id/img_contact"
         app:layout_constraintStart_toStartOf="@+id/details_teacher_info"
         app:layout_constraintTop_toBottomOf="@+id/details_teacher_info" />
 
@@ -218,7 +218,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:text="效果满意率 : "
+                    android:text="效果满意率(%): "
                     app:layout_constraintStart_toEndOf="@+id/view3"
                     app:layout_constraintTop_toTopOf="@+id/view3" />
 
@@ -227,7 +227,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:text="服务满意率 : "
+                    android:text="服务满意率(%): "
                     app:layout_constraintBottom_toBottomOf="@+id/view3"
                     app:layout_constraintStart_toEndOf="@+id/view3" />
 
@@ -247,7 +247,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="交学经验"
+                    android:text="讲学经验"
                     app:layout_constraintStart_toStartOf="@+id/txt4"
                     app:layout_constraintTop_toBottomOf="@+id/view4" />
 
@@ -257,7 +257,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:layout_marginTop="8dp"
-                    android:text="大学本科数学专业,之前暑假交过高中生和初中生"
+                    android:text="loading..."
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/txt7"
                     app:layout_constraintTop_toBottomOf="@+id/txt7" />
@@ -288,7 +288,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:layout_marginTop="8dp"
-                    android:text="在读大学生,无教学经验"
+                    android:text="loading..."
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/txt8"
                     app:layout_constraintTop_toBottomOf="@+id/txt8" />
@@ -319,7 +319,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:layout_marginTop="8dp"
-                    android:text="中山大学 软件工程 本科"
+                    android:text="loading..."
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/txt9"
                     app:layout_constraintTop_toBottomOf="@+id/txt9" />
@@ -342,7 +342,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="100%"
+                    android:text="loading..."
                     app:layout_constraintBottom_toBottomOf="@+id/txt5"
                     app:layout_constraintStart_toEndOf="@+id/txt5"
                     app:layout_constraintTop_toTopOf="@+id/txt5" />
@@ -352,7 +352,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="100%"
+                    android:text="loading..."
                     app:layout_constraintBottom_toBottomOf="@+id/txt6"
                     app:layout_constraintStart_toEndOf="@+id/txt6"
                     app:layout_constraintTop_toTopOf="@+id/txt6" />
@@ -363,12 +363,12 @@
     </ScrollView>
 
     <ImageView
-        android:id="@+id/like_or_not"
+        android:id="@+id/img_contact"
         android:layout_width="30dp"
         android:layout_height="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/details_teacher_photo"
         app:layout_constraintStart_toStartOf="@+id/details_teaching_age"
-        app:srcCompat="@drawable/teacher_details_like" />
+        app:srcCompat="@drawable/tab_message_btn" />
 
 
 </android.support.constraint.ConstraintLayout>

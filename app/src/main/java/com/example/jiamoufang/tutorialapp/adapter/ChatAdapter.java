@@ -81,14 +81,13 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public int getCount() {
         return this.msgs == null ? 0 : msgs.size();
     }
-
     /*
     * 获取消息
     * @param position
     * */
-    public BmobIMMessage getItem(int position) {
-        return this.msgs == null ? null : (position >= this.msgs.size() ? null : this.msgs.get(position));
-    }
+        public BmobIMMessage getItem(int position) {
+            return this.msgs == null ? null : (position >= this.msgs.size() ? null : this.msgs.get(position));
+        }
 
     /*
     * 确定消息所属的位置

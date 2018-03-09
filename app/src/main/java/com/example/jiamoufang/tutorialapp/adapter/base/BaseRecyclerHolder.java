@@ -125,8 +125,9 @@ public class BaseRecyclerHolder extends RecyclerView.ViewHolder {
     * */
     public BaseRecyclerHolder setImageView(String avatar, int defaultRes, int viewId) {
         ImageView iv = getView(viewId);
-        //Glide.with(context).load(R.mipmap.default_smg).into(iv_avatar);
-       ImageLoaderFactory.getLoader(context).loadAvatar(iv, avatar, defaultRes);
+        if (avatar != null) Glide.with(context).load(avatar).into(iv);
+        else  Glide.with(context).load(defaultRes).into(iv);
+        //ImageLoaderFactory.getLoader(context).loadAvatar(iv, avatar, defaultRes);
         return this;
     }
 }

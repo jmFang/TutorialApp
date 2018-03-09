@@ -755,7 +755,8 @@ public class ChatActivity extends ParentWithNaviActivity implements MessageListH
      */
     private void addMessage2Chat(MessageEvent event) {
         BmobIMMessage msg = event.getMessage();
-        if (mConversationManager != null && event != null && mConversationManager.getConversationId().equals(event.getConversation().getConversationId()) //如果是当前会话的消息
+        if (mConversationManager != null && event != null
+                && mConversationManager.getConversationId().equals(event.getConversation().getConversationId()) //如果是当前会话的消息
                 && !msg.isTransient()) {//并且不为暂态消息
             if (adapter.findPosition(msg) < 0) {//如果未添加到界面中
                 adapter.addMessage(msg);

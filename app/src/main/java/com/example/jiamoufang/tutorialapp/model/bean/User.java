@@ -28,7 +28,7 @@ public class User extends BmobUser {
     private Boolean sex;
 
     /*学历
-    * 小学，初中，高中，大专，本科，硕士，博士分别为 1,2,3,4,5,6,7
+    * 小学，初中，高中，大专，本科，硕士，博士分别为 0,1,2,3,4,5,6
     * */
     private Integer educatedLevel;
 
@@ -38,7 +38,16 @@ public class User extends BmobUser {
     /*常用地址
     * */
     private String address;
-    public User(){}
+    /*
+    * 脏值,表示当前用户是否修改了全部属性，防止查询 我的老师 我的学生 我的订单时出现空指针错误
+    * */
+    private Boolean dirty;
+
+    public void setDirty(Boolean dirty) {
+        this.dirty = dirty;
+    }
+
+    public User(){ dirty = false;}
     public void setAddress(String address) {
         this.address = address;
     }
@@ -54,7 +63,6 @@ public class User extends BmobUser {
     public void setAvatar(BmobFile avatar) {
         this.avatar = avatar;
     }
-
     public void setRole(Boolean role) {
         this.role = role;
     }
@@ -89,5 +97,9 @@ public class User extends BmobUser {
 
     public BmobFile getAvatar() {
         return avatar;
+    }
+
+    public Boolean getDirty() {
+        return dirty;
     }
 }

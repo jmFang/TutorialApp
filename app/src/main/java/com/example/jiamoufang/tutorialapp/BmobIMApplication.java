@@ -42,14 +42,14 @@ public class BmobIMApplication extends Application {
         BmobIM.init(this);
         BmobIM.registerDefaultMessageHandler(new DemoMessageHandler(this));
 
-        if (getApplicationInfo().packageName.equals(getMyProcessName())) {
+       /* if (getApplicationInfo().packageName.equals(getMyProcessName())) {
            Bmob.initialize(this, "b94b1a62e1e3666cd004dd65992fcba1");
             BmobIM.init(this);
             BmobIM.registerDefaultMessageHandler(new DemoMessageHandler(this));
-        }
+        }*/
     }
 
-    public static String getMyProcessName() {
+/*    public static String getMyProcessName() {
         try {
             File file = new File("proc" + android.os.Process.myPid() + "/" + "cmdline");
             BufferedReader mBufferReader = new BufferedReader(new FileReader(file));
@@ -60,5 +60,5 @@ public class BmobIMApplication extends Application {
             e.printStackTrace();
             return null;
         }
-    }
+    }*/
 }

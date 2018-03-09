@@ -26,7 +26,7 @@ public class MyStudentsActivity extends ParentWithNaviActivity {
 
     private RecyclerView result;
 
-    private QueryAdapter adapter;
+    private QueryAdapter<Order> adapter;
     private List<Order> data = new ArrayList<>();
 
     @Override
@@ -60,12 +60,17 @@ public class MyStudentsActivity extends ParentWithNaviActivity {
             public void convert(QueryHolder holder, Order o) {
                 User student = o.getUser();
                 ImageView user_pic = holder.getView(R.id.user_pic);
-                String url;
-                if (student.getAvatar() != null)
+                String url, fileUrl = null;
+                if (student.getAvatar() != null) {
                     url = student.getAvatar().getUrl();
+                    fileUrl = student.getAvatar().getFileUrl();
+                }
                 else
-                    url = "";
-                ImageLoaderFactory.getLoader(getApplicationContext()).loadAvatar(user_pic, url, R.mipmap.default_ss);
+                    url = null;
+
+                //加载头像
+                ImageLoaderFactory.getLoader(getApplicationContext()).loadAvatar(user_pic, (url==null)?((fileUrl==null)?null:fileUrl):url, R.mipmap.default_ss);
+
                 TextView user_name = holder.getView(R.id.user_name);
                 user_name.setText(student.getRealName());
                 TextView user_sex = holder.getView(R.id.user_sex);
@@ -121,7 +126,7 @@ public class MyStudentsActivity extends ParentWithNaviActivity {
                     adapter.addItem(o);
 
                 //下面是为了测试添加的一项数据
-                Order o = new Order();
+   /*             Order o = new Order();
                 User student = new User();
                 student.setRealName("小明");
                 student.setSex(true);
@@ -129,7 +134,7 @@ public class MyStudentsActivity extends ParentWithNaviActivity {
                 student.setCity("广州");
                 student.setMobilePhoneNumber("22252225222");
                 o.setUser(student);
-                adapter.addItem(o);
+                adapter.addItem(o);*/
 
                 if (adapter.getItemCount() == 0)
                     Toast.makeText(MyStudentsActivity.this, "您还没有授课学生", Toast.LENGTH_SHORT).show();

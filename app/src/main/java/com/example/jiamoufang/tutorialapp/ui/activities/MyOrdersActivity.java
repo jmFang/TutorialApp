@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ public class MyOrdersActivity extends ParentWithNaviActivity {
 
     private RecyclerView result;
 
-    private QueryAdapter adapter;
+    private QueryAdapter<Order> adapter;
     private List<Order> data = new ArrayList<>();
 
     private User currentUser;
@@ -40,18 +41,11 @@ public class MyOrdersActivity extends ParentWithNaviActivity {
         setContentView(R.layout.activity_query);
         //初始化导航栏
         initNaviView();
-        currentUser = (User)getBundle().getSerializable("user");
-        setUp();
-        displayMyOrders();
-    }
-
-    private void setUp() {
-        findViews();
-        setUpRecyclerView();
-    }
-
-    private void findViews() {
         result = (RecyclerView) findViewById(R.id.result);
+        currentUser = (User)getBundle().getSerializable("user");
+        findMyOrders();
+        setUpRecyclerView();
+        result.setAdapter(adapter);
     }
 
     private void setUpRecyclerView() {
@@ -59,20 +53,27 @@ public class MyOrdersActivity extends ParentWithNaviActivity {
         adapter = new QueryAdapter<Order>(this, R.layout.item_query_order, data) {
             @Override
             public void convert(QueryHolder holder, Order o) {
+                toast(o.toString());
                 TextView grade = holder.getView(R.id.grade);
                 grade.setText(grade(o.getGrade()));
                 TextView subject = holder.getView(R.id.subject);
                 subject.setText(o.getSubject());
                 TextView time = holder.getView(R.id.time);
-                time.setText(o.getTime());
+                time.setText(o.getAddress());
                 TextView tv_user_name = holder.getView(R.id.tv_user_name);
                 TextView user_name = holder.getView(R.id.user_name);
                 if (currentUser.getRole()) {
                     tv_user_name.setText("授课学生");
-                    user_name.setText(o.getUser().getRealName());
+                    if(o.getUser() != null)
+                        user_name.setText(o.getUser().getRealName());
+                    else
+                        user_name.setText("未确定");
                 } else {
                     tv_user_name.setText("授课老师");
-                    user_name.setText(o.getTeacher().getRealName());
+                    if (o.getTeacher() != null)
+                        user_name.setText(o.getTeacher().getRealName());
+                    else
+                        user_name.setText("未确定");
                 }
             }
         };
@@ -86,7 +87,6 @@ public class MyOrdersActivity extends ParentWithNaviActivity {
                 startActivity(intent);
             }
         });
-        result.setAdapter(adapter);
     }
 
     private String grade(Integer grade) {
@@ -122,7 +122,7 @@ public class MyOrdersActivity extends ParentWithNaviActivity {
         }
     }
 
-    private void displayMyOrders() {
+    private void findMyOrders() {
         if (currentUser.getRole())
             findOrdersForTeacher();
         else
@@ -130,14 +130,15 @@ public class MyOrdersActivity extends ParentWithNaviActivity {
     }
 
     private void findOrdersForTeacher() {
-        new bmobDb().findOrderForTeacher().subscribe(new Action1<List<Order>>() {
+        bmobDb.getInstance().findOrderForTeacher().subscribe(new Action1<List<Order>>() {
             @Override
             public void call(List<Order> orders) {
                 for (Order o : orders)
                     adapter.addItem(o);
+                toast(data.size());
 
                 //下面是为了测试添加的一项数据
-                Order o = new Order();
+/*                Order o = new Order();
                 User teacher = new User();
                 teacher.setRealName("小初数学何老师");
                 teacher.setSex(true);
@@ -158,9 +159,9 @@ public class MyOrdersActivity extends ParentWithNaviActivity {
                 o.setSalary("一小时200");
                 o.setTime("周一晚7-8节");
                 o.setDes("英语不好");
-                adapter.addItem(o);
+                adapter.addItem(o);*/
 
-                if (adapter.getItemCount() == 0)
+                if (data.size() == 0)
                     Toast.makeText(MyOrdersActivity.this, "您还没有订单", Toast.LENGTH_SHORT).show();
             }
         }, new Action1<Throwable>() {
@@ -176,8 +177,8 @@ public class MyOrdersActivity extends ParentWithNaviActivity {
             public void call(List<Order> orders) {
                 for (Order o : orders)
                     adapter.addItem(o);
-
-                //下面是为了测试添加的一项数据
+                toast(data.size());
+/*                //下面是为了测试添加的一项数据
                 Order o = new Order();
                 User teacher = new User();
                 teacher.setRealName("小初数学何老师");
@@ -199,9 +200,9 @@ public class MyOrdersActivity extends ParentWithNaviActivity {
                 o.setSalary("一小时200");
                 o.setTime("周一晚7-8节");
                 o.setDes("英语不好");
-                adapter.addItem(o);
+                adapter.addItem(o);*/
 
-                if (adapter.getItemCount() == 0)
+                if (data.size() == 0)
                     Toast.makeText(MyOrdersActivity.this, "您还没有订单", Toast.LENGTH_SHORT).show();
             }
         }, new Action1<Throwable>() {

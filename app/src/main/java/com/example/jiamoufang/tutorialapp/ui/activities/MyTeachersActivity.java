@@ -61,21 +61,23 @@ public class MyTeachersActivity extends ParentWithNaviActivity {
                 User teacher = o.getTeacher();
                 ImageView user_pic = holder.getView(R.id.user_pic);
                 String url;
-                if (teacher.getAvatar() != null)
-                    url = teacher.getAvatar().getUrl();
-                else
-                    url = "";
-                ImageLoaderFactory.getLoader(getApplicationContext()).loadAvatar(user_pic, url, R.mipmap.default_ss);
-                TextView user_name = holder.getView(R.id.user_name);
-                user_name.setText(teacher.getRealName());
-                TextView user_sex = holder.getView(R.id.user_sex);
-                user_sex.setText(sex(teacher.getSex()));
-                TextView teacher_level = holder.getView(R.id.user_educated_level);
-                teacher_level.setText(level(teacher.getEducatedLevel()));
-                TextView user_city = holder.getView(R.id.user_city);
-                user_city.setText(teacher.getCity());
-                TextView user_phone = holder.getView(R.id.user_phone);
-                user_phone.setText(teacher.getMobilePhoneNumber());
+                if (teacher != null) {
+                    if (teacher.getAvatar() != null)
+                        url = teacher.getAvatar().getUrl();
+                    else
+                        url = "";
+                    ImageLoaderFactory.getLoader(getApplicationContext()).loadAvatar(user_pic, url, R.mipmap.default_ss);
+                    TextView user_name = holder.getView(R.id.user_name);
+                    user_name.setText(teacher.getRealName());
+                    TextView user_sex = holder.getView(R.id.user_sex);
+                    user_sex.setText(sex(teacher.getSex()));
+                    TextView teacher_level = holder.getView(R.id.user_educated_level);
+                    teacher_level.setText(level(teacher.getEducatedLevel()));
+                    TextView user_city = holder.getView(R.id.user_city);
+                    user_city.setText(teacher.getCity());
+                    TextView user_phone = holder.getView(R.id.user_phone);
+                    user_phone.setText(teacher.getMobilePhoneNumber());
+                }
             }
         };
         adapter.setOnItemClickListener(new QueryAdapter.OnItemClickListener() {
@@ -127,7 +129,7 @@ public class MyTeachersActivity extends ParentWithNaviActivity {
                     adapter.addItem(o);
 
                 //下面是为了测试添加的一项数据
-                Order o = new Order();
+/*                Order o = new Order();
                 User teacher = new User();
                 teacher.setRealName("小初数学何老师");
                 teacher.setSex(true);
@@ -135,7 +137,7 @@ public class MyTeachersActivity extends ParentWithNaviActivity {
                 teacher.setCity("广州");
                 teacher.setMobilePhoneNumber("12345678987");
                 o.setTeacher(teacher);
-                adapter.addItem(o);
+                adapter.addItem(o);*/
 
                 if (adapter.getItemCount() == 0)
                     Toast.makeText(MyTeachersActivity.this, "您还没有授课老师", Toast.LENGTH_SHORT).show();

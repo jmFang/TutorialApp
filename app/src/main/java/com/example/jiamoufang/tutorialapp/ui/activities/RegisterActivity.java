@@ -20,8 +20,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.request.animation.ViewPropertyAnimation;
 import com.example.jiamoufang.tutorialapp.R;
+import com.example.jiamoufang.tutorialapp.db.localDB.bean.bmobDb;
 import com.example.jiamoufang.tutorialapp.event.FinishEvent;
 import com.example.jiamoufang.tutorialapp.model.UserModel;
+import com.example.jiamoufang.tutorialapp.model.bean.TeacherInformation;
 import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
@@ -166,7 +168,13 @@ public class RegisterActivity extends AppCompatActivity {
                     /*发出完成登录的事件消息，通知相应的fragment或activity*/
                     EventBus.getDefault().post(new FinishEvent());
                     //Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+
+                    //注册成功，为当前用户创建一个教师信息表， 表的唯一键是用户名
+                    TeacherInformation teacherInformation = new TeacherInformation(UserModel.getInstance().getCurrentUser());
+                    bmobDb.getInstance().saveTeacherInformation(teacherInformation);
+
                     startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+
                     finish();
                 } else {
                     Logger.e(e.getMessage() + "(" + e.getErrorCode() + ")");

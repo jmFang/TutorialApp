@@ -1,6 +1,7 @@
 package com.example.jiamoufang.tutorialapp.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 
 import com.example.jiamoufang.tutorialapp.R;
@@ -36,8 +37,10 @@ public class ConversationAdapter extends BaseRecyclerAdapter<Conversation>{
         Object obj = conversation.getAvatar();
         if(obj instanceof String){
             String avatar=(String)obj;
+            Log.d("ConversationAdapter",avatar);
             holder.setImageView(avatar, R.mipmap.default_ss, R.id.iv_recent_avatar);
         }else{
+            Log.d("ConversationAdapter",obj.toString());
             int defaultRes = (int)obj;
             holder.setImageView(null, defaultRes, R.id.iv_recent_avatar);
         }

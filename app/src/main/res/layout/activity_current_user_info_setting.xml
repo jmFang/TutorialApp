@@ -198,6 +198,63 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/underline_ll_my_role"
+            android:id="@+id/ll_my_diploma"
+            tools:layout_editor_absoluteX="10dp">
+            <TextView
+                android:id="@+id/tv_diploma"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="学历"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                tools:layout_editor_absoluteX="0dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:id="@+id/tv_my_diploma"
+                android:layout_gravity="end"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_gray"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/img_my_diploma_arrow"
+                android:text=""
+                tools:layout_editor_absoluteX="308dp" />
+            <ImageView
+                android:id="@+id/img_my_diploma_arrow"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toEndOf="@id/tv_my_diploma"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/fragment_my_settings_arrow"
+                tools:layout_editor_absoluteX="346dp" />
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:id="@+id/underline_ll_my_diploma"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/base_color_text_gray"
+            app:layout_constraintTop_toBottomOf="@+id/ll_my_diploma"
+            android:layout_height="4dp"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/underline_ll_my_diploma"
             android:id="@+id/ll_my_sex"
             tools:layout_editor_absoluteX="10dp">
             <TextView

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.example.jiamoufang.tutorialapp.ui.activities.ResumeActivity">
+
+    <include layout="@layout/include_navi"
+        android:id="@+id/nav_resume"/>
+    <LinearLayout
+        android:id="@+id/ll_resume_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nav_resume"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:padding="5dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="left"
+            android:text="教学经验介绍"
+            android:textColor="@color/black"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:minLines="4"
+            android:maxLines="8"
+            android:scrollbars="vertical"
+            android:gravity="top"
+            android:enabled="true"
+            android:background="@drawable/shape_edit_text_bg"
+            android:id="@+id/et_resume_teachingExp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_resume_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_resume_1"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:padding="5dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="left"
+            android:text="教学经历"
+            android:textColor="@color/black"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:minLines="4"
+            android:maxLines="8"
+            android:scrollbars="vertical"
+            android:gravity="top"
+            android:enabled="true"
+            android:background="@drawable/shape_edit_text_bg"
+            android:id="@+id/et_resume_sophisticate"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_resume_3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_resume_2"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:padding="5dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="left"
+            android:text="毕业/在读院校介绍"
+            android:textColor="@color/black"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:minLines="4"
+            android:maxLines="8"
+            android:scrollbars="vertical"
+            android:gravity="top"
+            android:enabled="true"
+            android:background="@drawable/shape_edit_text_bg"
+            android:id="@+id/et_resume_school"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_marginTop="5dp"
+            android:text="一句格言"
+            android:textColor="@color/black"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:maxLines="4"
+            android:scrollbars="vertical"
+            android:gravity="top"
+            android:enabled="true"
+            android:background="@drawable/shape_edit_text_bg"
+            android:id="@+id/et_resume_saying"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        app:layout_constraintTop_toBottomOf="@id/ll_resume_3"
+        android:layout_width="0dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingLeft="5dp"
+        android:paddingEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/bt_resume_clear"
+            android:text="清空重填"
+            android:background="@drawable/bt_logout_shap"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/bt_resume_commit"
+            android:text="确认提交"
+            android:background="@drawable/bt_logout_shap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

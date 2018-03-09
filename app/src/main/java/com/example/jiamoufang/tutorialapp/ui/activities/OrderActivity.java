@@ -17,6 +17,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.jiamoufang.tutorialapp.R;
+import com.example.jiamoufang.tutorialapp.db.localDB.bean.bmobDb;
+import com.example.jiamoufang.tutorialapp.model.UserModel;
+import com.example.jiamoufang.tutorialapp.model.bean.Order;
 import com.example.jiamoufang.tutorialapp.ui.base.ParentWithNaviActivity;
 
 
@@ -82,10 +85,43 @@ public class OrderActivity extends ParentWithNaviActivity implements AdapterView
             public void onClick(View v) {
                 boolean ok = checkValid();
                 if (ok) {
+                    String Class, grade, diploma, subject, price, address;
+                    Class = spinner_class.getSelectedItem().toString();
+                    grade = spinner_grade.getSelectedItem().toString();
+                    diploma = spinner_diploma.getSelectedItem().toString();
+                    subject = spinner_subject.getSelectedItem().toString();
+                    price = order_salary.getText().toString();
+                    address = order_address.getText().toString();
 
+                    Order order = new Order();
+                    order.setAddress(address);
+                    order.setGrade(StrGradeToIntGrade(Class, grade));
+                    order.setSalary(price);
+                    order.setSubject(subject);
+                    order.setEducatedLevel(diploma);
+                    order.setUser(UserModel.getInstance().getCurrentUser());
+                    order.setStatus(false);
+                    bmobDb.getInstance().publishOrder(order);
+                    //返回，结束当前活动
+                    toast("已发布");
+                    finish();
                 }
             }
         });
+    }
+
+    Integer StrGradeToIntGrade(String Class, String grade) {
+        Integer t = Integer.valueOf(Integer.parseInt(grade));
+        if(Class.equals("小学")) {
+            return Integer.valueOf(t.intValue());
+        } else if(Class.equals("中学")) {
+            return Integer.valueOf(6+t.intValue());
+        } else if(Class.equals("高中")) {
+            return Integer.valueOf(9+t.intValue());
+        } else if(Class.equals("大学")) {
+            return Integer.valueOf(13);
+        }
+        return Integer.valueOf(-1);
     }
     /*
     * 检车所有输入或填写是否合法
