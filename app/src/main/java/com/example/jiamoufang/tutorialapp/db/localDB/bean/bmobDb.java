@@ -62,9 +62,7 @@ public class bmobDb  {
                 }
             }
             @Override
-            public void onProgress(Integer value) {
-                Log.d("picture", "已经上传了：" + value);
-            }
+            public void onProgress(Integer value) {}
         });
 
     }
